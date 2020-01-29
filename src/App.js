@@ -1,24 +1,45 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Formik } from 'formik';
+
+import { User } from './core/user';
 
 function App() {
+  const signIn = User.signIn();
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Formik
+      initialValues={{ email: 'admin@admin.com', password: 'admin' }}
+      onSubmit={values => {signIn(values)}}
+      >
+      {({
+          values,
+          handleChange,
+          handleBlur,
+          handleSubmit,
+          isSubmitting,
+        }) => (
+          <form onSubmit={handleSubmit}>
+            <input
+              type="email"
+              name="email"
+              id="email"
+              onChange={handleChange}
+              onBlur={handleBlur}
+              value={values.email}
+              className="login-input"
+            />
+            <input
+              type="password"
+              name="password"
+              id="password"
+              onChange={handleChange}
+              onBlur={handleBlur}
+              value={values.password}
+            />
+            <button className="login-submit" type="submit" disabled={isSubmitting}>CONNEXION</button>
+          </form>
+        )}
+      </Formik>
     </div>
   );
 }
