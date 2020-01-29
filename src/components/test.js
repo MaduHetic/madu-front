@@ -1,9 +1,9 @@
 import React from 'react';
 import { Formik } from 'formik';
 
-import { User } from './core/user';
+import { User } from '../core/user';
 
-function App() {
+function Test() {
   const signIn = User.signIn();
   return (
     <div className="App">
@@ -44,4 +44,4 @@ function App() {
   );
 }
 
-export default App;
+export default Test;
