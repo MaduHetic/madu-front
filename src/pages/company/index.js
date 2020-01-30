@@ -23,6 +23,7 @@ const inputs = [
 const CompanyList = () => {
   const registerCompany = Company.registerCompany();
   const getAllCompanies = Company.getAllCompanies();
+  const allCompanies = Company.allCompanies();
   const [ address, setAddress ] = useState();
   const [ country, setCountry ] = useState();
   const [ lng, setLng ] = useState();
@@ -31,8 +32,9 @@ const CompanyList = () => {
 
   useEffect(() => {
     getAllCompanies();
-  }, [getAllCompanies])
-
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+  console.log(allCompanies);
   return (
     <div>
       <Formik

@@ -5,6 +5,7 @@ import { Actions } from "./actions";
 
 
 const initialState = {
+  companies: [],
   errors: [],
   isLoading: false,
 };
@@ -23,7 +24,6 @@ export const companyReducer = (
   return produce(state, draft => {
     switch (action.type) {
       case getType(Actions.registerCompany.request):
-      console.log('---------------', true)
         draft.isLoading = true;
         break;
       case getType(Actions.registerCompany.success):
@@ -63,6 +63,7 @@ export const companyReducer = (
         draft.isLoading = true;
         break;
       case getType(Actions.getAllCompanies.success):
+        draft.companies = action.payload;
         draft.isLoading = true;
         break;
       case getType(Actions.getAllCompanies.failure):

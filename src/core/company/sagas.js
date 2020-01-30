@@ -6,7 +6,6 @@ function* registerCompany(action) {
   try {
     yield put(Actions.registerCompany.request(true));
     const request = yield call(Api.registerCompany, action.payload);
-    console.log(request);
     if (request.status === 201) {
       yield put(Actions.registerCompany.success(request.data));
     }
@@ -54,7 +53,7 @@ function* deleteCompany(action) {
   }
 }
 
-function* getAllCompanies(action) {
+function* getAllCompanies() {
   try {
     yield put(Actions.getAllCompanies.request(true));
     const request = yield call(Api.getAllCompanies);
