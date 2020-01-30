@@ -7,7 +7,7 @@ function* registerCompany(action) {
     yield put(Actions.registerCompany.request(true));
     const request = yield call(Api.registerCompany, action.payload);
     console.log(request);
-    if (request.status === 200) {
+    if (request.status === 201) {
       yield put(Actions.registerCompany.success(request.data));
     }
   } catch {

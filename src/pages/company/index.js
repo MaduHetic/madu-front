@@ -1,22 +1,51 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Formik } from 'formik';
-
+import AlgoliaPlaces from 'algolia-places-react';
+import moment from 'moment';
 import { Company } from '../../core/company';
+
+
+
+// const placesAutocomplete = places({
+//   appId: 'S65E4N0B1U',
+//   apiKey: 'abb4dc9e4cf72ca1e74c676f49462db9',
+// });
+
+const inputs = [
+  { name: 'name', label: 'name' },
+  { name: 'type', label: 'type' },
+  { name: 'nbWorker', label: 'nbWorker' },
+  { name: 'beginDeal', label: 'beginDeal' },
+  { name: 'endDeal', label: 'endDeal' },
+  { name: 'domaineMail', label: 'domaineMail' },
+]
 
 const CompanyList = () => {
   const registerCompany = Company.registerCompany();
+  const getAllCompanies = Company.getAllCompanies();
+  const [ address, setAddress ] = useState();
+  const [ country, setCountry ] = useState();
+  const [ lng, setLng ] = useState();
+  const [ lat, setLat ] = useState();
+  const [ postCode, setPostCode ] = useState();
+
+  useEffect(() => {
+    getAllCompanies();
+  }, [getAllCompanies])
+
   return (
     <div>
       <Formik
         initialValues={{ 
-          name: "looool",
-          type: 'dfg',
-          adresse: 'dfg',
-          nbuser: 'dfg',
-          contractLength: 'dfg',
-          emailDomaine: 'dfg',
+          name: "hostnfly",
+          type: 'agence', // co-working, école, autre
+          city: 'Paris',
+          nbWorker: '5',
+          beginDeal: moment().format('YYYYMMDD').toString(),
+          endDeal: moment().format('YYYYMMDD').toString(),
+          domaineMail: 'hostnfly',
         }}
-        onSubmit={values => {registerCompany(values);}}
+        onSubmit={values => {registerCompany(Object.assign(values, {address, country, lng, lat, postCode}))}}
       >
       {({
           values,
@@ -26,54 +55,35 @@ const CompanyList = () => {
           isSubmitting,
         }) => (
           <form onSubmit={handleSubmit}>
-            <input
-              type="text"
-              name="name"
-              label="Entrer votre e-mail"
-              onChange={handleChange}
-              onBlur={handleBlur}
-              value={values.name}
-            />
-            <input
-              type="text"
-              name="type"
-              label="Entrer votre mot de passe"
-              onChange={handleChange}
-              onBlur={handleBlur}
-              value={values.type}
-            />
-            <input
-              type="text"
-              name="adresse"
-              label="Entrer votre e-mail"
-              onChange={handleChange}
-              onBlur={handleBlur}
-              value={values.adresse}
-            />
-            <input
-              type="text"
-              name="nbuser"
-              label="Entrer votre mot de passe"
-              onChange={handleChange}
-              onBlur={handleBlur}
-              value={values.nbuser}
-            />
-            <input
-              type="text"
-              name="contractLength"
-              label="Entrer votre e-mail"
-              onChange={handleChange}
-              onBlur={handleBlur}
-              value={values.contractLength}
-            />
-            <input
-              type="text"
-              name="emailDomaine"
-              label="Entrer votre mot de passe"
-              onChange={handleChange}
-              onBlur={handleBlur}
-              value={values.emailDomaine}
-            />
+            {inputs.map(({name, label}, i) => (
+              <input
+                key={i}
+                type="text"
+                name={name}
+                label={label}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                value={values[name]}
+              />
+            ))}
+            <AlgoliaPlaces
+              placeholder='Adresse'
+              options={{
+                appId: 'pl40ZJQJFIY1',
+                apiKey: 'b97d72715d5faff9cb479e0606500f11',
+                language: 'fr',
+                countries: ['fr'],
+                type: 'city',
+              }}
+                onChange={({ query, rawAnswer, suggestion, suggestionIndex }) => {
+                  console.log(suggestion);
+                  setAddress(suggestion.name);
+                  setCountry(suggestion.county);
+                  setLng(suggestion.latlng.lng);
+                  setLat(suggestion.latlng.lat);
+                  setPostCode(suggestion.postcode);
+                }}
+              />
             <button type="submit">CONNEXION</button>
           </form>
         )}

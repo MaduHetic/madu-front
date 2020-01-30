@@ -8,10 +8,15 @@ function registerCompany(data) {
     data: {
       name: data.name,
       type: data.type,
-      adresse: data.adresse,
-      nbuser: data.nbuser,
-      contractLength: data.contractLength,
-      emailDomaine: data.emailDomaine,
+      address: data.address,
+      city: data.city,
+      lng: data.lng,
+      lat: data.lat,
+      postalCode: data.postCode,
+      nbWorker: data.nbWorker,
+      beginDeal: data.beginDeal,
+      endDeal: data.endDeal,
+      domaineMail: data.domaineMail,
     }
   });
 }
@@ -30,10 +35,15 @@ function updateCompany(data, id) {
     data: {
       name: data.name,
       type: data.type,
-      adresse: data.adresse,
-      nbuser: data.nbuser,
-      contractLength: data.contractLength,
-      emailDomaine: data.emailDomaine,
+      adress: data.adress,
+      city: data.city,
+      lng: data.lng,
+      lat: data.lat,
+      postalCode: data.postalCode,
+      nbWorker: data.nbWorker,
+      beginDeal: data.beginDeal,
+      endDeal: data.endDeal,
+      domaineMail: data.domaineMail,
     }
   });
 }

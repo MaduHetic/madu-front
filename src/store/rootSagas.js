@@ -3,6 +3,5 @@ import { User } from '../core/user';
 import { Company } from '../core/company';
 
 export default function* rootSaga() {
-  yield all([User.sagas()]);
-  yield all([Company.sagas()]);
+  yield all([User.sagas(), Company.sagas()]);
 }
