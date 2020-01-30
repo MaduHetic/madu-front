@@ -7,6 +7,7 @@ import Dashboard from '../pages/Dashboard/index';
 import styled from 'styled-components';
 import { Color } from '../styles/variables';
 import { User } from '../core/user';
+import CompanyList from '../pages/company';
 
 
 const history = createBrowserHistory();
@@ -44,6 +45,7 @@ const App = () => {
           <Switch>
             <Route exact path="/login" component={Login} history={history} />
             <Route exact path="/" component={Dashboard} />
+            <Route exact path="/clients" component={CompanyList} />
             <Route exact path="/dashboard" component={Dashboard} />
           </Switch>
         </PageContent>
