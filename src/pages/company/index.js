@@ -34,6 +34,7 @@ const CompanyList = () => {
     getAllCompanies();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
+
   console.log(allCompanies);
   return (
     <div>
