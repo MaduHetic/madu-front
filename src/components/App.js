@@ -1,12 +1,33 @@
 import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import ExampleComponents from '../pages/Example-components';
 import { createBrowserHistory } from 'history';
 import Login from '../pages/login';
-
+import SidebarMenu from './SidebarMenu';
+import Dashboard from '../pages/Dashboard';
+import styled from 'styled-components';
+import { Color } from '../styles/variables';
 import { User } from '../core/user';
 
+
 const history = createBrowserHistory();
+
+const MainContent = styled.main`
+  z-index: 5;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+`;
+
+const PageContent = styled.div`
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: calc(100% - 220px);
+    background: ${Color.lightgrey};
+`;
 
 const App = () => {
   const getCurrentUser = User.getCurrentUser();
@@ -16,16 +37,17 @@ const App = () => {
   }, [getCurrentUser]);
 
   return (
-    <div>
+    <MainContent>
       <Router>
-        <main>
+        <SidebarMenu />
+        <PageContent>
           <Switch>
-            <Route exact path="/" component={ExampleComponents} />
             <Route path="/login" component={Login} history={history} />
+            <Route exact path="/dashboard" component={Dashboard} />
           </Switch>
-        </main>
+        </PageContent>
       </Router>
-    </div>
+    </MainContent>
   );
 }
 
