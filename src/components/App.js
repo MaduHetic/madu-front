@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { createBrowserHistory } from 'history';
 import Login from '../pages/login';
 import SidebarMenu from './SidebarMenu';
-import Dashboard from '../pages/Dashboard';
+import Dashboard from '../pages/Dashboard/index';
 import styled from 'styled-components';
 import { Color } from '../styles/variables';
 import { User } from '../core/user';
@@ -43,6 +43,7 @@ const App = () => {
         <PageContent loggedIn={loggedIn}>
           <Switch>
             <Route path="/login" component={Login} history={history} />
+            <Route exact path="/dashboard" component={Dashboard} />
             <Route exact path="/" component={Dashboard} />
           </Switch>
         </PageContent>
