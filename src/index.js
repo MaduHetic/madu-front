@@ -1,9 +1,19 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import App from './components/App';
+import { render } from 'react-dom';
+import { Provider } from 'react-redux';
+import { configure } from './store/configureStore';
 import GlobalStyle from './styles/global';
-import * as serviceWorker from './serviceWorker';
+import App from './components/App';
 
-ReactDOM.render(<><GlobalStyle/><App /></>, document.getElementById('root'));
+const store = configure();
+const target = document.querySelector('#root');
 
-serviceWorker.unregister();
+render(
+  <>
+    <Provider store={store}>
+      <App />
+    </Provider>
+    <GlobalStyle/>
+  </>,
+  target,
+);

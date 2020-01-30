@@ -1,6 +1,7 @@
 import React from "react";
 import { Root } from "./style";
 import Chart from "react-apexcharts";
+import { Grid } from "@material-ui/core";
 
 const dataDonutClients = {
     options: {
@@ -96,31 +97,44 @@ const dataBar = {
 const Dashboard = () => {
     return (
         <Root>
-            <h2>DASHBOARD</h2>
-            <Chart
-                type="bar"
-                width="500"
-                height="auto"
-                {...dataBar}
-            />
-            <Chart
-                type="line"
-                width="500"
-                height="auto"
-                {...dataLine}
-            />
-            <Chart
-                type="donut"
-                width="500"
-                height="auto"
-                {...dataDonutClients}
-            />
-            <Chart
-                type="donut"
-                width="500"
-                height="auto"
-                {...dataDonutPOI}
-            />
+            <Grid container spacing={1} justify="space-evenly" alignItems="center" style={{height: "100vh"}}>
+                <Grid container item xs={12} spacing={3}>
+                    <Grid item xs={6}>
+                        <Chart
+                            type="line"
+                            width="84%"
+                            height="auto"
+                            {...dataLine}
+                        />
+                    </Grid>
+                    <Grid item xs={6}>
+                        <Chart
+                            type="donut"
+                            width="84%"
+                            height="auto"
+                            {...dataDonutClients}
+                        />
+                    </Grid>
+                </Grid>
+                <Grid container item xs={12} spacing={3}>
+                    <Grid item xs={6}>
+                        <Chart
+                            type="bar"
+                            width="84%"
+                            height="auto"
+                            {...dataBar}
+                        />
+                    </Grid>
+                    <Grid item xs={6}>
+                        <Chart
+                            type="donut"
+                            width="84%"
+                            height="auto"
+                            {...dataDonutPOI}
+                        />
+                    </Grid>
+                </Grid>
+            </Grid>
         </Root>
     )
 };
