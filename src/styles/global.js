@@ -29,10 +29,11 @@ const GlobalStyle = createGlobalStyle`
     }
     
     body {
+        height: 100%;
         font-family: ${Font.family.main};
         font-size: ${Font.size.m};
         font-weight: ${Font.weight.normal};
-        color: ${Color.main};
+        color: ${Color.textcolor};
         -moz-osx-font-smoothing: grayscale;
         -webkit-font-smoothing: antialiased;
         @media screen and (max-width: ${Breakpoint.m}) {
