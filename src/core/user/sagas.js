@@ -32,7 +32,7 @@ function* signUp() {
 
 function* signOut() {
   yield put(Actions.signOut())
-  localStorage.removeItem('user')
+  localStorage.removeItem('user');
 }
 
 function* getCurrentUser() {

@@ -24,7 +24,7 @@ const GlobalStyle = createGlobalStyle`
     }
 
     html {
-        font-size: 100%;
+        font-size: 62.5%;
         height: 100%;
     }
     

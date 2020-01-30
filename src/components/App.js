@@ -1,16 +1,27 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import ExampleComponents from '../pages/Example-components';
-import Test from './test';
+import { createBrowserHistory } from 'history';
+import Login from '../pages/login';
+
+import { User } from '../core/user';
+
+const history = createBrowserHistory();
 
 const App = () => {
+  const getCurrentUser = User.getCurrentUser();
+
+  useEffect(() => {
+    getCurrentUser()
+  }, [getCurrentUser]);
+
   return (
     <div>
       <Router>
         <main>
           <Switch>
             <Route exact path="/" component={ExampleComponents} />
-            <Route path="/test" component={Test} />
+            <Route path="/login" component={Login} history={history} />
           </Switch>
         </main>
       </Router>
