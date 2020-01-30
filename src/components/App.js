@@ -4,6 +4,7 @@ import { createBrowserHistory } from 'history';
 import Login from '../pages/login';
 import SidebarMenu from './SidebarMenu';
 import Dashboard from '../pages/Dashboard/index';
+import MapTest from '../pages/Map/index';
 import styled from 'styled-components';
 import { Color } from '../styles/variables';
 import { User } from '../core/user';
@@ -44,6 +45,7 @@ const App = () => {
           <Switch>
             <Route path="/login" component={Login} history={history} />
             <Route exact path="/dashboard" component={Dashboard} />
+            <Route exact path="/map" component={MapTest} />
             <Route exact path="/" component={Dashboard} />
           </Switch>
         </PageContent>
