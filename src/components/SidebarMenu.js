@@ -22,6 +22,7 @@ const Sidebar = styled.aside`
             justify-content: flex-start;
             align-items: center;
             padding: 8px 24px;
+            font-size: ${Font.size.m};
             font-weight: ${Font.weight.bold};
             text-transform: uppercase;
             opacity: 0.3;
