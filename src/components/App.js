@@ -25,25 +25,25 @@ const PageContent = styled.div`
     top: 0;
     right: 0;
     height: 100%;
-    width: calc(100% - 220px);
+    width: ${props => props.loggedIn ? 'calc(100% - 220px)' : '100%'};
     background: ${Color.lightgrey};
 `;
 
 const App = () => {
   const getCurrentUser = User.getCurrentUser();
+  const loggedIn = User.loggedIn();
 
   useEffect(() => {
     getCurrentUser()
   }, [getCurrentUser]);
-
   return (
     <MainContent>
       <Router>
-        <SidebarMenu />
-        <PageContent>
+        {loggedIn && (<SidebarMenu />)}
+        <PageContent loggedIn={loggedIn}>
           <Switch>
             <Route path="/login" component={Login} history={history} />
-            <Route exact path="/dashboard" component={Dashboard} />
+            <Route exact path="/" component={Dashboard} />
           </Switch>
         </PageContent>
       </Router>
