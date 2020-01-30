@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import SidebarMenu from './SidebarMenu';
 import Dashboard from '../pages/Dashboard/index';
+import Clients from '../pages/Clients/index';
 import styled from 'styled-components';
 import { Color } from '../styles/variables';
 
@@ -32,6 +33,7 @@ const App = () => {
           <Switch>
             <Route exact path="/" component={Dashboard} />
             <Route exact path="/dashboard" component={Dashboard} />
+            <Route exact path="/clients" component={Clients} />
           </Switch>
         </PageContent>
       </Router>
