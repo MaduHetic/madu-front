@@ -7,20 +7,21 @@ export const Breakpoint = {
 }
 
 export const Color = {
-    main: '#292B2F'
+    main: '#FFC107',
+    textcolor: '#292B2F',
+    white: '#FFFFFF',
+    lightgrey: '#F9F9F9'
 }
 
 export const Font = {
     family: {
-        main: 'Roboto',
-        secondary: 'sans-serif'
+        main: 'Roboto'
     },
     size: {
-        xs: '1.1rem',
-        s: '1.4rem',
-        m: '1.6rem',
-        l: '2.4rem',
-        xl: '4rem'
+        s: '0.8rem',
+        m: '1rem',
+        l: '1.4rem',
+        xl: '2rem'
     },
     weight: {
         thin: '300',
