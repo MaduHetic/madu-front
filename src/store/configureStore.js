@@ -8,10 +8,9 @@ import rootSaga from "./rootSagas";
 
 const sagaMiddleware = createSagaMiddleware();
 
-
 const middleware = [
-  sagaMiddleware,
   axiosMiddleware(client, options),
+  sagaMiddleware,
 ];
 
 const createStoreWithMiddleware = compose(applyMiddleware(...middleware)(createStore));

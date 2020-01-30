@@ -1,10 +1,16 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Formik } from 'formik';
 
 import { User } from '../core/user';
 
 function Test() {
   const signIn = User.signIn();
+  const getCurrentUser = User.getCurrentUser();
+
+  useEffect(() => {
+    getCurrentUser()
+  }, [getCurrentUser]);
+
   return (
     <div className="App">
       <Formik
@@ -36,7 +42,7 @@ function Test() {
               onBlur={handleBlur}
               value={values.password}
             />
-            <button className="login-submit" type="submit" disabled={isSubmitting}>CONNEXION</button>
+            <button className="login-submit" type="submit" disabled={false}>CONNEXION</button>
           </form>
         )}
       </Formik>

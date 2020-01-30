@@ -3,7 +3,8 @@ import { createAction, createAsyncAction } from "typesafe-actions";
 export const Events = {
   signIn: createAction("user/sign/in/send")(),
   signUp: createAction("user/sign/up/send")(),
-  signOut: createAction("user/sign/out/delete")(),
+  signOut: createAction("user/sign/out")(),
+  getCurrentUser: createAction('user/get/profile')(),
 };
 
 export const Actions = {
@@ -17,9 +18,10 @@ export const Actions = {
     "user/sign/up/send/success",
     "user/sign/up/send/failure"
   )(),
-  signOut: createAsyncAction(
-    "user/sign/out/delete/request",
-    "user/sign/out/delete/success",
-    "user/sign/out/delete/failure"
+  signOut: createAction("user/sign/out")(),
+  getCurrentUser: createAsyncAction(
+    'user/get/profile/request',
+    'user/get/profile/success',
+    'user/get/profile/failure'
   )(),
 };

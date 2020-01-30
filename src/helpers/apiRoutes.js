@@ -1,5 +1,5 @@
 export default ({
-  signIn: () => `/auth/login`, // GET
+  signIn: () => `/auth/login`, // POST
   signUp: () => `/user`, // POST
   signOut: () => `/auth/sign_out`,
   getProfile: () => `/profile`, // GET

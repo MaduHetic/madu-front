@@ -1,18 +1,14 @@
 import { client } from "../../helpers/api";
 import apiRoutes from "../../helpers/apiRoutes";
 
-function signOut() {
-  return client.request({
-    method: "delete",
-    url: apiRoutes.signOut()
-  });
-}
-
 function signIn(data) {
   return client.request({
     method: "post",
     url: apiRoutes.signIn(),
-    data
+    data: {
+      username: data.email,
+      password: data.password,
+    }
   });
 }
 
@@ -23,8 +19,15 @@ function signUp() {
   });
 }
 
+function getCurrentUser() {
+  return client.request({
+    method: "get",
+    url: apiRoutes.getProfile()
+  });
+}
+
 export const Api = {
-  signOut,
   signIn,
   signUp,
+  getCurrentUser,
 };

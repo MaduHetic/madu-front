@@ -11,7 +11,9 @@ import {
 
 function useSignOut() {
   const dispatch = useDispatch();
-  return () => dispatch(Events.signOut());
+  return () => {
+    dispatch(Events.signOut())
+  };
 }
 
 function useSignIn() {
@@ -20,6 +22,14 @@ function useSignIn() {
     dispatch(Actions.signIn.request(true));
     dispatch(Events.signIn(creds));
   };
+}
+
+function useGetCurrentUser() {
+  const dispatch = useDispatch();
+  return () => {
+    dispatch(Actions.getCurrentUser.request(true));
+    dispatch(Events.getCurrentUser());
+  }
 }
 
 function useSignUp() {
@@ -52,6 +62,7 @@ export const User = {
   errors: useError,
   loggedIn: useLoggedIn,
   isLoading: useIsLoading,
+  getCurrentUser: useGetCurrentUser,
   sagas: rootSagas,
   reducer: userReducer
 };

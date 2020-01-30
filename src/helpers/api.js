@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export const client = axios.create({
-  baseURL: '54.93.154.86:3000',
+  baseURL: 'http://35.180.25.234:3000',
   responseType: "json",
   xsrfCookieName: false,
   headers: {
@@ -15,8 +15,10 @@ export const options = {
   interceptors: {
     request: [
       (store, config) => {
-        if (store.getState().user.credentials["access-token"]) {
-          config.headers["access-token"] = store.getState().user.credentials["access-token"];
+        if (store.getState().user.auth_token) {
+          config.headers["Authorization"] = `Bearer ${store.getState().user.auth_token}`;
+        } else if (window.localStorage.getItem('user')) {
+          config.headers['Authorization'] = `Bearer ${JSON.parse(window.localStorage.getItem('user'))}`;
         }
         return config;
       },
