@@ -42,9 +42,9 @@ const App = () => {
         {loggedIn && (<SidebarMenu />)}
         <PageContent loggedIn={loggedIn}>
           <Switch>
-            <Route path="/login" component={Login} history={history} />
-            <Route exact path="/dashboard" component={Dashboard} />
+            <Route exact path="/login" component={Login} history={history} />
             <Route exact path="/" component={Dashboard} />
+            <Route exact path="/dashboard" component={Dashboard} />
           </Switch>
         </PageContent>
       </Router>
