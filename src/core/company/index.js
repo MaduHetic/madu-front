@@ -14,25 +14,25 @@ function useRegisterCompany() {
 
 function useGetCompany() {
   const dispatch = useDispatch();
-  return () => {
+  return (id) => {
+    dispatch(Events.getCompany(id));
     dispatch(Actions.getCompany.request());
-    dispatch(Events.getCompany());
   };
 }
 
 function useUpdateCompany() {
   const dispatch = useDispatch();
-  return () => {
+  return (data) => {
+    dispatch(Events.updateCompany(data));
     dispatch(Actions.updateCompany.request());
-    dispatch(Events.updateCompany());
   };
 }
 
 function useDeleteCompany() {
   const dispatch = useDispatch();
-  return () => {
+  return (id) => {
+    dispatch(Events.deleteCompany(id));
     dispatch(Actions.deleteCompany.request());
-    dispatch(Events.deleteCompany());
   };
 }
 
