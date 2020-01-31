@@ -6,6 +6,7 @@ import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import { Color, Font, Breakpoint } from '../styles/variables';
 import Logo from '../images/Logo.svg';
+import LogoMobile from '../images/Logo-white.svg';
 
 import { User } from '../core/user';
 
@@ -115,7 +116,7 @@ const Login = ({ history }) => {
       <div className="login-content">
         <div>
           <div className="logo-mobile">
-            <img src={Logo} alt="Logo Madu"/>
+            <img src={LogoMobile} alt="Logo Madu"/>
           </div>
           <h1>Connexion</h1>
           <Formik
