@@ -97,7 +97,7 @@ const dataBar = {
 const Dashboard = () => {
     return (
         <Root>
-            <Grid container spacing={1} justify="space-evenly" alignItems="center" style={{height: "100vh"}}>
+            <Grid container spacing={1} justify="space-evenly" alignItems="center">
                 <Grid container item xs={12} spacing={3}>
                     <Grid item xs={6}>
                         <Chart

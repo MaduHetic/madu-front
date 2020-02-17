@@ -42,6 +42,7 @@ const GlobalStyle = createGlobalStyle`
     }
       
     img {
+        max-width: 100%;
         user-select: none;
     }
 

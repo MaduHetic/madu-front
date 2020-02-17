@@ -18,10 +18,10 @@ export const Font = {
         main: 'Roboto'
     },
     size: {
-        s: '0.8rem',
-        m: '1rem',
-        l: '1.4rem',
-        xl: '2rem'
+        s: '1rem',
+        m: '1.4rem',
+        l: '2rem',
+        xl: '2.8rem'
     },
     weight: {
         thin: '300',
