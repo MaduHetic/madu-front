@@ -48,7 +48,7 @@ const App = () => {
             <Route exact path="/" component={Dashboard} />
             <Route exact path="/clients" component={CompanyList} />
             <Route exact path="/dashboard" component={Dashboard} />
-            <Route exact path="/clients" component={Clients} />
+            <Route exact path="/b2b" component={Clients} />
           </Switch>
         </PageContent>
       </Router>

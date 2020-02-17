@@ -2,27 +2,43 @@
 import React from 'react';
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
+import { makeStyles } from '@material-ui/core/styles';
+
+
+const useStyles = makeStyles({
+	inputWrapper: {
+		flexGrow: '1'
+	},
+	placeholder: {
+		'&::placeholder': {
+			color: "blue",
+		}
+	}
+});
 
 export default function SearchInput() {
+	const classes = useStyles();
+
   return (
-    <div>
       <Autocomplete
         freeSolo
         blurOnSelect
         disableOpenOnFocus
-        disableClearable={false}
+				disableClearable={false}
+				classes= {{
+					root: classes.inputWrapper
+				}}
         options={top100Films.map(option => option.title)}
         renderInput={params => (
           <TextField
             {...params}
-            margin="normal"
+            margin="none"
             placeholder="Rechercher un client"
-            fullWidth
-            InputProps={{ ...params.InputProps, type: 'search' }}
+						fullWidth
+            InputProps={{ ...params.InputProps, type: 'search', disableUnderline: true, classes: {inputTypeSearch: classes.placeholder } }}
           />
         )}
       />
-    </div>
   );
 }
 
