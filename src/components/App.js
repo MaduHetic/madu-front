@@ -9,6 +9,7 @@ import styled from 'styled-components';
 import { Color } from '../styles/variables';
 import { User } from '../core/user';
 import CompanyList from '../pages/company';
+import poiCreate from '../pages/poi';
 
 
 const history = createBrowserHistory();
@@ -38,6 +39,12 @@ const App = () => {
   useEffect(() => {
     getCurrentUser()
   }, [getCurrentUser]);
+
+  // useEffect(() => {
+  //   const user = localStorage.getItem('user');
+  //   if (!loggedIn || !user) { history.push('/login'); }
+  // }, [loggedIn]);
+
   return (
     <MainContent>
       <Router>
@@ -46,9 +53,10 @@ const App = () => {
           <Switch>
             <Route exact path="/map" component={MapTest} />
             <Route exact path="/login" component={Login} history={history} />
+            <Route exact path="/dashboard" component={Dashboard} />
             <Route exact path="/" component={Dashboard} />
             <Route exact path="/clients" component={CompanyList} />
-            <Route exact path="/dashboard" component={Dashboard} />
+            <Route exact path="/point-d-interet" component={poiCreate} />
           </Switch>
         </PageContent>
       </Router>

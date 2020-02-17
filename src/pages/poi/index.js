@@ -1,54 +1,44 @@
 import React, { useEffect, useState } from 'react';
 import { Formik } from 'formik';
 import AlgoliaPlaces from 'algolia-places-react';
-import moment from 'moment';
-import { Company } from '../../core/company';
-
-
-
-// const placesAutocomplete = places({
-//   appId: 'S65E4N0B1U',
-//   apiKey: 'abb4dc9e4cf72ca1e74c676f49462db9',
-// });
+import { Poi } from '../../core/poi';
 
 const inputs = [
   { name: 'name', label: 'name' },
   { name: 'type', label: 'type' },
-  { name: 'nbWorker', label: 'nbWorker' },
-  { name: 'beginDeal', label: 'beginDeal' },
-  { name: 'endDeal', label: 'endDeal' },
-  { name: 'domaineMail', label: 'domaineMail' },
+  { name: 'description', label: 'description' },
+  { name: 'greenScore', label: 'greenScore' },
+  { name: 'tags', label: 'tags' },
+  { name: 'type', label: 'type' },
+  { name: 'price', label: 'price' },
 ]
 
-const CompanyList = () => {
-  const registerCompany = Company.registerCompany();
-  const getAllCompanies = Company.getAllCompanies();
-  const allCompanies = Company.allCompanies();
+const PoiCreation = () => {
+  const registerPoi = Poi.registerPoi();
+  const getAllPoi = Poi.getAllPoi();
   const [ address, setAddress ] = useState();
-  const [ country, setCountry ] = useState();
   const [ lng, setLng ] = useState();
   const [ lat, setLat ] = useState();
   const [ postCode, setPostCode ] = useState();
 
   useEffect(() => {
-    getAllCompanies();
+    getAllPoi();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-  console.log(allCompanies);
   return (
     <div>
       <Formik
         initialValues={{ 
           name: "hostnfly",
-          type: 'agence', // co-working, école, autre
           city: 'Paris',
-          nbWorker: '5',
-          beginDeal: moment().format('YYYYMMDD').toString(),
-          endDeal: moment().format('YYYYMMDD').toString(),
-          domaineMail: 'hostnfly',
+          description: "",
+          greenScore: "123",
+          tags: [],
+          type: [],
+          price: "low",
         }}
-        onSubmit={values => {registerCompany(Object.assign(values, {address, country, lng, lat, postCode}))}}
+        onSubmit={values => {registerPoi(Object.assign(values, {address, lng, lat, postCode}))}}
       >
       {({
           values,
@@ -80,7 +70,6 @@ const CompanyList = () => {
                 onChange={({ query, rawAnswer, suggestion, suggestionIndex }) => {
                   console.log(suggestion);
                   setAddress(suggestion.name);
-                  setCountry(suggestion.county);
                   setLng(suggestion.latlng.lng);
                   setLat(suggestion.latlng.lat);
                   setPostCode(suggestion.postcode);
@@ -95,4 +84,4 @@ const CompanyList = () => {
 };
 
 
-export default CompanyList;
+export default PoiCreation;
