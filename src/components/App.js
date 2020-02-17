@@ -1,10 +1,17 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { createBrowserHistory } from 'history';
+import Login from '../pages/login';
 import SidebarMenu from './SidebarMenu';
 import Dashboard from '../pages/Dashboard/index';
 import Clients from '../pages/Clients/index';
 import styled from 'styled-components';
 import { Color } from '../styles/variables';
+import { User } from '../core/user';
+import CompanyList from '../pages/company';
+
+
+const history = createBrowserHistory();
 
 const MainContent = styled.main`
   z-index: 5;
@@ -20,18 +27,26 @@ const PageContent = styled.div`
     top: 0;
     right: 0;
     height: 100%;
-    width: calc(100% - 220px);
+    width: ${props => props.loggedIn ? 'calc(100% - 220px)' : '100%'};
     background: ${Color.lightgrey};
 `;
 
 const App = () => {
+  const getCurrentUser = User.getCurrentUser();
+  const loggedIn = User.loggedIn();
+
+  useEffect(() => {
+    getCurrentUser()
+  }, [getCurrentUser]);
   return (
     <MainContent>
       <Router>
-        <SidebarMenu />
-        <PageContent>
+        {loggedIn && (<SidebarMenu />)}
+        <PageContent loggedIn={loggedIn}>
           <Switch>
+            <Route exact path="/login" component={Login} history={history} />
             <Route exact path="/" component={Dashboard} />
+            <Route exact path="/clients" component={CompanyList} />
             <Route exact path="/dashboard" component={Dashboard} />
             <Route exact path="/clients" component={Clients} />
           </Switch>

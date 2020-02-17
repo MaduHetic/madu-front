@@ -54,6 +54,7 @@ export const userReducer = (
       case getType(Actions.getCurrentUser.success):
         draft.isLoading = false;
         draft.user = action.payload;
+        draft.loggedIn = true;
         break;
       case getType(Actions.getCurrentUser.failure):
         draft.isLoading = false;
