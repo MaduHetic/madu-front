@@ -7,10 +7,10 @@ export const Breakpoint = {
 }
 
 export const Color = {
-    main: '#FFC107',
+    main: '#1B58E4',
     textcolor: '#292B2F',
     white: '#FFFFFF',
-    lightgrey: '#F9F9F9'
+    lightgrey: '#F5F5FA'
 }
 
 export const Font = {
