@@ -7,4 +7,5 @@ export const TopBar = styled.div`
     background: #FFFFFF;
     padding: 8px 16px 8px 32px;
     box-shadow: -1px 1px 0px rgba(229, 229, 229, 0.5);
+    margin-bottom: 24px;
 `;
