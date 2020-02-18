@@ -1,28 +1,32 @@
 import React, { useState, useEffect } from 'react';
-import ReactMapboxGl, { Layer, Feature, Marker } from 'react-mapbox-gl';
-import { Company } from "../../core/company";
-import { ButtonContainer } from "./style";
+import ReactMapboxGl, { Layer, Feature } from 'react-mapbox-gl';
+// import { Company } from "../../core/company";
+import { ButtonContainer, ButtonFilter, CheckboxesContainer, DescriptionContainer } from "./style";
 import { Checkbox } from "@material-ui/core";
 import FormGroup from '@material-ui/core/FormGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
+
 const Map = ReactMapboxGl({
   accessToken: "pk.eyJ1IjoiZ2FtYTk3ODAiLCJhIjoiY2p2NmR3NzA4MDA1NzQzbzdpd3IzNml3NiJ9.uqGMqqnpdiBlrnzWaxMKMg"
 });
 
 const fakeData = [
     {
+        id: 0,
         name: "La fontaine",
         price: "$",
         long: 2.4183733,
         lat: 48.8511628,
     },
     {
+        id: 1,
         name: "JUL",
         price: "$$$",
         long: 2.33,
         lat: 48.83,
     },
     {
+        id: 2,
         name: "WeshAlors",
         price: "$$",
         long: 2.32,
@@ -31,6 +35,7 @@ const fakeData = [
         tag: "Agence"
     },
     {
+        id: 3,
         name: "Oui",
         price: "$",
         long: 2.33,
@@ -39,6 +44,7 @@ const fakeData = [
         tag: "École"
     },
     {
+        id: 4,
         name: "Non",
         price: "$$$",
         long: 2.33,
@@ -47,6 +53,7 @@ const fakeData = [
         tag: "restaurant"
     },
     {
+        id: 5,
         name: "Peut-être",
         price: "$$",
         long: 2.32,
@@ -55,18 +62,21 @@ const fakeData = [
         tag: "bar"
     },
     {
+        id: 6,
         name: "La fontaine",
         price: "$",
         long: 2.4283733,
         lat: 48.8611628,
     },
     {
+        id: 7,
         name: "JUL",
         price: "$$$",
         long: 2.34,
         lat: 48.84,
     },
     {
+        id: 8,
         name: "WeshAlors",
         price: "$$",
         long: 2.33,
@@ -74,6 +84,7 @@ const fakeData = [
         type: "client"
     },
     {
+        id: 9,
         name: "Oui",
         price: "$",
         long: 2.34,
@@ -81,6 +92,7 @@ const fakeData = [
         type: "client"
     },
     {
+        id: 10,
         name: "Non",
         price: "$$$",
         long: 2.34,
@@ -88,12 +100,13 @@ const fakeData = [
         type: "POI"
     },
     {
+        id: 11,
         name: "Peut-être",
         price: "$$",
         long: 2.33,
         lat: 48.83,
         type: "POI"
-    },
+    }
 ]
 
 const cateClient = ["Agence", "Co-working", "École", "Grand compte", "Start-up", "PME", "Incubateur", "Autre"]
@@ -103,18 +116,19 @@ const MapTest = () => {
     // const companies = Company.allCompanies()
     // const getCompanies = Company.getAllCompanies()
     const map = React.createRef()
-    const object = Object.assign(...cateClient.map(k => ({ [k]: false })))
+    const initStateCheckboxes = Object.assign(...cateClient.map(k => ({ [k]: false })))
 
     const [centerAndZoom, setCenterAndZoom] = useState({center: [2.36, 48.858], zoom: [11.8]})
     const [mapFilter, setMapFilter] = useState("")
-    const [state, setState] = React.useState(object);
+    const [stateCheckboxes, setStateCheckboxes] = useState(initStateCheckboxes);
+    const [currentEntity, setCurrentEntity] = useState();
 
     const filteredData = fakeData
         .filter(data => mapFilter ? data.type === mapFilter : true)
-        .filter(data => Object.keys(state).every((k) => !state[k]) ? true : state[data.tag])
+        .filter(data => Object.keys(stateCheckboxes).every(key => !stateCheckboxes[key]) ? true : stateCheckboxes[data.tag])
     
     const handleChange = name => event => {
-        setState({ ...state, [name]: event.target.checked });
+        setStateCheckboxes({ ...stateCheckboxes, [name]: event.target.checked });
     };
 
     useEffect(() => {
@@ -171,40 +185,20 @@ const MapTest = () => {
                 </Layer>
             </Map>
             <ButtonContainer>
-                <button
-                    style={{
-                        background: mapFilter === "POI" ? "red" : "white",
-                        width: 200,
-                        height: 80
-                    }}
-                    onClick={() => setMapFilter(mapFilter === "POI" ? "" : "POI")}
-                >POI</button>
-                <button
-                    style={{
-                        background: mapFilter === "client" ? "red" : "white",
-                        width: 200,
-                        height: 80
-                    }}
-                    onClick={() => setMapFilter(mapFilter === "client" ? "" : "client")}
-                >Clients</button>
+                <ButtonFilter isActive={mapFilter === ""} onClick={() => setMapFilter("")}>ALL</ButtonFilter>
+                <ButtonFilter isActive={mapFilter === "POI"} onClick={() => setMapFilter("POI")}>POI</ButtonFilter>
+                <div />
+                <ButtonFilter isActive={mapFilter === "client"} onClick={() => setMapFilter("client")}>Clients</ButtonFilter>
             </ButtonContainer>
-            <div style={{
-                position: "absolute",
-                top: 36,
-                right: 20,
-                display: mapFilter === "" ? "none" : "block",
-                background: "white",
-                width: 200,
-                padding: "10px 20px"
-            }}>
-
+            <CheckboxesContainer isDisplayed={mapFilter !== ""}>
+                <h3>Filtres</h3>
                 {mapFilter === "POI" ? (
-                    <FormGroup row>
+                    <FormGroup>
                         {catePOI.map((cate, i) => (
                             <FormControlLabel
                                 control={
                                     <Checkbox
-                                    checked={state[cate]}
+                                    checked={stateCheckboxes[cate]}
                                     onChange={handleChange(cate)}
                                     value={cate}
                                     color="primary"
@@ -221,7 +215,7 @@ const MapTest = () => {
                             <FormControlLabel
                                 control={
                                     <Checkbox
-                                        checked={state[cate]}
+                                        checked={stateCheckboxes[cate]}
                                         onChange={handleChange(cate)}
                                         value={cate}
                                         color="primary"
@@ -233,7 +227,10 @@ const MapTest = () => {
                         ))}
                     </FormGroup>
                 )}
-            </div>
+            </CheckboxesContainer>
+            <DescriptionContainer isDisplayed={true}>
+                <p>TEST</p>
+            </DescriptionContainer>
         </>
     );
 }
