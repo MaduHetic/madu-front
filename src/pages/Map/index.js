@@ -121,7 +121,7 @@ const MapTest = () => {
     const [centerAndZoom, setCenterAndZoom] = useState({center: [2.36, 48.858], zoom: [11.8]})
     const [mapFilter, setMapFilter] = useState("")
     const [stateCheckboxes, setStateCheckboxes] = useState(initStateCheckboxes);
-    const [currentEntity, setCurrentEntity] = useState();
+    const [currentEntity, setCurrentEntity] = useState(null);
 
     const filteredData = fakeData
         .filter(data => mapFilter ? data.type === mapFilter : true)
@@ -129,6 +129,21 @@ const MapTest = () => {
     
     const handleChange = name => event => {
         setStateCheckboxes({ ...stateCheckboxes, [name]: event.target.checked });
+    };
+
+    const resetAndChangeFilters = id => {
+        setMapFilter(id);
+        switch (id) {
+            case "POI":
+                setStateCheckboxes(Object.assign(...catePOI.map(k => ({ [k]: false }))))
+                break;
+            case "client":
+                setStateCheckboxes(Object.assign(...cateClient.map(k => ({ [k]: false }))))  
+                break;
+            default:
+                setStateCheckboxes({})  
+                break;
+        }
     };
 
     useEffect(() => {
@@ -174,7 +189,8 @@ const MapTest = () => {
                             coordinates={[POI.long, POI.lat]}
                             onClick={e => {
                                 setCenterAndZoom({center: [e.lngLat.lng, e.lngLat.lat], zoom: [14]});
-                                console.log("Name: ", e.feature.properties.name)
+                                // console.log("Name: ", e.feature.properties.name)
+                                setCurrentEntity(POI)
                             }}
                             properties={{
                                 name: POI.name,
@@ -185,10 +201,10 @@ const MapTest = () => {
                 </Layer>
             </Map>
             <ButtonContainer>
-                <ButtonFilter isActive={mapFilter === ""} onClick={() => setMapFilter("")}>ALL</ButtonFilter>
-                <ButtonFilter isActive={mapFilter === "POI"} onClick={() => setMapFilter("POI")}>POI</ButtonFilter>
+                <ButtonFilter isActive={mapFilter === ""} onClick={() => resetAndChangeFilters("")}>ALL</ButtonFilter>
+                <ButtonFilter isActive={mapFilter === "POI"} onClick={() => resetAndChangeFilters("POI")}>POI</ButtonFilter>
                 <div />
-                <ButtonFilter isActive={mapFilter === "client"} onClick={() => setMapFilter("client")}>Clients</ButtonFilter>
+                <ButtonFilter isActive={mapFilter === "client"} onClick={() => resetAndChangeFilters("client")}>Clients</ButtonFilter>
             </ButtonContainer>
             <CheckboxesContainer isDisplayed={mapFilter !== ""}>
                 <h3>Filtres</h3>
@@ -228,7 +244,7 @@ const MapTest = () => {
                     </FormGroup>
                 )}
             </CheckboxesContainer>
-            <DescriptionContainer isDisplayed={true}>
+            <DescriptionContainer isDisplayed={currentEntity}>
                 <p>TEST</p>
             </DescriptionContainer>
         </>
