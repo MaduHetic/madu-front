@@ -4,7 +4,7 @@ import { createBrowserHistory } from 'history';
 import DashboardLayout from '../components/dashboardLayout'
 import Login from '../pages/login';
 import Dashboard from '../pages/Dashboard';
-import CompanyList from '../pages/Company';
+import CompanyList from '../pages/company';
 import SidebarMenu from './SidebarMenu';
 import MapTest from '../pages/Map/index';
 import styled from 'styled-components';

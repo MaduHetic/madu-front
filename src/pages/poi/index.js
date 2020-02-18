@@ -2,6 +2,7 @@ import React, { useEffect, useState, Fragment } from 'react';
 import { Formik } from 'formik';
 import AlgoliaPlaces from 'algolia-places-react';
 import { Poi } from '../../core/poi';
+import { Tags } from '../../core/tags';
 
 const inputs = [
   { name: 'name', label: 'name' },
@@ -24,7 +25,7 @@ const PoiCreation = () => {
   useEffect(() => {
     getAllPoi();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, []);
 
   return (
     <div>
