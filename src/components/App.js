@@ -3,6 +3,8 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { createBrowserHistory } from 'history';
 import DashboardLayout from '../components/dashboardLayout'
 import Login from '../pages/login';
+import Dashboard from '../pages/Dashboard';
+import CompanyList from '../pages/Company';
 import SidebarMenu from './SidebarMenu';
 import Dashboard from '../pages/Dashboard/index';
 import MapTest from '../pages/Map/index';
@@ -11,7 +13,6 @@ import { Color } from '../styles/variables';
 import { User } from '../core/user';
 import CompanyList from '../pages/company';
 import poiCreate from '../pages/poi';
-
 
 const history = createBrowserHistory();
 
