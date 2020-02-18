@@ -13,4 +13,8 @@ export default ({
   updatePoi: (id) => `poi/id?=${id}`, // PUT
   deletePoi: (id) => `poi/id?=${id}`, // DELETE
   getAllPoi: () => `/poi`, // GET
+  getTag: (id) => `/tags/one/${id}`, // GET
+  createTag: (id) => `tags`, // POST
+  deleteTag: (id) => `tags/${id}`, // DELETE
+  getTags: () => `/tags`, // GET
 });
