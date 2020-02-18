@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, Fragment } from 'react';
 import { Formik } from 'formik';
 import AlgoliaPlaces from 'algolia-places-react';
 import { Poi } from '../../core/poi';
@@ -49,15 +49,17 @@ const PoiCreation = () => {
         }) => (
           <form onSubmit={handleSubmit}>
             {inputs.map(({name, label}, i) => (
-              <input
-                key={i}
-                type="text"
-                name={name}
-                label={label}
-                onChange={handleChange}
-                onBlur={handleBlur}
-                value={values[name]}
-              />
+              <Fragment key={i}>
+                <label>{label}</label>
+                <input
+                  key={i}
+                  type="text"
+                  name={name}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  value={values[name]}
+                />
+              </Fragment>
             ))}
             <AlgoliaPlaces
               placeholder='Adresse'
