@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { createBrowserHistory } from 'history';
+import SearchBar from "../components/SearchBar/index";
 import DashboardLayout from '../components/dashboardLayout'
 import SidebarMenu from './SidebarMenu';
 import Login from '../pages/login';
@@ -45,6 +46,7 @@ const App = () => {
       <Router>
         {loggedIn && (<SidebarMenu />)}
         <PageContent loggedIn={loggedIn}>
+          <SearchBar />
           <Switch>
             <DashboardLayout exact path="/map" component={MapTest}  />
             <Route exact path="/" component={Login} />
