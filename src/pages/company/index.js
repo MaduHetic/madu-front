@@ -3,7 +3,6 @@ import { Formik } from 'formik';
 import AlgoliaPlaces from 'algolia-places-react';
 import moment from 'moment';
 import { Company } from '../../core/company';
-import SearchBar from '../../components/SearchBar/index'
 
 // const placesAutocomplete = places({
 //   appId: 'S65E4N0B1U',
@@ -37,7 +36,6 @@ const CompanyList = () => {
   console.log(allCompanies);
   return (
     <div>
-      <SearchBar/>
       <Formik
         initialValues={{ 
           name: "hostnfly",
