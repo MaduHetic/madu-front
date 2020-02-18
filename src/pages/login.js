@@ -7,6 +7,7 @@ import TextField from '@material-ui/core/TextField';
 import { Color, Font, Breakpoint } from '../styles/variables';
 import Logo from '../images/Logo.svg';
 import LogoMobile from '../images/Logo-white.svg';
+import CustomButton from '../components/Button/Button';
 
 import { User } from '../core/user';
 
@@ -102,10 +103,13 @@ const SButton = styled(Button)`
 const Login = ({ history }) => {
   const signIn = User.signIn();
   const loggedIn = User.loggedIn();
+  const user = localStorage.getItem('user');
 
   useEffect(() => {
-    if (loggedIn) { history.push('/') }
-  }, [loggedIn, history])
+    if (loggedIn) { history.push('/dashboard') }
+  }, [loggedIn, history]);
+
+  if (loggedIn || user) return null;
   return (
     <SContainer>
       <div className="login-banner">
@@ -152,6 +156,7 @@ const Login = ({ history }) => {
                 <Link to="/">Mot de passe oublié ?</Link>
                 <div className="form-group-btn">
                   <SButton type="submit" disabled={false}>Connexion</SButton>
+                  <CustomButton text='Connexion' color={Color.main} type="submit" />
                 </div>
               </SForm>
             )}

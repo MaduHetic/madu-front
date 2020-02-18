@@ -1,16 +1,17 @@
 import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { createBrowserHistory } from 'history';
+import DashboardLayout from '../components/dashboardLayout'
 import Login from '../pages/login';
+import Dashboard from '../pages/Dashboard';
+import CompanyList from '../pages/Company';
 import SidebarMenu from './SidebarMenu';
-import Dashboard from '../pages/Dashboard/index';
 import Clients from '../pages/Clients/index';
 import MapTest from '../pages/Map/index';
 import styled from 'styled-components';
 import { Color } from '../styles/variables';
 import { User } from '../core/user';
-import CompanyList from '../pages/company';
-
+import poiCreate from '../pages/poi';
 
 const history = createBrowserHistory();
 
@@ -39,18 +40,27 @@ const App = () => {
   useEffect(() => {
     getCurrentUser()
   }, [getCurrentUser]);
+
   return (
     <MainContent>
       <Router>
         {loggedIn && (<SidebarMenu />)}
         <PageContent loggedIn={loggedIn}>
           <Switch>
+<<<<<<< HEAD
             <Route exact path="/map" component={MapTest} />
             <Route exact path="/login" component={Login} history={history} />
             <Route exact path="/" component={Dashboard} />
             <Route exact path="/clients" component={CompanyList} />
             <Route exact path="/dashboard" component={Dashboard} />
             <Route exact path="/point-d-interet" component={Clients} />
+=======
+            <DashboardLayout exact path="/map" component={MapTest}  />
+            <Route exact path="/" component={Login} />
+            <DashboardLayout exact path="/dashboard" component={Dashboard}  />
+            <DashboardLayout exact path="/clients" component={CompanyList}  />
+            <DashboardLayout exact path="/point-d-interet" component={poiCreate}  />
+>>>>>>> f09f141c75b95c592c1f5882b3b193739d1c0f71
           </Switch>
         </PageContent>
       </Router>
