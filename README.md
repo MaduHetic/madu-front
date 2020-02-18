@@ -1,10 +1,10 @@
 # Front
 
  ## Équipe
-  - Alex
-  - Yasin
-  - Mael
-  - Anthony
+  - [Alex](https://github.com/metalmaninfr)
+  - [Yasin](https://github.com/yasKaraca)
+  - [Maël](https://github.com/maelallano)
+  - [Anthony](https://github.com/Anthony-Thuillez)
   
  ## Techno
   - React
