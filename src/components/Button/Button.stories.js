@@ -12,7 +12,10 @@ export default {
 const data = {
     text: 'Test default',
     size: 'medium',
-    color: 'primary',
+    textcolor: Color.main,
+    backgroundcolor: Color.white,
+    bordercolor: Color.main,
+    borderradius: 2,
     type: 'button'
 };
 
