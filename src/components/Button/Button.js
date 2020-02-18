@@ -8,14 +8,19 @@ const StyleButton = styled(Button)`
     width: 100%;
     max-width: 172px;
     font-size: ${Font.size.s} !important;
-    background: ${props => props.color ? props.color : Color.main } !important;
-    border-radius: 2rem !important;
+    color: ${props => `${props.textcolor || Color.white } !important`};
+    background: ${props => `${props.backgroundcolor || Color.main } !important`};
+    border: ${props => `solid 1px ${props.bordercolor || Color.main } !important`};
+    border-radius: ${props => `${props.borderradius || 2}rem !important`};
 `;
 
-const CustomButton = ({text, size, color, type}) => (
+const CustomButton = ({text, size, textcolor, backgroundcolor, bordercolor, borderradius, type}) => (
     <StyleButton
         size={size}
-        color={color}
+        textcolor={textcolor}
+        backgroundcolor={backgroundcolor}
+        bordercolor={bordercolor}
+        borderradius={borderradius}
         type={type}
     >
         {text}
@@ -26,7 +31,10 @@ export default CustomButton;
 
 CustomButton.propTypes = {
     text: PropTypes.string.isRequired,
-    size: PropTypes.string.isRequired,
-    color: PropTypes.string,
+    size: PropTypes.string,
+    textcolor: PropTypes.string,
+    backgroundcolor: PropTypes.string,
+    bordercolor: PropTypes.string,
+    borderradius: PropTypes.number,
     type: PropTypes.string
 };
