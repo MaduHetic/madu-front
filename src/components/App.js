@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { createBrowserHistory } from 'history';
+import DashboardLayout from '../components/dashboardLayout'
 import Login from '../pages/login';
 import SidebarMenu from './SidebarMenu';
 import Dashboard from '../pages/Dashboard/index';
@@ -40,23 +41,17 @@ const App = () => {
     getCurrentUser()
   }, [getCurrentUser]);
 
-  // useEffect(() => {
-  //   const user = localStorage.getItem('user');
-  //   if (!loggedIn || !user) { history.push('/login'); }
-  // }, [loggedIn]);
-
   return (
     <MainContent>
       <Router>
         {loggedIn && (<SidebarMenu />)}
         <PageContent loggedIn={loggedIn}>
           <Switch>
-            <Route exact path="/map" component={MapTest} />
-            <Route exact path="/login" component={Login} history={history} />
-            <Route exact path="/dashboard" component={Dashboard} />
-            <Route exact path="/" component={Dashboard} />
-            <Route exact path="/clients" component={CompanyList} />
-            <Route exact path="/point-d-interet" component={poiCreate} />
+            <DashboardLayout exact path="/map" component={MapTest}  />
+            <Route exact path="/" component={Login} />
+            <DashboardLayout exact path="/dashboard" component={Dashboard}  />
+            <DashboardLayout exact path="/clients" component={CompanyList}  />
+            <DashboardLayout exact path="/point-d-interet" component={poiCreate}  />
           </Switch>
         </PageContent>
       </Router>
