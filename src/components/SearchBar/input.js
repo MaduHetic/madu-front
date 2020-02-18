@@ -3,7 +3,7 @@ import React from 'react';
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import { makeStyles } from '@material-ui/core/styles';
-
+import { Color, Font } from '../../styles/variables';
 
 const useStyles = makeStyles({
 	inputWrapper: {
@@ -11,7 +11,9 @@ const useStyles = makeStyles({
 	},
 	placeholder: {
 		'&::placeholder': {
-			color: "blue",
+			color: `${Color.textcolor}`,
+			fontFamily: Font.family.main,
+			fontSize: `${Font.size.m}`
 		}
 	}
 });
