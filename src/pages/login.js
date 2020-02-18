@@ -103,10 +103,13 @@ const SButton = styled(Button)`
 const Login = ({ history }) => {
   const signIn = User.signIn();
   const loggedIn = User.loggedIn();
+  const user = localStorage.getItem('user');
 
   useEffect(() => {
-    if (loggedIn) { history.push('/') }
-  }, [loggedIn, history])
+    if (loggedIn) { history.push('/dashboard') }
+  }, [loggedIn, history]);
+
+  if (loggedIn || user) return null;
   return (
     <SContainer>
       <div className="login-banner">

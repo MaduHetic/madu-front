@@ -17,7 +17,8 @@ const dataDonutClients = {
               fontSize:  '16px',
               color:  '#263238'
             },
-        }
+        },
+        colors:['#F8C291', '#E77F67', '#6A89CC', '#CF6A87', '#82CCDD', '#786FA6', '#00B894', '#FF7675', '#FAB1A0', '#A29BFE']
     },
     series: [44, 55, 41, 44, 55, 41, 44, 55]
 };
@@ -36,7 +37,8 @@ const dataDonutPOI = {
               fontSize:  '16px',
               color:  '#263238'
             },
-        }
+        },
+        colors:['#F8C291', '#E77F67', '#6A89CC', '#CF6A87', '#82CCDD', '#786FA6', '#00B894', '#FF7675', '#FAB1A0', '#A29BFE']
     },
     series: [134, 78, 25, 134, 78, 25]
 };
@@ -51,7 +53,8 @@ const dataLine = {
         },
         xaxis: {
             categories: [1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998, 1999]
-        }
+        },
+        colors:['#F8C291', '#E77F67', '#6A89CC', '#CF6A87', '#82CCDD', '#786FA6', '#00B894', '#FF7675', '#FAB1A0', '#A29BFE']
     },
     series: [
         {
@@ -77,27 +80,28 @@ const dataBar = {
             show: false
         }
       },
+      colors: ['#F8C291', '#E77F67', '#6A89CC', '#CF6A87', '#82CCDD', '#786FA6'],
       plotOptions: {
         bar: {
-          horizontal: true,
-        }
+          horizontal: true
+        },
       },
       dataLabels: {
-        enabled: false
+        enabled: false,
       },
       xaxis: {
         categories: ['10', '9', '8', '7', '6', '5'],
       }
     },
     series: [{
-        data: [540, 580, 690, 1100, 1200, 1380]
-    }],
+        data: [540, 580, 690, 1100, 1200, 1380],
+    }]
 }
 
 const Dashboard = () => {
     return (
         <Root>
-            <Grid container spacing={1} justify="space-evenly" alignItems="center" style={{height: "100vh"}}>
+            <Grid container spacing={1} justify="space-evenly" alignItems="center">
                 <Grid container item xs={12} spacing={3}>
                     <Grid item xs={6}>
                         <Chart
