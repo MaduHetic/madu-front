@@ -37,6 +37,7 @@ const Sidebar = styled.aside`
         a.active {
             position: relative;
             opacity: 1;
+            color: ${Color.main};
             background: ${Color.lightgrey};
             &:before {
                 position: absolute;
