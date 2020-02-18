@@ -7,6 +7,7 @@ import TextField from '@material-ui/core/TextField';
 import { Color, Font, Breakpoint } from '../styles/variables';
 import Logo from '../images/Logo.svg';
 import LogoMobile from '../images/Logo-white.svg';
+import CustomButton from '../components/Button/Button';
 
 import { User } from '../core/user';
 
@@ -152,6 +153,7 @@ const Login = ({ history }) => {
                 <Link to="/">Mot de passe oublié ?</Link>
                 <div className="form-group-btn">
                   <SButton type="submit" disabled={false}>Connexion</SButton>
+                  <CustomButton text='Connexion' color={Color.main} type="submit" />
                 </div>
               </SForm>
             )}

@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export const client = axios.create({
-  baseURL: 'http://35.180.25.234:3000',
+  baseURL: 'http://35.180.228.155:3000',
   responseType: "json",
   xsrfCookieName: false,
   headers: {
