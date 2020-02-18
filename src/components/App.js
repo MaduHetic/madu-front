@@ -5,7 +5,7 @@ import DashboardLayout from '../components/dashboardLayout'
 import SidebarMenu from './SidebarMenu';
 import Login from '../pages/login';
 import Dashboard from '../pages/Dashboard';
-import CompanyList from '../pages/Company';
+import CompanyList from '../pages/company';
 import PoiList from '../pages/poi';
 import MapTest from '../pages/Map/index';
 import styled from 'styled-components';
