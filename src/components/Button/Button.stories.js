@@ -15,7 +15,7 @@ const data = {
     textcolor: Color.main,
     backgroundcolor: Color.white,
     bordercolor: Color.main,
-    borderradius: 2,
+    borderradius: 3,
     type: 'button'
 };
 

@@ -30,6 +30,7 @@ const PageContent = styled.div`
     height: 100%;
     width: ${props => props.loggedIn ? 'calc(100% - 220px)' : '100%'};
     background: ${Color.lightgrey};
+    overflow-y: auto;
 `;
 
 const App = () => {

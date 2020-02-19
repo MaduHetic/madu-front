@@ -2,7 +2,7 @@ import React from 'react';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 import { configure } from './store/configureStore';
-import GlobalStyle from './styles/global';
+import Normalize from './styles/normalize';
 import App from './components/App';
 
 const store = configure();
@@ -13,7 +13,7 @@ render(
     <Provider store={store}>
       <App />
     </Provider>
-    <GlobalStyle/>
+    <Normalize/>
   </>,
   target,
 );
