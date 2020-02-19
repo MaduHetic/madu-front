@@ -11,6 +11,7 @@ const inputs = [
   { name: 'tags', label: 'tags' },
   { name: 'type', label: 'type' },
   { name: 'price', label: 'price' },
+  { name: 'typeGreenScore', label: 'typeGreenScore'},
 ]
 
 const PoiCreation = () => {
@@ -35,8 +36,9 @@ const PoiCreation = () => {
           description: "",
           greenScore: "123",
           tags: [],
-          type: [],
+          type: "",
           price: "low",
+          typeGreenScore: [{}],
         }}
         onSubmit={values => {registerPoi(Object.assign(values, {address, lng, lat, postCode}))}}
       >
