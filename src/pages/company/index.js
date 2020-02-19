@@ -1,4 +1,4 @@
-import React, { useEffect, useState, Fragment } from 'react';
+import React, { useState, Fragment } from 'react';
 import { Formik } from 'formik';
 import moment from 'moment';
 import { Company } from '../../core/company';
@@ -15,20 +15,14 @@ const inputs = [
 
 const CompanyList = () => {
   const registerCompany = Company.registerCompany();
-  const getAllCompanies = Company.getAllCompanies();
-  const allCompanies = Company.allCompanies();
   const [searchAddressValues, setSearchAddressValues] = useState();
-
-  useEffect(() => {
-    getAllCompanies();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
 
   const handleAddress = (values) => {
     return setSearchAddressValues(values);
   }
 
-  console.log(allCompanies);
+  console.log(searchAddressValues);
+
   return (
     <div>
       <Formik
@@ -40,7 +34,13 @@ const CompanyList = () => {
           endDeal: moment().format('YYYYMMDD').toString(),
           domaineMail: 'hostnfly',
         }}
-        onSubmit={values => {registerCompany(Object.assign(values, {searchAddressValues}))}}
+        onSubmit={
+          values => {
+            registerCompany(
+              Object.assign(values, searchAddressValues)
+            )
+          }
+        }
       >
       {({
           values,
@@ -63,7 +63,7 @@ const CompanyList = () => {
               </Fragment>
             ))}
             <SearchAddress handleAddress={handleAddress} />
-            <button type="submit">CONNEXION</button>
+            <button type="submit">submit</button>
           </form>
         )}
       </Formik>

@@ -41,7 +41,13 @@ const PoiCreation = () => {
           price: "low",
           typeGreenScore: [{}],
         }}
-        onSubmit={values => {registerPoi(Object.assign(values, {searchAddressValues}))}}
+        onSubmit={
+          values => {
+            registerPoi(
+              Object.assign(values, searchAddressValues)
+            )
+          }
+        }
       >
       {({
           values,
