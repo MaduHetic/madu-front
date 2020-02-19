@@ -4,44 +4,44 @@ import Card from '../../components/Card';
 import { Color } from '../../styles/variables';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import { Wrapper, TitleDefault, ListHeader, ListContainer } from '../../styles/global';
-import { Poi } from  '../../core/poi';
+import { Company } from  '../../core/company';
 
-const PoiList = () => {
-    const allPoi = Poi.allPoi();
-    if (!allPoi) return null;
+const ClientsList = () => {
+    const allCompanies = Company.allCompanies();
+    if (!allCompanies) return null;
     return (
         <Wrapper>
             <TitleDefault>
-                <h3 className="title">Liste des commerces</h3>
-                <CustomButton text="Nouveau commerce" size="medium" textcolor={Color.main} backgroundcolor={Color.white} bordercolor={Color.main} />
+                <h3 className="title">Liste des clients</h3>
+                <CustomButton text="Nouveau client" size="medium" textcolor={Color.main} backgroundcolor={Color.white} bordercolor={Color.main} />
             </TitleDefault>
-            <ListHeader className="poi">
+            <ListHeader className="client">
                 <div className="name filter active">
                     <p>Nom</p>
                     <ExpandMoreIcon/>
                 </div>
-                <div className="greenscore filter">
-                    <p>Greenscore</p>
+                <div className="nbWorkers filter">
+                    <p>Nombres d'employés</p>
                     <ExpandMoreIcon/>
                 </div>
                 <div className="date filter">
                     <p>Date d'ajout</p>
                     <ExpandMoreIcon/>
                 </div>
-                <div className="tags">
-                    <p>Tags</p>
+                <div className="type">
+                    <p>Type</p>
                 </div>
                 <div className="actions">
                     <CustomButton text="Filtres" size="small" textcolor={Color.textcolor} backgroundcolor={Color.white} bordercolor={Color.lightgrey2} borderradius={0.2} />
                 </div>
             </ListHeader>
             <ListContainer>
-                {allPoi.map(poi => (
-                    <Card key={poi.id} poi={poi} />
+                {allCompanies.map(client => (
+                    <Card key={client.id} client={client} />
                 ))}
             </ListContainer>
         </Wrapper>
     )
 }
 
-export default PoiList;
+export default ClientsList;
