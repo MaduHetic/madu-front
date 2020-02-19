@@ -1,14 +1,13 @@
 import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { createBrowserHistory } from 'history';
-import SearchBar from "../components/SearchBar/index";
 import DashboardLayout from '../components/dashboardLayout'
 import SidebarMenu from './SidebarMenu';
 import Login from '../pages/login';
 import Dashboard from '../pages/Dashboard';
 import CompanyList from '../pages/company';
 import PoiList from '../pages/poi';
-import MapTest from '../pages/Map/index';
+import MapTest from '../pages/Map';
 import styled from 'styled-components';
 import { Color } from '../styles/variables';
 import { User } from '../core/user';
@@ -31,6 +30,7 @@ const PageContent = styled.div`
     height: 100%;
     width: ${props => props.loggedIn ? 'calc(100% - 220px)' : '100%'};
     background: ${Color.lightgrey};
+    overflow-y: auto;
 `;
 
 const App = () => {
@@ -46,7 +46,6 @@ const App = () => {
       <Router>
         {loggedIn && (<SidebarMenu />)}
         <PageContent loggedIn={loggedIn}>
-          <SearchBar />
           <Switch>
             <DashboardLayout exact path="/map" component={MapTest}  />
             <Route exact path="/" component={Login} />

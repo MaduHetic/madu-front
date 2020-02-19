@@ -50,10 +50,11 @@ const SContainer = styled.div`
         width: 100%;
       }
     }
-    h1 {
+    h2 {
       margin-bottom: 30px;
       font-size: ${Font.size.xl};
-      font-weight: ${Font.weight.bold};
+      font-weight: ${Font.weight.xBold};
+      color: ${Color.black};
     }
   }
 `
@@ -112,7 +113,7 @@ const Login = ({ history }) => {
           <div className="logo-mobile">
             <img src={LogoMobile} alt="Logo Madu"/>
           </div>
-          <h1>Connexion</h1>
+          <h2>Connexion</h2>
           <Formik
             initialValues={{ email: 'admin@admin.com', password: 'admin' }}
             onSubmit={values => {signIn(values)}}

@@ -1,10 +1,17 @@
 import React from "react";
-import { Root } from "./style";
 import Chart from "react-apexcharts";
-import { Grid } from "@material-ui/core";
+import { Wrapper, TitleDefault } from '../../styles/global';
+import { ChartContainer } from './style';
 
 const dataDonutClients = {
     options: {
+        plotOptions: {
+            pie: {
+                donut: {
+                    size: '50%'
+                }
+            }
+        },
         labels: ['Agence' ,'Co-working', 'École', 'Grand compte', 'Start-up', 'PME', 'Incubateur', 'Autre'],
         title: {
             text: `Clients totaux: ${140}`,
@@ -14,8 +21,8 @@ const dataDonutClients = {
             offsetY: 0,
             floating: false,
             style: {
-              fontSize:  '16px',
-              color:  '#263238'
+              fontSize: '12px',
+              color: '#263238'
             },
         },
         colors:['#F8C291', '#E77F67', '#6A89CC', '#CF6A87', '#82CCDD', '#786FA6', '#00B894', '#FF7675', '#FAB1A0', '#A29BFE']
@@ -25,6 +32,13 @@ const dataDonutClients = {
 
 const dataDonutPOI = {
     options: {
+        plotOptions: {
+            pie: {
+                donut: {
+                    size: '50%'
+                }
+            }
+        },
         labels: ['Food', 'Drink', 'Beauty', 'Fashion', 'Shop', 'Autre'],
         title: {
             text: `POI totaux: ${237}`,
@@ -34,8 +48,8 @@ const dataDonutPOI = {
             offsetY: 0,
             floating: false,
             style: {
-              fontSize:  '16px',
-              color:  '#263238'
+              fontSize: '12px',
+              color: '#263238'
             },
         },
         colors:['#F8C291', '#E77F67', '#6A89CC', '#CF6A87', '#82CCDD', '#786FA6', '#00B894', '#FF7675', '#FAB1A0', '#A29BFE']
@@ -100,46 +114,43 @@ const dataBar = {
 
 const Dashboard = () => {
     return (
-        <Root>
-            <Grid container spacing={1} justify="space-evenly" alignItems="center">
-                <Grid container item xs={12} spacing={3}>
-                    <Grid item xs={6}>
-                        <Chart
-                            type="line"
-                            width="84%"
-                            height="auto"
-                            {...dataLine}
-                        />
-                    </Grid>
-                    <Grid item xs={6}>
-                        <Chart
-                            type="donut"
-                            width="84%"
-                            height="auto"
-                            {...dataDonutClients}
-                        />
-                    </Grid>
-                </Grid>
-                <Grid container item xs={12} spacing={3}>
-                    <Grid item xs={6}>
-                        <Chart
-                            type="bar"
-                            width="84%"
-                            height="auto"
-                            {...dataBar}
-                        />
-                    </Grid>
-                    <Grid item xs={6}>
-                        <Chart
-                            type="donut"
-                            width="84%"
-                            height="auto"
-                            {...dataDonutPOI}
-                        />
-                    </Grid>
-                </Grid>
-            </Grid>
-        </Root>
+        <>
+        <Wrapper>
+            <TitleDefault>
+                <h3 className="title">Key performance indicator</h3>
+            </TitleDefault>
+            <ChartContainer>
+                <div className="chartCard">
+                    <h4 className="title">Courbes des croissances</h4>
+                    <Chart
+                        type="line"
+                        {...dataLine}
+                    />
+                </div>
+                <div className="chartCard">
+                    <h4 className="title">Points d'intérêts</h4>
+                    <Chart
+                        type="donut"
+                        {...dataDonutPOI}
+                    />
+                </div>
+                <div className="chartCard">
+                    <h4 className="title">Green Score</h4>
+                    <Chart
+                        type="bar"
+                        {...dataBar}
+                    />
+                </div>
+                <div className="chartCard">
+                    <h4 className="title">Clients</h4>
+                    <Chart
+                        type="donut"
+                        {...dataDonutClients}
+                    />
+                </div>
+            </ChartContainer>
+        </Wrapper>
+        </>
     )
 };
 

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import ReactMapboxGl, { Layer, Feature } from 'react-mapbox-gl';
-// import { Company } from "../../core/company";
+import { Company } from "../../core/company";
+import { Poi } from "../../core/poi";
 import { ButtonContainer, ButtonFilter, CheckboxesContainer } from "./style";
 import { Checkbox } from "@material-ui/core";
 import FormGroup from '@material-ui/core/FormGroup';
@@ -115,8 +116,8 @@ const cateClient = ["Agence", "Co-working", "École", "Grand compte", "Start-up"
 const catePOI = ["Food", "Drink", "Beauty", "Fashion", "Shop", "Autre"]
 
 const MapTest = () => {
-    // const companies = Company.allCompanies()
-    // const getCompanies = Company.getAllCompanies()
+    const companies = Company.allCompanies()
+    const poi = Poi.allPoi();
     const map = React.createRef()
     const initStateCheckboxes = Object.assign(...cateClient.map(k => ({ [k]: false })))
 
@@ -149,11 +150,8 @@ const MapTest = () => {
         }
     };
 
-    useEffect(() => {
-        // getCompanies();
-    }, [])
-
-    // console.log(companies)
+    console.log(companies)
+    console.log(poi)
     // console.log(filteredData)
 
     return (

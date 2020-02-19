@@ -24,7 +24,6 @@ function deleteTag(id) {
 }
 
 function getTag(id) {
-  console.log(id)
   return client.request({
     method: "get",
     url: apiRoutes.getTag(id)
