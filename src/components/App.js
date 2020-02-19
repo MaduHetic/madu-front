@@ -12,6 +12,8 @@ import styled from 'styled-components';
 import { Color } from '../styles/variables';
 import { User } from '../core/user';
 
+import ClientCreate from '../pages/Clients/clientsCreation';
+
 const history = createBrowserHistory();
 
 const MainContent = styled.main`
@@ -50,7 +52,7 @@ const App = () => {
             <DashboardLayout exact path="/map" component={MapTest}  />
             <Route exact path="/" component={Login} />
             <DashboardLayout exact path="/dashboard" component={Dashboard}  />
-            <DashboardLayout exact path="/clients" component={ClientsList}  />
+            <DashboardLayout exact path="/clients" component={ClientCreate}  />
             <DashboardLayout exact path="/point-d-interet" component={PoiList}  />
           </Switch>
         </PageContent>
