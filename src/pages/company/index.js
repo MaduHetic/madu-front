@@ -24,6 +24,7 @@ const CompanyList = () => {
   const allCompanies = Company.allCompanies();
   const [ address, setAddress ] = useState();
   const [ country, setCountry ] = useState();
+  const [ city, setCity ] = useState();
   const [ lng, setLng ] = useState();
   const [ lat, setLat ] = useState();
   const [ postCode, setPostCode ] = useState();
@@ -39,14 +40,13 @@ const CompanyList = () => {
       <Formik
         initialValues={{ 
           name: "hostnfly",
-          type: 'agence', // co-working, école, autre
-          city: 'Paris',
-          nbWorker: '5',
+          type: 'Agence', // co-working, école, autre
+          nbWorker: 5,
           beginDeal: moment().format('YYYYMMDD').toString(),
           endDeal: moment().format('YYYYMMDD').toString(),
           domaineMail: 'hostnfly',
         }}
-        onSubmit={values => {registerCompany(Object.assign(values, {address, country, lng, lat, postCode}))}}
+        onSubmit={values => {registerCompany(Object.assign(values, {address, country, lng, lat, postCode, city}))}}
       >
       {({
           values,
@@ -83,6 +83,7 @@ const CompanyList = () => {
                   setLng(suggestion.latlng.lng);
                   setLat(suggestion.latlng.lat);
                   setPostCode(suggestion.postcode);
+                  setCity(suggestion.city);
                 }}
               />
             <button type="submit">CONNEXION</button>
