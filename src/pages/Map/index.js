@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import ReactMapboxGl, { Layer, Feature } from 'react-mapbox-gl';
 // import { Company } from "../../core/company";
-import { ButtonContainer, ButtonFilter, CheckboxesContainer, DescriptionContainer } from "./style";
+import { ButtonContainer, ButtonFilter, CheckboxesContainer } from "./style";
 import { Checkbox } from "@material-ui/core";
 import FormGroup from '@material-ui/core/FormGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
+import ModalDescription from '../../components/ModalDescription/index';
+
 
 const Map = ReactMapboxGl({
   accessToken: "pk.eyJ1IjoiZ2FtYTk3ODAiLCJhIjoiY2p2NmR3NzA4MDA1NzQzbzdpd3IzNml3NiJ9.uqGMqqnpdiBlrnzWaxMKMg"
@@ -122,6 +124,7 @@ const MapTest = () => {
     const [mapFilter, setMapFilter] = useState("")
     const [stateCheckboxes, setStateCheckboxes] = useState(initStateCheckboxes);
     const [currentEntity, setCurrentEntity] = useState(null);
+    const [currentEntityHover, setCurrentEntityHover] = useState(null);
 
     const filteredData = fakeData
         .filter(data => mapFilter ? data.type === mapFilter : true)
@@ -189,9 +192,10 @@ const MapTest = () => {
                             coordinates={[POI.long, POI.lat]}
                             onClick={e => {
                                 setCenterAndZoom({center: [e.lngLat.lng, e.lngLat.lat], zoom: [14]});
-                                // console.log("Name: ", e.feature.properties.name)
                                 setCurrentEntity(POI)
                             }}
+                            onMouseEnter={e => setCurrentEntityHover(POI)}
+                            onMouseLeave={e => setCurrentEntityHover(null)}
                             properties={{
                                 name: POI.name,
                                 type: POI.type
@@ -244,9 +248,11 @@ const MapTest = () => {
                     </FormGroup>
                 )}
             </CheckboxesContainer>
-            <DescriptionContainer isDisplayed={currentEntity}>
-                <p>TEST</p>
-            </DescriptionContainer>
+            <ModalDescription
+                currentEntity={currentEntity}
+                currentEntityHover={currentEntityHover}
+                setCurrentEntity={() => setCurrentEntity(null)}
+            />
         </>
     );
 }

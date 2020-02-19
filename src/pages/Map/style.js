@@ -92,13 +92,3 @@ export const CheckboxesContainer = styled.div`
         }
     }
 `;
-
-export const DescriptionContainer = styled.div`
-    position: absolute;
-    bottom: 36px;
-    right: 20px;
-    display: ${props => props.isDisplayed ? "block" : "none"};
-    background: white;
-    width: 200px;
-    padding: 10px 20px;
-`;
