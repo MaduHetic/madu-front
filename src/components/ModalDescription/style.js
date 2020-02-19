@@ -8,6 +8,17 @@ export const Root = styled.div`
     background: white;
     min-width: 453px;
     padding: 32px;
+
+    .wrapperModalDescription {
+        position: relative;
+    }
+
+    .closeIcon {
+        position: absolute;
+        top: 0;
+        right: 0;
+        cursor: pointer;
+    }
 `;
 
 export const HeaderContainer = styled.div`
