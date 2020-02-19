@@ -7,6 +7,9 @@ import { Company } from '../../core/company';
 import Title from '../../components/Title/index';
 import { LabelName, Container, FormWrapper, Labels, InputWrapper, Button, ButtonWrapper } from '../../components/Label';
 import { Input } from '@material-ui/core';
+import { TitleDefault } from '../../styles/global';
+import CustomButton from '../../components/Button/Button';
+import { Color, Font } from '../../styles/variables';
 
 // const placesAutocomplete = places({
 //   appId: 'S65E4N0B1U',
@@ -49,9 +52,15 @@ const CompanyList = () => {
   console.log(allCompanies);
   return (
     <Container>
-      <Title
+      {/* <Title
         text="Ajouter un client"
-      />
+      /> */}
+      <TitleDefault>
+        <h3 className="title">Fiche client</h3>
+        <CustomButton text="éditer" size="medium" textcolor={Color.main} backgroundcolor={Color.white} bordercolor={Color.main} />
+        <CustomButton text="supprimer" size="medium" textcolor={Color.main} backgroundcolor={Color.white} bordercolor={Color.main} />
+      </TitleDefault>
+      
       <FormWrapper>
         <Labels>
           <LabelName>Nom</LabelName>
@@ -106,7 +115,7 @@ const CompanyList = () => {
                   name="name"
                   value={values["name"]}
                   onChange={handleChange}
-                  disableUnderline
+                  disabled
                   classes={{
                     root: classes.input
                   }}
@@ -118,7 +127,6 @@ const CompanyList = () => {
                   name="type"
                   value={values["type"]}
                   onChange={handleChange}
-                  disableUnderline
                   classes={{
                     root: classes.input
                   }}
@@ -130,7 +138,6 @@ const CompanyList = () => {
                   name="domaineMail"
                   value={values["domaineMail"]}
                   onChange={handleChange}
-                  disableUnderline
                   classes={{
                     root: classes.input
                   }}
@@ -143,7 +150,6 @@ const CompanyList = () => {
                   value={values["nbWorker"]}
                   type="text"
                   onChange={handleChange}
-                  disableUnderline
                   classes={{
                     root: classes.input
                   }}
@@ -178,7 +184,6 @@ const CompanyList = () => {
                   value={values["beginDeal"]}
                   type="date"
                   onChange={handleChange}
-                  disableUnderline
                   classes={{
                     root: classes.input
                   }}
@@ -191,7 +196,6 @@ const CompanyList = () => {
                   value={values["endDeal"]}
                   type="date"
                   onChange={handleChange}
-                  disableUnderline
                   classes={{
                     root: classes.input
                   }}
