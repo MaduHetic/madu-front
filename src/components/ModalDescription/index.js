@@ -13,14 +13,17 @@ const useStyles = makeStyles({
 
 const ModalDescription = ({currentEntity, currentEntityHover, setCurrentEntity}) => {
     const classes = useStyles();
+    const entity = currentEntityHover || currentEntity;
+
+    console.log(entity)
 
     return (
-        <Root isDisplayed={currentEntityHover || currentEntity}>
+        <Root isDisplayed={entity}>
             <div className="wrapperModalDescription">
                 <HeaderContainer>
                     <Avatar src={GirlUser} classes={{ root: classes.size}}></Avatar>
                     <div>
-                        <h4>Nom du commerce</h4>
+                        <h4>{entity.name}</h4>
                         <p>
                             <span>
                                 <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -28,19 +31,23 @@ const ModalDescription = ({currentEntity, currentEntityHover, setCurrentEntity})
                                     <path d="M11.4478 9.34476C12.081 8.40023 12.1918 7.34235 11.6644 6.96202C11.5512 6.88215 11.4183 6.83616 11.2809 6.82923C11.1732 6.82301 11.0652 6.83329 10.9605 6.85972C10.9592 6.8628 10.9579 6.86639 10.9566 6.86945C10.3537 8.26507 9.20231 9.87441 7.96102 10.8477C7.96025 10.8432 9.38414 9.20554 10.2371 7.37861C10.2631 7.3219 10.9651 5.81107 10.9912 4.57549L10.401 4.4248C10.414 4.96082 10.3499 5.49589 10.2108 6.01291C10.156 5.91295 10.0815 5.82573 9.99197 5.75676C9.48134 5.35324 8.51393 5.82691 7.86499 6.76189C6.24231 9.09984 6.92676 11.9998 6.92676 11.9998C6.92676 11.9998 9.84084 11.7415 11.4478 9.34476Z" fill="#6FBC77"/>
                                     <path d="M0.54425 9.95985C1.02877 10.9921 1.87067 11.619 2.45698 11.3428C2.58135 11.2826 2.68677 11.1881 2.76138 11.07C2.82049 10.978 2.86576 10.8773 2.89568 10.7716C2.89373 10.7689 2.89134 10.7659 2.88941 10.7632C2.00707 9.53233 1.21773 7.70954 1.0128 6.12531C1.01701 6.12689 1.69415 8.20476 2.81727 9.87245C2.85238 9.9238 3.78287 11.2999 4.81785 11.9408L5.24075 11.4943C4.77959 11.2378 4.35779 10.9136 3.98885 10.532C4.101 10.5336 4.21224 10.5113 4.31551 10.4666C4.91309 10.2169 4.99503 9.12462 4.52644 8.08333C3.35472 5.47953 0.552752 4.63477 0.552752 4.63477C0.552752 4.63477 -0.685252 7.34058 0.54425 9.95985Z" fill="#6FBC77"/>
                                 </svg>    
-                            </span>8,5/10</p>
+                            </span>85/100</p>
                     </div>
                 </HeaderContainer>
-                <TagContainer>
-                    <Tag color="#5EA565" background="rgba(94, 165, 101, 0.05)">VEGAN</Tag>
-                    <Tag color="#2D9CDB" background="rgba(45, 156, 219, 0.05)">BIO</Tag>
-                    <Tag color="#000000" background="#F9F9F9">CIRCUIT COURT</Tag>
-                    <Tag color="#F29C4C" background="rgba(242, 156, 76, 0.05)">SANS GLUTEN</Tag>
-                </TagContainer>
+                {entity.tags && (
+                    <TagContainer>
+                        {entity.tags.map((tag, index) => (
+                            <Tag key={`tag__${index}`} color="#5EA565" background="rgba(94, 165, 101, 0.05)">{tag.tag.toUpperCase()}</Tag>
+                        ))}
+                        {/* <Tag color="#2D9CDB" background="rgba(45, 156, 219, 0.05)">BIO</Tag>
+                        <Tag color="#000000" background="#F9F9F9">CIRCUIT COURT</Tag>
+                        <Tag color="#F29C4C" background="rgba(242, 156, 76, 0.05)">SANS GLUTEN</Tag> */}
+                    </TagContainer>
+                )}
                 <DetailsContainer>
-                    <p>Type fiche: <span>Commerce</span></p>
-                    <p>Type de commerce: <span>Restaurant</span></p>
-                    <p>Adresse: <span>114 boulevard haussman</span></p>
+                    <p>Type fiche: <span>{entity.isPoi ? "POI" : "Client"}</span></p>
+                    <p>Type de commerce: <span>{entity.type}</span></p>
+                    <p>Adresse: <span>{entity.address}</span></p>
                 </DetailsContainer>
                 {currentEntityHover ? (
                     null

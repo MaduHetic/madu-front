@@ -6,7 +6,7 @@ export const Root = styled.div`
     right: 20px;
     display: ${props => props.isDisplayed ? "block" : "none"};
     background: white;
-    min-width: 453px;
+    min-width: 400px;
     padding: 32px;
 
     .wrapperModalDescription {
@@ -50,7 +50,7 @@ export const HeaderContainer = styled.div`
 
 export const TagContainer = styled.div`
     display: flex;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
 `;
 
 export const DetailsContainer = styled.div`
@@ -60,7 +60,7 @@ export const DetailsContainer = styled.div`
         font-size: 16px;
         line-height: 24px;
         color: #B8B8C9;
-        margin-bottom: 16px;
+        margin-bottom: 6px;
 
         &:last-child {
             margin-bottom: 0px;
@@ -72,7 +72,7 @@ export const DetailsContainer = styled.div`
         font-size: 16px;
         line-height: 24px;
         color: #000000;
-        margin-left: 16px;
+        margin-left: 2px;
     }
 `;
 

@@ -8,118 +8,18 @@ import FormGroup from '@material-ui/core/FormGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import ModalDescription from '../../components/ModalDescription/index';
 
-
 const Map = ReactMapboxGl({
   accessToken: "pk.eyJ1IjoiZ2FtYTk3ODAiLCJhIjoiY2p2NmR3NzA4MDA1NzQzbzdpd3IzNml3NiJ9.uqGMqqnpdiBlrnzWaxMKMg"
 });
 
-const fakeData = [
-    {
-        id: 0,
-        name: "La fontaine",
-        price: "$",
-        long: 2.4183733,
-        lat: 48.8511628,
-    },
-    {
-        id: 1,
-        name: "JUL",
-        price: "$$$",
-        long: 2.33,
-        lat: 48.83,
-    },
-    {
-        id: 2,
-        name: "WeshAlors",
-        price: "$$",
-        long: 2.32,
-        lat: 48.84,
-        type: "client",
-        tag: "Agence"
-    },
-    {
-        id: 3,
-        name: "Oui",
-        price: "$",
-        long: 2.33,
-        lat: 48.8511628,
-        type: "client",
-        tag: "École"
-    },
-    {
-        id: 4,
-        name: "Non",
-        price: "$$$",
-        long: 2.33,
-        lat: 48.84,
-        type: "POI",
-        tag: "restaurant"
-    },
-    {
-        id: 5,
-        name: "Peut-être",
-        price: "$$",
-        long: 2.32,
-        lat: 48.82,
-        type: "POI",
-        tag: "bar"
-    },
-    {
-        id: 6,
-        name: "La fontaine",
-        price: "$",
-        long: 2.4283733,
-        lat: 48.8611628,
-    },
-    {
-        id: 7,
-        name: "JUL",
-        price: "$$$",
-        long: 2.34,
-        lat: 48.84,
-    },
-    {
-        id: 8,
-        name: "WeshAlors",
-        price: "$$",
-        long: 2.33,
-        lat: 48.85,
-        type: "client"
-    },
-    {
-        id: 9,
-        name: "Oui",
-        price: "$",
-        long: 2.34,
-        lat: 48.8611628,
-        type: "client"
-    },
-    {
-        id: 10,
-        name: "Non",
-        price: "$$$",
-        long: 2.34,
-        lat: 48.85,
-        type: "POI"
-    },
-    {
-        id: 11,
-        name: "Peut-être",
-        price: "$$",
-        long: 2.33,
-        lat: 48.83,
-        type: "POI"
-    }
-]
-
-const cateClient = ["Agence", "Co-working", "École", "Grand compte", "Start-up", "PME", "Incubateur", "Autre"]
-const catePOI = ["Food", "Drink", "Beauty", "Fashion", "Shop", "Autre"]
-
 const MapTest = () => {
-    const companies = Company.allCompanies()
-    const poi = Poi.allPoi();
+    const companies = Company.allCompanies() || [];
+    const companyTypes = Company.companyTypes() || [];
+    const poi = Poi.allPoi() || [];
+    const poiTypes = Poi.poiTypes() || [];
+
     const map = React.createRef()
-    const initStateCheckboxes = Object.assign(...cateClient.map(k => ({ [k]: false })))
+    const initStateCheckboxes = Object.assign(...companyTypes.map(k => ({ [k]: false })))
 
     const [centerAndZoom, setCenterAndZoom] = useState({center: [2.36, 48.858], zoom: [11.8]})
     const [mapFilter, setMapFilter] = useState("")
@@ -127,9 +27,11 @@ const MapTest = () => {
     const [currentEntity, setCurrentEntity] = useState(null);
     const [currentEntityHover, setCurrentEntityHover] = useState(null);
 
-    const filteredData = fakeData
-        .filter(data => mapFilter ? data.type === mapFilter : true)
-        .filter(data => Object.keys(stateCheckboxes).every(key => !stateCheckboxes[key]) ? true : stateCheckboxes[data.tag])
+    const filteredData = mapFilter === "POI" ? 
+        poi.filter(data => Object.keys(stateCheckboxes).every(key => !stateCheckboxes[key]) ? true : stateCheckboxes[data.type]) :
+        mapFilter === "client" ?
+        companies.filter(data => Object.keys(stateCheckboxes).every(key => !stateCheckboxes[key]) ? true : stateCheckboxes[data.type]) :
+        [...poi, ...companies];
     
     const handleChange = name => event => {
         setStateCheckboxes({ ...stateCheckboxes, [name]: event.target.checked });
@@ -139,20 +41,16 @@ const MapTest = () => {
         setMapFilter(id);
         switch (id) {
             case "POI":
-                setStateCheckboxes(Object.assign(...catePOI.map(k => ({ [k]: false }))))
+                setStateCheckboxes(Object.assign(...poiTypes.map(k => ({ [k]: false }))))
                 break;
             case "client":
-                setStateCheckboxes(Object.assign(...cateClient.map(k => ({ [k]: false }))))  
+                setStateCheckboxes(Object.assign(...companyTypes.map(k => ({ [k]: false }))))  
                 break;
             default:
                 setStateCheckboxes({})  
                 break;
         }
     };
-
-    console.log(companies)
-    console.log(poi)
-    // console.log(filteredData)
 
     return (
         <>
@@ -170,10 +68,10 @@ const MapTest = () => {
                     paint={{
                         'circle-color': [
                             'match',
-                            ['get', 'type'],
-                            'POI',
+                            ['get', 'isPoi'],
+                            1,
                             'red',
-                            'client',
+                            0,
                             'blue',
                             'grey'
                         ],
@@ -184,19 +82,18 @@ const MapTest = () => {
                         // },
                     }}
                 >
-                    {filteredData && filteredData.map(POI => (
+                    {filteredData && filteredData.map(entity => (
                         <Feature
-                            key={`POI__${POI.name}`}
-                            coordinates={[POI.long, POI.lat]}
+                            key={`entity__${entity.name}`}
+                            coordinates={[entity.long, entity.lat]}
                             onClick={e => {
                                 setCenterAndZoom({center: [e.lngLat.lng, e.lngLat.lat], zoom: [14]});
-                                setCurrentEntity(POI)
+                                setCurrentEntity(entity)
                             }}
-                            onMouseEnter={e => setCurrentEntityHover(POI)}
+                            onMouseEnter={e => setCurrentEntityHover(entity)}
                             onMouseLeave={e => setCurrentEntityHover(null)}
                             properties={{
-                                name: POI.name,
-                                type: POI.type
+                                isPoi: entity.isPoi,
                             }}
                         />
                     ))}
@@ -212,7 +109,7 @@ const MapTest = () => {
                 <h3>Filtres</h3>
                 {mapFilter === "POI" ? (
                     <FormGroup>
-                        {catePOI.map((cate, i) => (
+                        {poiTypes.map((cate, i) => (
                             <FormControlLabel
                                 control={
                                     <Checkbox
@@ -223,13 +120,13 @@ const MapTest = () => {
                                     />
                                 }
                                 label={cate}
-                                key={`catePOI__${i}`}
+                                key={`poiTypes__${i}`}
                             />
                             ))}
                     </FormGroup>
                             ) : (
                     <FormGroup>
-                        {cateClient.map((cate, i) => (
+                        {companyTypes.map((cate, i) => (
                             <FormControlLabel
                                 control={
                                     <Checkbox
@@ -240,17 +137,19 @@ const MapTest = () => {
                                     />
                                 }
                                 label={cate}
-                                key={`cateClient__${i}`}
+                                key={`companyTypes__${i}`}
                             />
                         ))}
                     </FormGroup>
                 )}
             </CheckboxesContainer>
-            <ModalDescription
-                currentEntity={currentEntity}
-                currentEntityHover={currentEntityHover}
-                setCurrentEntity={() => setCurrentEntity(null)}
-            />
+            {(currentEntity || currentEntityHover) && (
+                <ModalDescription
+                    currentEntity={currentEntity}
+                    currentEntityHover={currentEntityHover}
+                    setCurrentEntity={() => setCurrentEntity(null)}
+                />
+            )}
         </>
     );
 }
