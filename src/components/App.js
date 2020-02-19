@@ -5,8 +5,8 @@ import DashboardLayout from '../components/dashboardLayout'
 import SidebarMenu from './SidebarMenu';
 import Login from '../pages/login';
 import Dashboard from '../pages/Dashboard';
-import CompanyList from '../pages/Company';
-import PoiList from '../pages/Poi';
+import CompanyList from '../pages/company';
+import PoiList from '../pages/poi';
 import MapTest from '../pages/Map';
 import styled from 'styled-components';
 import { Color } from '../styles/variables';
