@@ -1,49 +1,42 @@
-import React, { useEffect, useState, Fragment } from 'react';
+import React, { useState, Fragment } from 'react';
 import { Formik } from 'formik';
+import moment from 'moment';
+import { Company } from '../../core/company';
 import SearchAddress from '../../components/searchAddress';
-import { Poi } from '../../core/poi';
 
 const inputs = [
   { name: 'name', label: 'name' },
   { name: 'type', label: 'type' },
-  { name: 'description', label: 'description' },
-  { name: 'greenScore', label: 'greenScore' },
-  { name: 'tags', label: 'tags' },
-  { name: 'type', label: 'type' },
-  { name: 'price', label: 'price' },
-  { name: 'typeGreenScore', label: 'typeGreenScore'},
+  { name: 'nbWorker', label: 'nbWorker' },
+  { name: 'beginDeal', label: 'beginDeal' },
+  { name: 'endDeal', label: 'endDeal' },
+  { name: 'domaineMail', label: 'domaineMail' },
 ]
 
-const PoiCreation = () => {
-  const registerPoi = Poi.registerPoi();
-  const getAllPoi = Poi.getAllPoi();
+const ClientsCreation = () => {
+  const registerCompany = Company.registerCompany();
   const [searchAddressValues, setSearchAddressValues] = useState();
-
-  useEffect(() => {
-    getAllPoi();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
 
   const handleAddress = (values) => {
     return setSearchAddressValues(values);
   }
+
+  console.log(searchAddressValues);
 
   return (
     <div>
       <Formik
         initialValues={{ 
           name: "hostnfly",
-          city: 'Paris',
-          description: "",
-          greenScore: "123",
-          tags: [],
-          type: "",
-          price: "low",
-          typeGreenScore: [{}],
+          type: 'Agence', // co-working, école, autre
+          nbWorker: 5,
+          beginDeal: moment().format('YYYYMMDD').toString(),
+          endDeal: moment().format('YYYYMMDD').toString(),
+          domaineMail: 'hostnfly',
         }}
         onSubmit={
           values => {
-            registerPoi(
+            registerCompany(
               Object.assign(values, searchAddressValues)
             )
           }
@@ -61,7 +54,6 @@ const PoiCreation = () => {
               <Fragment key={i}>
                 <label>{label}</label>
                 <input
-                  key={i}
                   type="text"
                   name={name}
                   onChange={handleChange}
@@ -71,7 +63,7 @@ const PoiCreation = () => {
               </Fragment>
             ))}
             <SearchAddress handleAddress={handleAddress} />
-            <button type="submit">CONNEXION</button>
+            <button type="submit">submit</button>
           </form>
         )}
       </Formik>
@@ -80,4 +72,4 @@ const PoiCreation = () => {
 };
 
 
-export default PoiCreation;
+export default ClientsCreation;
