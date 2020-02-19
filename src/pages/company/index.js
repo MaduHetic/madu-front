@@ -1,18 +1,28 @@
 import React, { useEffect, useState, Fragment } from 'react';
+import { makeStyles } from '@material-ui/core/styles';
 import { Formik } from 'formik';
 import AlgoliaPlaces from 'algolia-places-react';
 import moment from 'moment';
 import { Company } from '../../core/company';
+import Title from '../../components/Title/index';
+import { LabelName, Container, FormWrapper, Labels, InputWrapper, Button, ButtonWrapper } from '../../components/Label';
+import { Input } from '@material-ui/core';
 
 // const placesAutocomplete = places({
 //   appId: 'S65E4N0B1U',
 //   apiKey: 'abb4dc9e4cf72ca1e74c676f49462db9',
 // });
 
+const useStyles = makeStyles({
+  input: {
+    flexGrow: "1",
+  }
+});
+
 const inputs = [
   { name: 'name', label: 'name' },
   { name: 'type', label: 'type' },
-  { name: 'nbWorker', label: 'nbWorker' },
+  // { name: 'nbWorker', label: 'nbWorker' },
   { name: 'beginDeal', label: 'beginDeal' },
   { name: 'endDeal', label: 'endDeal' },
   { name: 'domaineMail', label: 'domaineMail' },
@@ -22,12 +32,14 @@ const CompanyList = () => {
   const registerCompany = Company.registerCompany();
   const getAllCompanies = Company.getAllCompanies();
   const allCompanies = Company.allCompanies();
-  const [ address, setAddress ] = useState();
-  const [ country, setCountry ] = useState();
-  const [ city, setCity ] = useState();
-  const [ lng, setLng ] = useState();
-  const [ lat, setLat ] = useState();
-  const [ postCode, setPostCode ] = useState();
+  const [address, setAddress] = useState();
+  const [country, setCountry] = useState();
+  const [city, setCity] = useState();
+  const [lng, setLng] = useState();
+  const [lat, setLat] = useState();
+  const [postCode, setPostCode] = useState();
+
+  const classes = useStyles();
 
   useEffect(() => {
     getAllCompanies();
@@ -36,27 +48,41 @@ const CompanyList = () => {
 
   console.log(allCompanies);
   return (
-    <div>
-      <Formik
-        initialValues={{ 
-          name: "hostnfly",
-          type: 'Agence', // co-working, école, autre
-          nbWorker: 5,
-          beginDeal: moment().format('YYYYMMDD').toString(),
-          endDeal: moment().format('YYYYMMDD').toString(),
-          domaineMail: 'hostnfly',
-        }}
-        onSubmit={values => {registerCompany(Object.assign(values, {address, country, lng, lat, postCode, city}))}}
-      >
-      {({
-          values,
-          handleChange,
-          handleBlur,
-          handleSubmit,
-          isSubmitting,
-        }) => (
-          <form onSubmit={handleSubmit}>
-            {inputs.map(({name, label}, i) => (
+    <Container>
+      <Title
+        text="Ajouter un client"
+      />
+      <FormWrapper>
+        <Labels>
+          <LabelName>Nom</LabelName>
+          <LabelName>Type</LabelName>
+          <LabelName>Nom de domaine</LabelName>
+          <LabelName>Nombre d'utilisateurs</LabelName>
+          <LabelName>Adresse</LabelName>
+          <LabelName>Début licence</LabelName>
+          <LabelName>Fin licence</LabelName>
+        </Labels>
+
+        <Formik
+          initialValues={{
+            name: "hostnfly",
+            type: 'Agence', // co-working, école, autre
+            nbWorker: 5,
+            beginDeal: moment().format('YYYY-MM-DD').toString(),
+            endDeal: moment().format('YYYY-MM-DD').toString(),
+            domaineMail: 'hostnfly',
+          }}
+          onSubmit={values => { registerCompany(Object.assign(values, { address, country, lng, lat, postCode, city })) }}
+        >
+          {({
+            values,
+            handleChange,
+            handleBlur,
+            handleSubmit,
+            isSubmitting,
+          }) => (
+            <form onSubmit={handleSubmit}>
+              {/* {inputs.map(({name, label}, i) => (
               <Fragment key={i}>
                 <label>{label}</label>
                 <input
@@ -67,30 +93,121 @@ const CompanyList = () => {
                   value={values[name]}
                 />
               </Fragment>
-            ))}
-            <AlgoliaPlaces
-              placeholder='Adresse'
-              options={{
-                appId: 'pl40ZJQJFIY1',
-                apiKey: 'b97d72715d5faff9cb479e0606500f11',
-                language: 'fr',
-                countries: ['fr'],
-              }}
-                onChange={({ query, rawAnswer, suggestion, suggestionIndex }) => {
-                  console.log(suggestion);
-                  setAddress(suggestion.name);
-                  setCountry(suggestion.county);
-                  setLng(suggestion.latlng.lng);
-                  setLat(suggestion.latlng.lat);
-                  setPostCode(suggestion.postcode);
-                  setCity(suggestion.city);
-                }}
-              />
-            <button type="submit">CONNEXION</button>
-          </form>
-        )}
-      </Formik>
-    </div>
+              ))}
+              <input 
+              onChange={handleChange}
+              type="number"
+              name="nbWorker"
+              value={values["nbWorker"]}  
+              ></input> */}
+              
+              <InputWrapper>
+                <Input
+                  name="name"
+                  value={values["name"]}
+                  onChange={handleChange}
+                  disableUnderline
+                  classes={{
+                    root: classes.input
+                  }}
+                />
+              </InputWrapper>
+
+              <InputWrapper>
+                <Input
+                  name="type"
+                  value={values["type"]}
+                  onChange={handleChange}
+                  disableUnderline
+                  classes={{
+                    root: classes.input
+                  }}
+                />
+              </InputWrapper>
+              
+              <InputWrapper>
+              < Input
+                  name="domaineMail"
+                  value={values["domaineMail"]}
+                  onChange={handleChange}
+                  disableUnderline
+                  classes={{
+                    root: classes.input
+                  }}
+                />
+              </InputWrapper>
+              
+              <InputWrapper>
+                <Input
+                  name="nbWorker"
+                  value={values["nbWorker"]}
+                  type="text"
+                  onChange={handleChange}
+                  disableUnderline
+                  classes={{
+                    root: classes.input
+                  }}
+                />
+              </InputWrapper>
+
+              <InputWrapper>
+                <AlgoliaPlaces
+                  placeholder='Adresse'
+                  options={{
+                    appId: 'pl40ZJQJFIY1',
+                    apiKey: 'b97d72715d5faff9cb479e0606500f11',
+                    language: 'fr',
+                    countries: ['fr'],
+                  }}
+                  className="algolia"
+                  onChange={({ query, rawAnswer, suggestion, suggestionIndex }) => {
+                    console.log(suggestion);
+                    setAddress(suggestion.name);
+                    setCountry(suggestion.county);
+                    setLng(suggestion.latlng.lng);
+                    setLat(suggestion.latlng.lat);
+                    setPostCode(suggestion.postcode);
+                    setCity(suggestion.city);
+                  }}
+                />
+              </InputWrapper>
+
+              <InputWrapper>
+                <Input
+                  name="beginDeal"
+                  value={values["beginDeal"]}
+                  type="date"
+                  onChange={handleChange}
+                  disableUnderline
+                  classes={{
+                    root: classes.input
+                  }}
+                />
+              </InputWrapper>
+
+              <InputWrapper>
+                <Input
+                  name="endDeal"
+                  value={values["endDeal"]}
+                  type="date"
+                  onChange={handleChange}
+                  disableUnderline
+                  classes={{
+                    root: classes.input
+                  }}
+                />
+              </InputWrapper>
+
+                <ButtonWrapper>
+                  <Button type="submit">Ajouter</Button>
+                </ButtonWrapper>
+              </form>
+            )}
+        </Formik>
+
+      </FormWrapper>
+
+    </Container>
   );
 };
 

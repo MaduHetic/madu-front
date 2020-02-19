@@ -13,7 +13,7 @@ export const Color = {
     black: '#000000',
     green: '#6FBC77',
     lightgrey: '#F5F5FA',
-    lightgrey2: '#B8B8C9'
+    lightgrey2: '#B8B8C9',
 }
 
 export const Font = {
@@ -30,6 +30,7 @@ export const Font = {
         thin: '300',
         normal: '400',
         bold: '600',
+        bolder: '800',
         xBold: '900'
     }
 }
