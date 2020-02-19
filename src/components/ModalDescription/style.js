@@ -8,6 +8,8 @@ export const Root = styled.div`
     background: white;
     min-width: 400px;
     padding: 32px;
+    border-radius: 2rem;
+    box-shadow: 0px 2px 14px rgba(0,0,0,0.15);
 
     .wrapperModalDescription {
         position: relative;
@@ -81,9 +83,9 @@ export const Tag = styled.p`
     font-size: 10px;
     line-height: 14px;
     letter-spacing: -0.6px;
-    color: ${props => props.color || "black"};
-    background: ${props => props.background || "lightgrey"};
-    border: 0.5px solid ${props => props.color || "black"};
+    color: ${props => props.colorRGB ? `rgba(${props.colorRGB.r}, ${props.colorRGB.g}, ${props.colorRGB.b}, 1)` : "black"};
+    background: ${props => props.colorRGB ? `rgba(${props.colorRGB.r}, ${props.colorRGB.g}, ${props.colorRGB.b}, 0.05)` : "rgba(0, 0, 0, 0.05)"};
+    border: 0.5px solid ${props => props.colorRGB ? `rgba(${props.colorRGB.r}, ${props.colorRGB.g}, ${props.colorRGB.b}, 1)` : "black"};
     width: fit-content;
     border-radius: 2px;
     margin-right: 8px;
