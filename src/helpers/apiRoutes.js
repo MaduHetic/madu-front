@@ -4,14 +4,14 @@ export default ({
   signOut: () => `/auth/sign_out`,
   getProfile: () => `/profile`, // GET
   registerCompany: () => `/company`, // POST
-  getCompany: (id) => `/company/one/id?=${id}`, // GET
-  updateCompany: (id) => `/company/id?=${id}`, // PUT
-  deleteCompany: (id) => `/company/id?=${id}`, // DELETE
+  getCompany: (id) => `/company/one/${id}`, // GET
+  updateCompany: (id) => `company/${id}`, // PUT
+  deleteCompany: (id) => `company/${id}`, // DELETE
   getAllCompanies: () => `/company`, // GET
   registerPoi: () => `/poi`, // POST
-  getPoi: (id) => `/poi/one/id?=${id}`, // GET
-  updatePoi: (id) => `/poi/id?=${id}`, // PUT
-  deletePoi: (id) => `/poi/id?=${id}`, // DELETE
+  getPoi: (id) => `/poi/one/${id}`, // GET
+  updatePoi: (id) => `poi/${id}`, // PUT
+  deletePoi: (id) => `poi/${id}`, // DELETE
   getAllPoi: () => `/poi`, // GET
   getTag: (id) => `/tags/one/${id}`, // GET
   createTag: (id) => `/tags`, // POST
