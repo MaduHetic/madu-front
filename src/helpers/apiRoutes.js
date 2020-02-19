@@ -14,7 +14,11 @@ export default ({
   deletePoi: (id) => `poi/${id}`, // DELETE
   getAllPoi: () => `/poi`, // GET
   getTag: (id) => `/tags/one/${id}`, // GET
-  createTag: (id) => `tags`, // POST
-  deleteTag: (id) => `tags/${id}`, // DELETE
+  createTag: (id) => `/tags`, // POST
+  deleteTag: (id) => `/tags/${id}`, // DELETE
   getTags: () => `/tags`, // GET
+  getGreenScoreType: (id) => `/type-green-score/one/${id}`, // GET
+  createGreenScoreType: () => `/type-green-score`, // POST
+  deleteGreenScoreType: (id) => `/type-green-score/${id}`, // DELETE
+  getGreenScoreTypes: () => `/type-green-score`, // GET
 });

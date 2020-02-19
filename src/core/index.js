@@ -4,6 +4,7 @@ import { User } from './user';
 import { Company } from './company';
 import { Poi } from './poi';
 import { Tags } from './tags';
+import { GreenScoreTypes } from './greenScoreTypes'
 
 const createRootReducer = history =>
   combineReducers({
@@ -11,6 +12,7 @@ const createRootReducer = history =>
     company: Company.reducer,
     poi: Poi.reducer,
     tags: Tags.reducer,
+    greenScoreTypes: GreenScoreTypes.reducer,
   });
 
 export default createRootReducer;
