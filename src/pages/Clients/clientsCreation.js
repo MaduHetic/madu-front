@@ -1,13 +1,8 @@
-import React, { useEffect, useState, Fragment } from 'react';
+import React, { useState, Fragment } from 'react';
 import { Formik } from 'formik';
-import AlgoliaPlaces from 'algolia-places-react';
 import moment from 'moment';
 import { Company } from '../../core/company';
-
-// const placesAutocomplete = places({
-//   appId: 'S65E4N0B1U',
-//   apiKey: 'abb4dc9e4cf72ca1e74c676f49462db9',
-// });
+import SearchAddress from '../../components/searchAddress';
 
 const inputs = [
   { name: 'name', label: 'name' },
@@ -20,33 +15,32 @@ const inputs = [
 
 const ClientsCreation = () => {
   const registerCompany = Company.registerCompany();
-  const getAllCompanies = Company.getAllCompanies();
-  const allCompanies = Company.allCompanies();
-  const [ address, setAddress ] = useState();
-  const [ country, setCountry ] = useState();
-  const [ lng, setLng ] = useState();
-  const [ lat, setLat ] = useState();
-  const [ postCode, setPostCode ] = useState();
+  const [searchAddressValues, setSearchAddressValues] = useState();
 
-  useEffect(() => {
-    getAllCompanies();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  const handleAddress = (values) => {
+    return setSearchAddressValues(values);
+  }
 
-  console.log(allCompanies);
+  console.log(searchAddressValues);
+
   return (
     <div>
       <Formik
         initialValues={{ 
           name: "hostnfly",
-          type: 'agence', // co-working, école, autre
-          city: 'Paris',
-          nbWorker: '5',
+          type: 'Agence', // co-working, école, autre
+          nbWorker: 5,
           beginDeal: moment().format('YYYYMMDD').toString(),
           endDeal: moment().format('YYYYMMDD').toString(),
           domaineMail: 'hostnfly',
         }}
-        onSubmit={values => {registerCompany(Object.assign(values, {address, country, lng, lat, postCode}))}}
+        onSubmit={
+          values => {
+            registerCompany(
+              Object.assign(values, searchAddressValues)
+            )
+          }
+        }
       >
       {({
           values,
@@ -68,24 +62,8 @@ const ClientsCreation = () => {
                 />
               </Fragment>
             ))}
-            <AlgoliaPlaces
-              placeholder='Adresse'
-              options={{
-                appId: 'pl40ZJQJFIY1',
-                apiKey: 'b97d72715d5faff9cb479e0606500f11',
-                language: 'fr',
-                countries: ['fr'],
-              }}
-                onChange={({ query, rawAnswer, suggestion, suggestionIndex }) => {
-                  console.log(suggestion);
-                  setAddress(suggestion.name);
-                  setCountry(suggestion.county);
-                  setLng(suggestion.latlng.lng);
-                  setLat(suggestion.latlng.lat);
-                  setPostCode(suggestion.postcode);
-                }}
-              />
-            <button type="submit">CONNEXION</button>
+            <SearchAddress handleAddress={handleAddress} />
+            <button type="submit">submit</button>
           </form>
         )}
       </Formik>

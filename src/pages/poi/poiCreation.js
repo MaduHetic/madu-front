@@ -1,6 +1,6 @@
 import React, { useEffect, useState, Fragment } from 'react';
 import { Formik } from 'formik';
-import AlgoliaPlaces from 'algolia-places-react';
+import SearchAddress from '../../components/searchAddress';
 import { Poi } from '../../core/poi';
 
 const inputs = [
@@ -17,15 +17,16 @@ const inputs = [
 const PoiCreation = () => {
   const registerPoi = Poi.registerPoi();
   const getAllPoi = Poi.getAllPoi();
-  const [ address, setAddress ] = useState();
-  const [ lng, setLng ] = useState();
-  const [ lat, setLat ] = useState();
-  const [ postCode, setPostCode ] = useState();
+  const [searchAddressValues, setSearchAddressValues] = useState();
 
   useEffect(() => {
     getAllPoi();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
+
+  const handleAddress = (values) => {
+    return setSearchAddressValues(values);
+  }
 
   return (
     <div>
@@ -40,7 +41,13 @@ const PoiCreation = () => {
           price: "low",
           typeGreenScore: [{}],
         }}
-        onSubmit={values => {registerPoi(Object.assign(values, {address, lng, lat, postCode}))}}
+        onSubmit={
+          values => {
+            registerPoi(
+              Object.assign(values, searchAddressValues)
+            )
+          }
+        }
       >
       {({
           values,
@@ -63,22 +70,7 @@ const PoiCreation = () => {
                 />
               </Fragment>
             ))}
-            <AlgoliaPlaces
-              placeholder='Adresse'
-              options={{
-                appId: 'pl40ZJQJFIY1',
-                apiKey: 'b97d72715d5faff9cb479e0606500f11',
-                language: 'fr',
-                countries: ['fr'],
-              }}
-                onChange={({ query, rawAnswer, suggestion, suggestionIndex }) => {
-                  console.log(suggestion);
-                  setAddress(suggestion.name);
-                  setLng(suggestion.latlng.lng);
-                  setLat(suggestion.latlng.lat);
-                  setPostCode(suggestion.postcode);
-                }}
-              />
+            <SearchAddress handleAddress={handleAddress} />
             <button type="submit">CONNEXION</button>
           </form>
         )}

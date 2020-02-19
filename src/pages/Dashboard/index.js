@@ -121,28 +121,28 @@ const Dashboard = () => {
             </TitleDefault>
             <ChartContainer>
                 <div className="chartCard">
-                    <h4 class="title">Courbes des croissances</h4>
+                    <h4 className="title">Courbes des croissances</h4>
                     <Chart
                         type="line"
                         {...dataLine}
                     />
                 </div>
                 <div className="chartCard">
-                    <h4 class="title">Points d'intérêts</h4>
+                    <h4 className="title">Points d'intérêts</h4>
                     <Chart
                         type="donut"
                         {...dataDonutPOI}
                     />
                 </div>
                 <div className="chartCard">
-                    <h4 class="title">Green Score</h4>
+                    <h4 className="title">Green Score</h4>
                     <Chart
                         type="bar"
                         {...dataBar}
                     />
                 </div>
                 <div className="chartCard">
-                    <h4 class="title">Clients</h4>
+                    <h4 className="title">Clients</h4>
                     <Chart
                         type="donut"
                         {...dataDonutClients}
