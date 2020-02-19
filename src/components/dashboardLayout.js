@@ -1,5 +1,6 @@
 import React, { useLayoutEffect, Fragment } from 'react';
 import { Route, withRouter } from 'react-router-dom';
+import SearchBar from "../components/SearchBar/index";
 import { User } from '../core/user';
 
 const DashboardLayout = ({
@@ -19,7 +20,12 @@ const DashboardLayout = ({
       {...rest}
       render={matchProps => (
         <Fragment>
-          {loggedIn && <Component {...matchProps} {...rest} />}
+          {loggedIn && (
+            <Fragment>
+              <SearchBar />
+              <Component {...matchProps} {...rest} />
+            </Fragment>
+          )}
         </Fragment>
       )}
     />
