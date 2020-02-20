@@ -1,5 +1,5 @@
 /* eslint-disable no-use-before-define */
-import React from 'react';
+import React, { useState } from 'react';
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import { makeStyles } from '@material-ui/core/styles';
@@ -30,10 +30,15 @@ function SearchInput({history}) {
   const companies = Company.allCompanies() || [];
   const poi = Poi.allPoi() || [];
 
+  const [isError, setIsError] = useState(false);
+
   const onTagsChange = (event, values) => {
     const result = [...companies, ...poi].filter(entity => entity.name === values);
 
-    if (!result[0]) return null;
+    if (!result[0]) {
+      setIsError(true);
+      return null;
+    }
     if (result[0].isPoi) {
       history.push(`/point-d-interet/fiche/${result[0].id}`);
     } else {
@@ -55,9 +60,13 @@ function SearchInput({history}) {
         renderInput={params => (
           <TextField
             {...params}
+            error={isError}
+            id={isError ? "filled-error-helper-text" : ""}
+            helperText={isError ? "Entrée incorrecte." : ""}
             margin="none"
-            placeholder="Rechercher un client"
+            placeholder="Rechercher un client ou un POI"
             fullWidth
+            onChange={() => setIsError(false)}
             InputProps={{ ...params.InputProps, type: 'search', disableUnderline: true, classes: {inputTypeSearch: classes.placeholder, root: classes.inputField } }}
           />
         )}
