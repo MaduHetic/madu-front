@@ -6,15 +6,31 @@ import {Color, Font} from '../../styles/variables';
 import PropTypes from 'prop-types';
 
 const StyleButton = styled(Button)`
-    ${props => props.size === 'small' && css`
-        padding: 8px 20px !important;
+    ${props => props.type === 'anchor' ? css`
+        a {
+            ${props => props.size === 'small' && css`
+                padding: 8px 20px !important;
+            `}
+            ${props => props.size === 'medium' && css`
+                padding: 12px 24px !important;
+            `}
+            ${props => props.size === 'large' && css`
+                padding: 16px 28px !important;
+            `}
+        }
+    `
+    : css`
+        ${props => props.size === 'small' && css`
+            padding: 8px 20px !important;
+        `}
+        ${props => props.size === 'medium' && css`
+            padding: 12px 24px !important;
+        `}
+        ${props => props.size === 'large' && css`
+            padding: 16px 28px !important;
+        `}
     `}
-    ${props => props.size === 'medium' && css`
-        padding: 12px 24px !important;
-    `}
-    ${props => props.size === 'large' && css`
-        padding: 16px 28px !important;
-    `}
+   
     font-family: ${Font.family.main} !important;
     font-size: ${Font.size.s} !important;
     font-weight: ${Font.weight.bold} !important;

@@ -21,10 +21,10 @@ function registerCompany(data) {
   });
 }
 
-function getCompany() {
+function getCompany(id) {
   return client.request({
     method: "get",
-    url: apiRoutes.getCompany()
+    url: apiRoutes.getCompany(id)
   });
 }
 

@@ -6,6 +6,7 @@ import { Actions } from "./actions";
 
 const initialState = {
   companies: [],
+  company: {},
   errors: [],
   isLoading: false,
   filteredByType: [],
@@ -37,6 +38,7 @@ export const companyReducer = (
         draft.isLoading = true;
         break;
       case getType(Actions.getCompany.success):
+        draft.company = action.payload;
         draft.isLoading = true;
         break;
       case getType(Actions.getCompany.failure):
