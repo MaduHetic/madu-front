@@ -4,11 +4,22 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import TextField from '@material-ui/core/TextField';
 import { Color, Font, Breakpoint } from '../styles/variables';
-import Logo from '../images/Logo.svg';
 import LogoMobile from '../images/Logo-white.svg';
-import CustomButton from '../components/Button/Button';
+import CustomButton from '../components/button/button';
+
+import background from '../images/background.jpg'
+import Logo from '../images/maduLogo.png'
 
 import { User } from '../core/user';
+
+const LogoContainer = styled.div`
+  width: 23rem;
+  height: auto;
+  & img {
+    width: 100%;
+    height: auto;
+  }
+`
 
 const SContainer = styled.div`
   display: flex;
@@ -24,15 +35,12 @@ const SContainer = styled.div`
   }
   .login-banner {
     max-width: 494px;
-    background: ${Color.main};
+    background-image: url(${background});
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
     @media screen and (max-width: ${Breakpoint.m}) {
       display: none;
-    }
-    div {
-      width: 116px;
-      img {
-        width: 100%;
-      }
     }
   }
   .login-content {
@@ -104,9 +112,9 @@ const Login = ({ history }) => {
   return (
     <SContainer>
       <div className="login-banner">
-        <div>
+        <LogoContainer>
           <img src={Logo} alt="Logo Madu"/>
-        </div>
+        </LogoContainer>
       </div>
       <div className="login-content">
         <div>

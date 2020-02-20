@@ -30,11 +30,6 @@ function* signUp() {
   }
 }
 
-function* signOut() {
-  yield put(Actions.signOut())
-  localStorage.removeItem('user');
-}
-
 function* getCurrentUser() {
   try {
     yield put(Actions.getCurrentUser.request(true));
@@ -50,6 +45,5 @@ function* getCurrentUser() {
 export function* rootSagas() {
   yield takeLatest(Events.signIn, signIn);
   yield takeLatest(Events.signUp, signUp);
-  yield takeLatest(Events.signOut, signOut);
   yield takeLatest(Events.getCurrentUser, getCurrentUser);
 }

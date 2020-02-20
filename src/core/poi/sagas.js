@@ -18,7 +18,7 @@ function* registerPoi(action) {
 function* getPoi(action) {
   try {
     yield put(Actions.getPoi.request(true));
-    const request = yield call(Api.getPoi, action.payload.id);
+    const request = yield call(Api.getPoi, action.payload);
     if (request.status === 200) {
       yield put(Actions.getPoi.success(request.data));
     }
@@ -31,7 +31,7 @@ function* getPoi(action) {
 function* updatePoi(action) {
   try {
     yield put(Actions.updatePoi.request(true));
-    const request = yield call(Api.updatePoi, action.payload.id);
+    const request = yield call(Api.updatePoi, action.payload);
     if (request.status === 200) {
       yield put(Actions.updatePoi.success(request.data));
     }

@@ -3,12 +3,12 @@ import moment from 'moment';
 import SearchAddress from '../../components/searchAddress';
 import { Formik } from 'formik';
 import { Company } from '../../core/company';
-import {WrapperTitle, MainTitle} from '../../components/Title/style';
-import { LabelName, Container, FormWrapper, Progress, InputWrapper, Button, ButtonWrapper, Steps, FormHead } from '../../components/Create';
+import {WrapperTitle, MainTitle} from '../../components/title/style';
+import { LabelName, Container, FormWrapper, Progress, InputWrapper, Button, ButtonWrapper, Steps, FormHead } from '../../components/create';
 import { ReactComponent as StepOne } from '../../components/Create/svg/step_one.svg';
 import { Input } from '@material-ui/core';
 import { TitleDefault } from '../../styles/global';
-import CustomButton from '../../components/Button/Button';
+import CustomButton from '../../components/button/button';
 import { Color, Font } from '../../styles/variables';
 
 // const placesAutocomplete = places({

@@ -6,10 +6,11 @@ export const Root = styled.div`
     right: 20px;
     display: ${props => props.isDisplayed ? "block" : "none"};
     background: white;
-    min-width: 400px;
+    min-width: 420px;
     padding: 32px;
     border-radius: 2rem;
     box-shadow: 0px 2px 14px rgba(0,0,0,0.15);
+    z-index: 10;
 
     .wrapperModalDescription {
         position: relative;
@@ -75,21 +76,5 @@ export const DetailsContainer = styled.div`
         line-height: 24px;
         color: #000000;
         margin-left: 2px;
-    }
-`;
-
-export const Tag = styled.p`
-    padding: 8px 6px;
-    font-size: 10px;
-    line-height: 14px;
-    letter-spacing: -0.6px;
-    color: ${props => props.colorRGB ? `rgba(${props.colorRGB.r}, ${props.colorRGB.g}, ${props.colorRGB.b}, 1)` : "black"};
-    background: ${props => props.colorRGB ? `rgba(${props.colorRGB.r}, ${props.colorRGB.g}, ${props.colorRGB.b}, 0.05)` : "rgba(0, 0, 0, 0.05)"};
-    border: 0.5px solid ${props => props.colorRGB ? `rgba(${props.colorRGB.r}, ${props.colorRGB.g}, ${props.colorRGB.b}, 1)` : "black"};
-    width: fit-content;
-    border-radius: 2px;
-    margin-right: 8px;
-    &:last-child {
-        margin-right: 0px;
     }
 `;

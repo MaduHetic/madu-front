@@ -22,17 +22,17 @@ function registerPoi(data) {
   });
 }
 
-function getPoi() {
+function getPoi(id) {
   return client.request({
     method: "get",
-    url: apiRoutes.getPoi()
+    url: apiRoutes.getPoi(id)
   });
 }
 
-function updatePoi(data, id) {
+function updatePoi(data) {
   return client.request({
     method: "put",
-    url: apiRoutes.getProfile(id),
+    url: apiRoutes.getProfile(data.id),
     data: {
       name: data.name,
       address: data.address,

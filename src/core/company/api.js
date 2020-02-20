@@ -21,17 +21,17 @@ function registerCompany(data) {
   });
 }
 
-function getCompany() {
+function getCompany(id) {
   return client.request({
     method: "get",
-    url: apiRoutes.getCompany()
+    url: apiRoutes.getCompany(id)
   });
 }
 
-function updateCompany(data, id) {
+function updateCompany(data) {
   return client.request({
     method: "put",
-    url: apiRoutes.getProfile(id),
+    url: apiRoutes.getProfile(data.id),
     data: {
       name: data.name,
       type: data.type,

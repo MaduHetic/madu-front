@@ -21,4 +21,5 @@ export default ({
   createGreenScoreType: () => `/type-green-score`, // POST
   deleteGreenScoreType: (id) => `/type-green-score/${id}`, // DELETE
   getGreenScoreTypes: () => `/type-green-score`, // GET
+  getStats: () => `/stats`,
 });

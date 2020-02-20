@@ -1,7 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
+import moment from 'moment';
 import { Color, Font } from '../../styles/variables';
-import CustomButton from '../../components/Button/Button';
+import CustomButton from '../button/button';
+import { Tag } from '../../styles/global';
 import PropTypes from 'prop-types';
 
 const StyleCard = styled.div`
@@ -33,7 +35,6 @@ const StyleCard = styled.div`
             max-width: 20%;
         }
         .actions {
-            max-width: 25%;
             text-align: right;
         }
     }
@@ -47,6 +48,9 @@ const StyleCard = styled.div`
               text-transform: capitalize;
             }
         }
+        .actions {
+          max-width: 25%;
+        }
     }
     &.poi {
         .greenscore {
@@ -54,9 +58,76 @@ const StyleCard = styled.div`
             color: ${Color.green};
         }
         .tags {
-            max-width: 20%;
+            max-width: 30%;
+            overflow: hidden;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            p {
+              flex-shrink: 0;
+              &:nth-child(n+3) {
+                display: none;
+              }
+            }
+        }
+        .actions {
+          max-width: 15%;
         }
     }
+`;
+
+const StyleCardView = styled.div`
+  padding: 40px 36px;
+  background: ${Color.white};
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  .titleContent {
+    padding-bottom: 10px;
+    margin-bottom: 40px;
+    border-bottom: 1px dashed ${Color.lightgrey2};
+    h4 {
+      font-size: ${Font.size.l};
+      color: ${Color.black};
+    }
+  }
+  & > div:not(.titleContent) {
+    margin-bottom: 40px;
+    max-width: 560px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    &.tagList {
+        align-items: center;
+        div {
+          display: flex;
+          justify-content: flex-start;
+          align-items: center;
+        }
+    }
+    span {
+      margin-right: 10px;
+      display: block;
+      flex-shrink: 0;
+      font-weight: ${Font.weight.bold};
+      color: ${Color.lightgrey2};
+      & + p {
+        color: ${Color.black};
+      }
+    }
+    &:not(.tagList) > div {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      &:not(:last-child) {
+        margin-right: 40px;
+      }
+      &.logo {
+        width: 60px;
+        height: 60px;
+        background: ${Color.lightgrey};
+      }
+    }
+  }
 `;
 
 const Card = ({ client, poi, children }) => {
@@ -67,21 +138,22 @@ const Card = ({ client, poi, children }) => {
               <p>{client.name}</p>
             </div>
             <div className="nbWorkers">
-              <p>{client.nbWorker}</p>
+              <p>{client.nbWorker} personne{client.nbWorker.length > 1 ? 's' : '' }</p>
             </div>
             <div className="date">
-              <p>{client.date}</p>
+              <p>{moment(client.dateCreate).format('L')}</p>
             </div>
             <div className="type">
               <p>{client.type}</p>
             </div>
             <div className="actions">
               <CustomButton
-                text="Modifier"
+                text="Voir"
                 size="small"
                 textcolor={Color.textcolor}
                 backgroundcolor={Color.white}
                 bordercolor={Color.lightgrey2}
+                href={`/clients/fiche/${client.id}`}
               />
             </div>
           </StyleCard>
@@ -96,26 +168,36 @@ const Card = ({ client, poi, children }) => {
               <p>{poi.greenScore}</p>
             </div>
             <div className="date">
-              <p>{poi.date}</p>
+              <p>{moment(poi.dateCreate).format('L')}</p>
             </div>
             <div className="tags">
-              {poi.tags.map(({tag}) => (
-                <p key={tag}>{tag}</p>
+              {poi.tags.map((tag, index) => (
+                  <Tag
+                      key={`tag__${index}`}
+                      colorRGB={{
+                          r: tag.r,
+                          g: tag.g,
+                          b: tag.b
+                      }}
+                  >
+                      {tag.tag}
+                  </Tag>
               ))}
             </div>
             <div className="actions">
               <CustomButton
-                text="Modifier"
+                text="Voir"
                 size="small"
                 textcolor={Color.textcolor}
                 backgroundcolor={Color.white}
                 bordercolor={Color.lightgrey2}
+                href={`/point-d-interet/fiche/${poi.id}`}
               />
             </div>
           </StyleCard>
         )
     } else {
-      return <StyleCard>{children}</StyleCard>
+      return <StyleCardView>{children}</StyleCardView>
     }
 }
 

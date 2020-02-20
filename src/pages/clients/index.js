@@ -1,21 +1,21 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { sortBy } from 'lodash';
 import CustomButton from '../../components/button/button';
 import Card from '../../components/card';
-import { Color, Font } from '../../styles/variables';
+import { Color } from '../../styles/variables';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import { Checkbox } from "@material-ui/core";
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import { Wrapper, TitleDefault, ListHeader, ListContainer, StyledModal } from '../../styles/global';
-import { Poi } from  '../../core/poi';
+import { Company } from  '../../core/company';
 import Modal from '@material-ui/core/Modal';
 
-const PoiList = () => {
+const ClientsList = () => {
     const [open, setOpen] = useState(false);
 
-    const allPoi = Poi.allPoi();
-    const poiTypes = Poi.poiTypes() || [];
-
-    const initStateCheckboxes = Object.assign(poiTypes.map(k => ({ [k]: false })))
+    const allCompanies = Company.allCompanies();
+    const companyTypes = Company.companyTypes() || [];
+    const initStateCheckboxes = Object.assign(companyTypes.map(k => ({ [k]: false })))
     const [stateCheckboxes, setStateCheckboxes] = useState(initStateCheckboxes.reduce(function(result, item) {
     var key = Object.keys(item)[0]; //first property: a, b, c
       result[key] = item[key];
@@ -27,16 +27,13 @@ const PoiList = () => {
         setStateCheckboxes({ ...stateCheckboxes, [name]: event.target.checked });
     };
 
-    const filteredData = allPoi.filter(data => Object.keys(stateCheckboxes).every(key => !stateCheckboxes[key]) ? true : stateCheckboxes[data.type]);
+    const filteredData = allCompanies.filter(data => Object.keys(stateCheckboxes).every(key => !stateCheckboxes[key]) ? true : stateCheckboxes[data.type]);
 
     const compare = (a, b) => {
       // Use toUpperCase() to ignore character casing
       let bandA = a[sortValue];
       let bandB = b[sortValue];
-      if (typeof a[sortValue] === 'object') {
-        bandA = bandA[0].tag.toUpperCase();
-        bandB = bandB[0].tag.toUpperCase();
-      } else if (typeof a[sortValue] !== 'number') {
+      if (typeof a[sortValue] !== 'number') {
         bandA = bandA.toUpperCase();
         bandB = bandB.toUpperCase();
       }
@@ -52,9 +49,9 @@ const PoiList = () => {
 
     const headerList = [
       {name: 'name', label: 'Nom', className: 'name'},
-      {name: 'greenScore', label: 'Greenscore', className: 'greenscore'},
-      {name: 'dateCreate', label: 'Date d\'ajout', className: 'date'},
-      {name: 'tags', label: 'Tags', className: 'tags'},
+      {name: 'nbWorker', label: 'utilisateurs', className: 'nbWorkers'},
+      {name: 'createDate', label: 'Date d\'ajout', className: 'date'},
+      {name: 'type', label: 'Type', className: 'type'},
     ]
 
     const handleOpen = () => {
@@ -65,31 +62,31 @@ const PoiList = () => {
       setOpen(false);
     };
 
-    if (!allPoi) return null;
-    
+    if (!allCompanies) return null;
+
     return (
         <Wrapper>
             <TitleDefault>
-                <h3 className="title">Liste des commerces</h3>
-                <CustomButton text="Nouveau commerce" size="medium" textcolor={Color.main} backgroundcolor={Color.white} bordercolor={Color.main} />
+                <h3 className="title">Liste des clients</h3>
+                <CustomButton text="Nouveau client" size="medium" textcolor={Color.main} backgroundcolor={Color.white} bordercolor={Color.main} />
             </TitleDefault>
-            <ListHeader className="poi">
+            <ListHeader className="client">
               {headerList.map(({name, label, className}) => (
-                <div key={name} onClick={() => setSortValue(name)} className={`${className} ${sortValue === name ? 'active': ''} filter`}>
-                  <p>{label}</p>
-                  <ExpandMoreIcon/>
+                <div onClick={() => setSortValue(name)} className={`${name === sortValue ? 'active' : ''} filter ${className}`}>
+                    <p>{label}</p>
+                    <ExpandMoreIcon/>
                 </div>
               ))}
                 <div className="actions">
-                    <CustomButton
-                      text="Filtres"
-                      size="small"
-                      textcolor={Color.textcolor}
-                      backgroundcolor={Color.white}
-                      bordercolor={Color.lightgrey2}
-                      borderradius={0.2}
-                      onClick={handleOpen}
-                    />
+                  <CustomButton
+                    text="Filtres"
+                    size="small"
+                    textcolor={Color.textcolor}
+                    backgroundcolor={Color.white}
+                    bordercolor={Color.lightgrey2}
+                    borderradius={0.2}
+                    onClick={handleOpen}
+                  />
                     <Modal
                       open={open}
                       onClose={handleClose}
@@ -104,19 +101,19 @@ const PoiList = () => {
                         <div className="modalContent">
                           <p>Categorie</p>
                           <div className="filterContent">
-                              {poiTypes.map((cate, i) => (
-                                  <FormControlLabel
-                                      control={
-                                          <Checkbox
-                                          checked={stateCheckboxes[cate]}
-                                          onChange={handleChange(cate)}
-                                          value={cate}
-                                          color="primary"
-                                          />
-                                      }
-                                      label={cate}
-                                      key={`poiTypes__${i}`}
-                                  />
+                              {companyTypes.map((cate, i) => (
+                                <FormControlLabel
+                                  control={
+                                    <Checkbox
+                                      checked={stateCheckboxes[cate]}
+                                      onChange={handleChange(cate)}
+                                      value={cate}
+                                      color="primary"
+                                    />
+                                  }
+                                  label={cate}
+                                  key={`companyTypes__${i}`}
+                                />
                               ))}
                           </div>
                         </div>
@@ -125,12 +122,12 @@ const PoiList = () => {
                 </div>
             </ListHeader>
             <ListContainer>
-                {filteredData.sort(compare).map(poi => (
-                    <Card key={poi.id} poi={poi} />
-                ))}
+              {filteredData.sort(compare).map(client => (
+                  <Card key={client.id} client={client} />
+              ))}
             </ListContainer>
         </Wrapper>
     )
 }
 
-export default PoiList;
+export default ClientsList;
