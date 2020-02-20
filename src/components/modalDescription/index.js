@@ -68,7 +68,7 @@ const ModalDescription = ({currentEntity, currentEntityHover, setCurrentEntity})
                 <div style={{position: "absolute", bottom: 0, right: 0, display: "flex"}}>
                     <CustomButton
                         text="Voir fiche"
-                        size="small""
+                        size="small"
                         href={`/${currentEntity && currentEntity.isPoi ? "point-d-interet" : "clients"}/fiche/${currentEntity && currentEntity.id}`} />
                 </div>
             </div>
