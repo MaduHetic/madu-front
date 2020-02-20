@@ -9,6 +9,8 @@ import RoomOutlinedIcon from '@material-ui/icons/RoomOutlined';
 import MapOutlinedIcon from '@material-ui/icons/MapOutlined';
 import { User } from '../core/user';
 
+import Logo from '../images/maduLogo.png'
+
 const Sidebar = styled.aside`
     position: absolute;
     width: 220px;
@@ -54,10 +56,38 @@ const Sidebar = styled.aside`
     }
 `;
 
+const StyledLogo = styled.div`
+    width: 6rem;
+    height: 6rem;
+    background: ${Color.main};
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    & img {
+        width: 80%;
+        height: auto;
+    }
+`
+
+const StyledRole = styled.p`
+    text-align: center;
+    text-transform: uppercase;
+    color: ${Color.black};
+    line-height: 1.5;
+    margin-top: 1.6rem;
+`;
+
 const SidebarMenu = () => {
     const logout = User.signOut();
+    const user = User.user();
     return (
         <Sidebar>
+            <StyledLogo>
+                <img src={Logo} alt="madu" />
+            </StyledLogo>
+            <StyledRole>{user.user.user.role.role}</StyledRole>
             <ul>
                 <li>
                     <NavLink to="/dashboard" activeClassName="active">
