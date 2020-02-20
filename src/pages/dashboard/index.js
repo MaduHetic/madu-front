@@ -2,6 +2,7 @@ import React from "react";
 import Chart from "react-apexcharts";
 import { Wrapper, TitleDefault } from '../../styles/global';
 import { ChartContainer } from './style';
+import { Stats } from "../../core/statsDashboard";
 
 const dataDonutClients = {
     options: {
@@ -113,6 +114,9 @@ const dataBar = {
 }
 
 const Dashboard = () => {
+    const stats = Stats.stats();
+    console.log(stats);
+
     return (
         <>
         <Wrapper>
