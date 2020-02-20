@@ -10,8 +10,3 @@ export const getAllCompaniesType = createSelector(
     [allCompanies],
     companies => Array.from(new Set(companies.map(company => company.type)))
 );
-
-// export const filterAllCompanies = createSelector(
-//     [allCompanies],
-//     companies => companies.filter(company => company.type === filteredByType)
-// )
