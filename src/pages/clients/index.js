@@ -48,7 +48,7 @@ const ClientsList = ({ match }) => {
     const headerList = [
       {name: 'name', label: 'Nom', className: 'name'},
       {name: 'nbWorker', label: 'Nombres d\'employés', className: 'nbWorkers'},
-      {name: 'name', label: 'Date d\'ajout', className: 'date'},
+      {name: 'createDate', label: 'Date d\'ajout', className: 'date'},
       {name: 'type', label: 'Type', className: 'type'},
     ]
 

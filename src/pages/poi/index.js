@@ -51,7 +51,7 @@ const PoiList = () => {
     const headerList = [
       {name: 'name', label: 'Nom', className: 'name'},
       {name: 'greenScore', label: 'Greenscore', className: 'greenscore'},
-      {name: 'name', label: 'Date d\'ajout', className: 'date'},
+      {name: 'dateCreate', label: 'Date d\'ajout', className: 'date'},
       {name: 'tags', label: 'Tags', className: 'tags'},
     ]
 
