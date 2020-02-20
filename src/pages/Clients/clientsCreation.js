@@ -4,11 +4,14 @@ import SearchAddress from '../../components/searchAddress';
 import { Formik } from 'formik';
 import { Company } from '../../core/company';
 import {WrapperTitle, MainTitle} from '../../components/Title/style';
-import { LabelName, Container, FormWrapper, Labels, InputWrapper, Button, ButtonWrapper } from '../../components/Create';
+import { LabelName, Container, FormWrapper, Progress, InputWrapper, Button, ButtonWrapper, Steps, FormHead, Label, Option, Field, OptionLabel } from '../../components/Create';
+import { ReactComponent as StepOne } from '../../components/Create/svg/step_one.svg';
 import { Input } from '@material-ui/core';
 import { TitleDefault } from '../../styles/global';
 import CustomButton from '../../components/Button/Button';
 import { Color, Font } from '../../styles/variables';
+
+import Radio from '@material-ui/core/Radio';
 
 // const placesAutocomplete = places({
 //   appId: 'S65E4N0B1U',
@@ -24,12 +27,42 @@ const inputs = [
 	{ name: 'endDeal', label: 'endDeal' },
 ]
 
-const CompanyList = ({ match }) => {
+const clientTypes = [
+	"Agence",
+	"Co-working",
+	"École",
+	"Grand compte",
+	"Start-up",
+	"PME",
+	"Incubateur",
+	"Autre"
+]
+
+const poiTypes = [
+"Food",
+"Drink",
+"Cosmetic",
+"Fashion",
+"Shopping",
+"Activity",
+]
+
+const CompanyList = () => {
 	const registerCompany = Company.registerCompany();
 	const [searchAddressValues, setSearchAddressValues] = useState();
-	const edit = true;
-	console.log(match.params)
+	const [selectedValue, setSelectedValue] = useState('client');
+	const [selectedType, setSelectedType ] = useState('');
+	// let isClient = true;
+	const [isClient, setIsClient] = useState(true);
+
+  const handleChangeSelectClient = event => {
+		setIsClient( event.target.value === "client" ? true : false );
+    setSelectedValue(event.target.value);
+	};
 	
+	const handleChangeSelectType = event => {
+    setSelectedType(event.target.value);
+  };
 	
 	const handleAddress = (values) => {
 		return setSearchAddressValues(values);
@@ -39,32 +72,29 @@ const CompanyList = ({ match }) => {
 		<Container>
 			<WrapperTitle>
 				<MainTitle>Ajouter un client</MainTitle>
-				
-				{ edit && 
-					<div>
-						<CustomButton text="éditer" size="medium" textcolor={Color.main} backgroundcolor={Color.white} bordercolor={Color.main} />
-						<CustomButton text="supprimer" size="medium" textcolor={Color.main} backgroundcolor={Color.white} bordercolor={Color.main} />
-					</div>
-				}
-
 			</WrapperTitle>
-			{/* <Title
-        text="Ajouter un client"
-      /> */}
-			{/* <TitleDefault>
-				<h3 className="title">Fiche client</h3>
-			</TitleDefault> */}
 
 			<FormWrapper>
-				<Labels>
-					<LabelName>Nom</LabelName>
-					<LabelName>Type</LabelName>
-					<LabelName>Nom de domaine</LabelName>
-					<LabelName>Nombre d'utilisateurs</LabelName>
-					<LabelName>Adresse</LabelName>
-					<LabelName>Début licence</LabelName>
-					<LabelName>Fin licence</LabelName>
-				</Labels>
+				<Progress>
+					<StepOne />
+					{/* TODO SECOND STEPS */}
+
+					<Steps>
+						<div className="blue">
+							{/* TODO DYNAMIC CLASSNAME */}
+							<div>étape 1</div>
+							<div>type de fiche</div>
+						</div>
+						<div>
+							<div>étape 2</div>
+							<div>informations générales</div>
+						</div>
+						<div>
+							<div>étape 3</div>
+							<div>legal & contact</div>
+						</div>
+					</Steps>
+				</Progress>
 
 				<Formik
 					initialValues={{
@@ -85,63 +115,85 @@ const CompanyList = ({ match }) => {
 						isSubmitting,
 					}) => (
 							<form onSubmit={handleSubmit}>
-								<InputWrapper>
-									<Input
-										name="name"
-										value={values["name"]}
-										onChange={handleChange}
-									/>
-								</InputWrapper>
+								<FormHead>
+									Type de fiche
+								</FormHead>
 
-								<InputWrapper>
-									<Input
-										name="type"
-										value={values["type"]}
-										onChange={handleChange}
-									/>
-								</InputWrapper>
+								<Label>
+								Sélectionner le type de fiche
+								</Label>
 
-								<InputWrapper>
-									< Input
-										name="domaineMail"
-										value={values["domaineMail"]}
-										onChange={handleChange}
-									/>
-								</InputWrapper>
+								<Field>
+									<Option>
+										<Radio
+											checked={selectedValue === 'client'}
+											onChange={handleChangeSelectClient}
+        							value="client"
+											name="none"
+											color="primary"
+										/>
+									
+										<OptionLabel className={ isClient ? "active" : "inactive" }>
+											Client
+										</OptionLabel>
+									</Option>
 
-								<InputWrapper>
-									<Input
-										name="nbWorker"
-										value={values["nbWorker"]}
-										type="number"
-										onChange={handleChange}
-									/>
-								</InputWrapper>
+									<Option>
+										<Radio
+											checked={selectedValue === 'poi'}
+											onChange={handleChangeSelectClient}
+        							value="poi"
+											name="none"
+											color="primary"
+										/>
+									
+										<OptionLabel className={ isClient ? null : "active" }>
+											poi
+										</OptionLabel>
+									</Option>
+								</Field>
 
-								<InputWrapper>
-									<SearchAddress handleAddress={handleAddress} />
-								</InputWrapper>
 
-								<InputWrapper>
-									<Input
-										name="beginDeal"
-										value={values["beginDeal"]}
-										type="date"
-										onChange={handleChange}
-									/>
-								</InputWrapper>
+								<Label className="mgTop">
+								Type de Client
+								</Label>
 
-								<InputWrapper>
-									<Input
-										name="endDeal"
-										value={values["endDeal"]}
-										type="date"
-										onChange={handleChange}
-									/>
-								</InputWrapper>
+								<Field className="mgRight">
+									{ isClient ? clientTypes.map((v, i)=> (
+										<Option key={i}>
+											<Radio
+												checked={selectedType === v}
+												onChange={handleChangeSelectType}
+        								value={v}
+												name="type"
+												color="primary"
+											/>
+									
+											<OptionLabel>
+												{v}
+											</OptionLabel>
+										</Option>
+									))
+									: poiTypes.map((v, i)=> (
+										<Option key={i}>
+											<Radio
+												checked={selectedType === v}
+												onChange={handleChangeSelectType}
+        								value={v}
+												name="type"
+												color="primary"
+											/>
+									
+											<OptionLabel>
+												{v}
+											</OptionLabel>
+										</Option>
+									))
+								}
+								</Field>
 
 								<ButtonWrapper>
-									<Button type="submit">Ajouter</Button>
+									<Button type="submit">Continuer</Button>
 								</ButtonWrapper>
 							</form>
 						)}

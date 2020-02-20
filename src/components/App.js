@@ -54,7 +54,7 @@ const App = () => {
             <Route exact path="/" component={Login} />
             <DashboardLayout exact path="/dashboard" component={Dashboard}  />
             <DashboardLayout exact path="/clients" component={ClientsList}  />
-            <DashboardLayout exact path="/point-d-interet" component={PoiCreate}  />
+            <DashboardLayout exact path="/point-d-interet" component={PoiList}  />
             <DashboardLayout exact path="/poi-create/:id" component={PoiCreate}  />
             <DashboardLayout exact path="/client-create/:id" component={ClientCreate}  />
           </Switch>

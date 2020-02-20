@@ -3,7 +3,7 @@ import { Formik } from 'formik';
 import SearchAddress from '../../components/searchAddress';
 import { Poi } from '../../core/poi';
 import { makeStyles } from '@material-ui/core/styles';
-import { LabelName, Container, FormWrapper, Labels, InputWrapper, Button, ButtonWrapper } from '../../components/Create';
+import { LabelName, Container, Progress, FormWrapper, InputWrapper, Button, ButtonWrapper } from '../../components/Create';
 import { Input } from '@material-ui/core';
 import { TitleDefault } from '../../styles/global';
 import CustomButton from '../../components/Button/Button';
@@ -42,7 +42,7 @@ const PoiCreation = () => {
 			</TitleDefault>
 
 			<FormWrapper>
-				<Labels>
+				<Progress>
 					<LabelName>Nom</LabelName>
 					<LabelName>Type</LabelName>
 					<LabelName>Description</LabelName>
@@ -50,7 +50,7 @@ const PoiCreation = () => {
 					<LabelName>Fourchette de prix</LabelName>
 					<LabelName>Green Score</LabelName>
 					<LabelName>Adresse</LabelName>
-				</Labels>
+				</Progress>
 
 				<Formik
 					initialValues={{
