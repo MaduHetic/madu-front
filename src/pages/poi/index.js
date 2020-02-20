@@ -71,7 +71,6 @@ const PoiList = () => {
         <Wrapper>
             <TitleDefault>
                 <h3 className="title">Liste des commerces</h3>
-                <CustomButton text="Nouveau commerce" size="medium" textcolor={Color.main} backgroundcolor={Color.white} bordercolor={Color.main} type="button" />
             </TitleDefault>
             <ListHeader className="poi">
               {headerList.map(({name, label, className}) => (
