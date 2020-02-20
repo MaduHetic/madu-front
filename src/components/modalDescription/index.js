@@ -69,7 +69,6 @@ const ModalDescription = ({currentEntity, currentEntityHover, setCurrentEntity})
                     <CustomButton
                         text="Voir fiche"
                         size="small"
-                        type="anchor"
                         href={`/point-d-interet/fiche/${currentEntity && currentEntity.id}`} />
                 </div>
             </div>

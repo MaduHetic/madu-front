@@ -16,9 +16,11 @@ export const TitleDefault = styled.div`
         font-size: ${Font.size.xl};
         text-transform: capitalize;
     }
-    button {
+    button,
+    span {
         margin-left: auto;
-        & + button {
+        & + button,
+        & + span {
             margin-left: 8px;
         }
     }
@@ -43,7 +45,6 @@ export const ListHeader = styled.div`
             max-width: 20%;
         }
         .actions {
-            max-width: 25%;
             text-align: right;
         }
     }
@@ -54,13 +55,19 @@ export const ListHeader = styled.div`
         .type {
             max-width: 15%;
         }
+        .actions {
+            max-width: 25%;
+        }
     }
     &.poi {
         .greenscore {
             max-width: 20%;
         }
         .tags {
-            max-width: 20%;
+            max-width: 30%;
+        }
+        .actions {
+            max-width: 15%;
         }
     }
     .filter {
@@ -96,4 +103,43 @@ export const Tag = styled.p`
     &:not(last-child) {
         margin-right: 8px;
     }
+`;
+
+export const StyledModal = styled.div`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 720px;
+  background: ${Color.white};
+  .title {
+    padding: 32px 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: ${Color.lightgrey};
+    p {
+      font-size: ${Font.size.l};
+      color: ${Color.black};
+    }
+    .closeIcon {
+        cursor: pointer;
+    }
+  }
+  .modalContent {
+    padding: 32px 48px 100px;
+    p {
+      margin-bottom: 30px;
+      font-size: ${Font.size.l};
+      font-weight: ${Font.weight.xBold};
+    }
+    .filterContent {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      .MuiTypography-root {
+        font-size: ${Font.size.m};
+      }
+    }
+  }
 `;

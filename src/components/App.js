@@ -56,6 +56,7 @@ const App = () => {
             <DashboardLayout exact path="/clients/fiche/:id" component={ClientView}  />
             <DashboardLayout exact path="/point-d-interet" component={PoiList}  />
             <DashboardLayout exact path="/point-d-interet/fiche/:id" component={PoiView}  />
+            <DashboardLayout exact path="/point-d-interet/fiche-edit/:id" component={PoiView}  />
           </Switch>
         </PageContent>
       </Router>

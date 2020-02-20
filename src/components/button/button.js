@@ -6,7 +6,7 @@ import {Color, Font} from '../../styles/variables';
 import PropTypes from 'prop-types';
 
 const StyleButton = styled(Button)`
-    ${props => props.type === 'anchor' ? css`
+    ${props => props.href ? css`
         a {
             ${props => props.size === 'small' && css`
                 padding: 8px 20px !important;
@@ -40,16 +40,16 @@ const StyleButton = styled(Button)`
     border-radius: ${props => `${props.borderradius || 3}rem !important`};
 `;
 
-const CustomButton = ({text, size, textcolor, backgroundcolor, bordercolor, borderradius, type, href}) => {
-    if (type === 'anchor') {
+const CustomButton = ({text, size, textcolor, backgroundcolor, bordercolor, borderradius, type, href, onClick}) => {
+    if ( href ) {
         return (
-            
             <StyleButton
                 size={size}
                 textcolor={textcolor}
                 backgroundcolor={backgroundcolor}
                 bordercolor={bordercolor}
                 borderradius={borderradius}
+                onClick={onClick}
                 as="span"
             >
                 <Link
@@ -67,6 +67,7 @@ const CustomButton = ({text, size, textcolor, backgroundcolor, bordercolor, bord
                 backgroundcolor={backgroundcolor}
                 bordercolor={bordercolor}
                 borderradius={borderradius}
+                onClick={onClick}
                 type={type}
             >
                 {text}
@@ -86,5 +87,6 @@ CustomButton.propTypes = {
     bordercolor: PropTypes.string,
     borderradius: PropTypes.number,
     type: PropTypes.string,
-    href: PropTypes.string
+    href: PropTypes.string,
+    onClick : PropTypes.func
 };

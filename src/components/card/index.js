@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import moment from 'moment';
 import { Color, Font } from '../../styles/variables';
 import CustomButton from '../../components/button/button';
+import { Tag } from '../../styles/global';
 import PropTypes from 'prop-types';
 
 const StyleCard = styled.div`
@@ -34,7 +35,6 @@ const StyleCard = styled.div`
             max-width: 20%;
         }
         .actions {
-            max-width: 25%;
             text-align: right;
         }
     }
@@ -48,6 +48,9 @@ const StyleCard = styled.div`
               text-transform: capitalize;
             }
         }
+        .actions {
+          max-width: 25%;
+        }
     }
     &.poi {
         .greenscore {
@@ -55,7 +58,20 @@ const StyleCard = styled.div`
             color: ${Color.green};
         }
         .tags {
-            max-width: 20%;
+            max-width: 30%;
+            overflow: hidden;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            p {
+              flex-shrink: 0;
+              &:nth-child(n+3) {
+                display: none;
+              }
+            }
+        }
+        .actions {
+          max-width: 15%;
         }
     }
 `;
@@ -122,7 +138,7 @@ const Card = ({ client, poi, children }) => {
               <p>{client.name}</p>
             </div>
             <div className="nbWorkers">
-              <p>{client.nbWorker}</p>
+              <p>{client.nbWorker} personne{client.nbWorker.length > 1 ? 's' : '' }</p>
             </div>
             <div className="date">
               <p>{moment(client.dateCreate).format('L')}</p>
@@ -137,7 +153,6 @@ const Card = ({ client, poi, children }) => {
                 textcolor={Color.textcolor}
                 backgroundcolor={Color.white}
                 bordercolor={Color.lightgrey2}
-                type="anchor"
                 href={`/clients/fiche/${client.id}`}
               />
             </div>
@@ -156,8 +171,17 @@ const Card = ({ client, poi, children }) => {
               <p>{moment(poi.dateCreate).format('L')}</p>
             </div>
             <div className="tags">
-              {poi.tags.map(({tag}) => (
-                <p key={tag}>{tag}</p>
+              {poi.tags.map((tag, index) => (
+                  <Tag
+                      key={`tag__${index}`}
+                      colorRGB={{
+                          r: tag.r,
+                          g: tag.g,
+                          b: tag.b
+                      }}
+                  >
+                      {tag.tag}
+                  </Tag>
               ))}
             </div>
             <div className="actions">
@@ -167,7 +191,6 @@ const Card = ({ client, poi, children }) => {
                 textcolor={Color.textcolor}
                 backgroundcolor={Color.white}
                 bordercolor={Color.lightgrey2}
-                type="anchor"
                 href={`/point-d-interet/fiche/${poi.id}`}
               />
             </div>
