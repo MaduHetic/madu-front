@@ -53,6 +53,13 @@ const Sidebar = styled.aside`
                 background: ${Color.main};
             }
         }
+
+        a.disconnect {
+            position: relative;
+            opacity: 1;
+            color: #EE6363;
+            margin-top: 30px;
+        }
     }
 `;
 
@@ -109,7 +116,7 @@ const SidebarMenu = () => {
                     </NavLink>
                 </li>
                 <li>
-                  <NavLink exact to='/' onClick={() => logout()}>
+                  <NavLink exact to='/' onClick={() => logout()} className="disconnect">
                     <MeetingRoomOutlinedIcon style={{ fontSize: 22 }} />Déconnection
                   </NavLink>
                 </li>
