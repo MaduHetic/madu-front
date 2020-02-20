@@ -14,6 +14,7 @@ export const TitleDefault = styled.div`
     border-bottom: 1px dashed ${Color.lightgrey2};
     .title {
         font-size: ${Font.size.xl};
+        text-transform: capitalize;
     }
     button {
         margin-left: auto;
@@ -82,5 +83,17 @@ export const ListHeader = styled.div`
 export const ListContainer = styled.div`
     & > div:not(:last-child) {
         margin-bottom: 8px;
+    }
+`;
+
+export const Tag = styled.p`
+    padding: 8px 6px;
+    font-size: ${Font.size.s};
+    color: ${props => props.colorRGB ? `rgba(${props.colorRGB.r}, ${props.colorRGB.g}, ${props.colorRGB.b}, 1)` : "black"};
+    background: ${props => props.colorRGB ? `rgba(${props.colorRGB.r}, ${props.colorRGB.g}, ${props.colorRGB.b}, 0.05)` : "rgba(0, 0, 0, 0.05)"};
+    border: 0.5px solid ${props => props.colorRGB ? `rgba(${props.colorRGB.r}, ${props.colorRGB.g}, ${props.colorRGB.b}, 1)` : "black"};
+    border-radius: 2px;
+    &:not(last-child) {
+        margin-right: 8px;
     }
 `;
