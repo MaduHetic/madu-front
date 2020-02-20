@@ -24,7 +24,7 @@ const ClientView = () => {
             <Wrapper>
                 <TitleDefault>
                     <h3 className="title">{company.name}</h3>
-                    <CustomButton text="Editer" size="small" textcolor={Color.white} backgroundcolor={Color.main} bordercolor={Color.main} type="anchor" />
+                    <CustomButton text="Editer" size="small" textcolor={Color.white} backgroundcolor={Color.main} bordercolor={Color.main} />
                     <CustomButton text="Supprimer" size="small" textcolor={Color.white} backgroundcolor={Color.red} bordercolor={Color.red} type="button" />
                 </TitleDefault>
                 <Card>

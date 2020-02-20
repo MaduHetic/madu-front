@@ -6,7 +6,20 @@ import {Color, Font} from '../../styles/variables';
 import PropTypes from 'prop-types';
 
 const StyleButton = styled(Button)`
-    ${props => !props.href && css`
+    ${props => props.href ? css`
+        a {
+            ${props => props.size === 'small' && css`
+                padding: 8px 20px !important;
+            `}
+            ${props => props.size === 'medium' && css`
+                padding: 12px 24px !important;
+            `}
+            ${props => props.size === 'large' && css`
+                padding: 16px 28px !important;
+            `}
+        }
+    `
+    : css`
         ${props => props.size === 'small' && css`
             padding: 8px 20px !important;
         `}
@@ -16,34 +29,15 @@ const StyleButton = styled(Button)`
         ${props => props.size === 'large' && css`
             padding: 16px 28px !important;
         `}
-        font-family: ${Font.family.main} !important;
-        font-size: ${Font.size.s} !important;
-        font-weight: ${Font.weight.bold} !important;
-        color: ${props => `${props.textcolor || Color.white } !important`};
-        background: ${props => `${props.backgroundcolor || Color.main } !important`};
-        border: ${props => `solid 1px ${props.bordercolor || Color.main } !important`};
-        border-radius: ${props => `${props.borderradius || 3}rem !important`};
-        text-transform: uppercase;
     `}
-    a {
-        ${props => props.size === 'small' && css`
-            padding: 8px 20px !important;
-        `}
-        ${props => props.size === 'medium' && css`
-            padding: 12px 24px !important;
-        `}
-        ${props => props.size === 'large' && css`
-            padding: 16px 28px !important;
-        `}
-        font-family: ${Font.family.main} !important;
-        font-size: ${Font.size.s} !important;
-        font-weight: ${Font.weight.bold} !important;
-        color: ${props => `${props.textcolor || Color.white } !important`};
-        background: ${props => `${props.backgroundcolor || Color.main } !important`};
-        border: ${props => `solid 1px ${props.bordercolor || Color.main } !important`};
-        border-radius: ${props => `${props.borderradius || 3}rem !important`};
-        text-transform: uppercase;
-    }
+   
+    font-family: ${Font.family.main} !important;
+    font-size: ${Font.size.s} !important;
+    font-weight: ${Font.weight.bold} !important;
+    color: ${props => `${props.textcolor || Color.white } !important`};
+    background: ${props => `${props.backgroundcolor || Color.main } !important`};
+    border: ${props => `solid 1px ${props.bordercolor || Color.main } !important`};
+    border-radius: ${props => `${props.borderradius || 3}rem !important`};
 `;
 
 const CustomButton = ({text, size, textcolor, backgroundcolor, bordercolor, borderradius, type, href, onClick}) => {
@@ -56,7 +50,6 @@ const CustomButton = ({text, size, textcolor, backgroundcolor, bordercolor, bord
                 bordercolor={bordercolor}
                 borderradius={borderradius}
                 onClick={onClick}
-                type={type}
                 as="span"
             >
                 <Link
@@ -82,10 +75,6 @@ const CustomButton = ({text, size, textcolor, backgroundcolor, bordercolor, bord
         )
     }
 }
-
-CustomButton.defaultProps = {
-    href: null,
-}
     
 
 export default CustomButton;
@@ -97,7 +86,7 @@ CustomButton.propTypes = {
     backgroundcolor: PropTypes.string,
     bordercolor: PropTypes.string,
     borderradius: PropTypes.number,
-    type: PropTypes.string.isRequired,
+    type: PropTypes.string,
     href: PropTypes.string,
     onClick : PropTypes.func
 };

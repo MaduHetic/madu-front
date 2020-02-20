@@ -127,10 +127,18 @@ export const StyledModal = styled.div`
     }
   }
   .groupBtn {
+      margin: 0 auto;
       max-width: 400px;
       display: flex;
       justify-content: center;
       align-items: center;
+      button,
+      span {
+          & + button,
+          & + span {
+              margin-left: 16px;
+          }
+      }
   }
   .modalContent {
     padding: 32px 48px 100px;

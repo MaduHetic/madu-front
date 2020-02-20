@@ -50,7 +50,6 @@ const PoiView = ({ history }) => {
                         textcolor={Color.white}
                         backgroundcolor={Color.main}
                         bordercolor={Color.main}
-                        type="anchor"
                         href={`/point-d-interet/fiche-edit/${poi.poi.id}`}
                     />
                     <CustomButton
@@ -139,7 +138,7 @@ const PoiView = ({ history }) => {
                     >
                       <StyledModal>
                         <div className="title">
-                          <p>Etes vous de supprimer ?</p>
+                          <p>Etes-vous sûr de vouloir supprimer ?</p>
                           <svg className="closeIcon" onClick={handleClose} width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M1.18294 0L8.02275 6.83981L14.5592 0.303317L15.6664 1.41043L9.12986 7.94692L16 14.8171L14.8171 16L7.94692 9.12986L1.42559 15.6512L0.318484 14.5441L6.83981 8.02275L0 1.18294L1.18294 0Z" fill="#6A6A85"/>
                         </svg>
@@ -158,9 +157,9 @@ const PoiView = ({ history }) => {
                                 <CustomButton
                                     text="Non"
                                     size="medium"
-                                    textcolor={Color.black}
-                                    backgroundcolor={Color.lightgrey2}
-                                    bordercolor={Color.black}
+                                    textcolor={Color.textcolor}
+                                    backgroundcolor={Color.lightgrey}
+                                    bordercolor={Color.lightgrey2}
                                     onClick={handleClose}
                                     type="button"
                                 />

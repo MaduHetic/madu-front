@@ -92,7 +92,7 @@ const StyleCardView = styled.div`
   }
   & > div:not(.titleContent) {
     margin-bottom: 40px;
-    max-width: 560px;
+    max-width: 630px;
     display: flex;
     justify-content: flex-start;
     align-items: flex-start;
@@ -153,7 +153,6 @@ const Card = ({ client, poi, children }) => {
                 textcolor={Color.textcolor}
                 backgroundcolor={Color.white}
                 bordercolor={Color.lightgrey2}
-                type="anchor"
                 href={`/clients/fiche/${client.id}`}
               />
             </div>
@@ -192,7 +191,6 @@ const Card = ({ client, poi, children }) => {
                 textcolor={Color.textcolor}
                 backgroundcolor={Color.white}
                 bordercolor={Color.lightgrey2}
-                type="anchor"
                 href={`/point-d-interet/fiche/${poi.id}`}
               />
             </div>
