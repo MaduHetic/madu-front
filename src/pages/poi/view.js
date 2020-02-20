@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { Wrapper, TitleDefault } from '../../styles/global';
+import { Wrapper, TitleDefault, Tag } from '../../styles/global';
 import CustomButton from '../../components/button/button';
 import Card from '../../components/card';
 import { Color } from '../../styles/variables';
@@ -14,8 +14,6 @@ const PoiView = () => {
     useEffect(() => {
         getPoi(id)
       }, [id]);
-
-    console.log(poi);
 
     if (!poi.poi)  {
         return null;
@@ -37,42 +35,55 @@ const PoiView = () => {
                     </div>
                     <div>
                         <span>Categorie :</span>
-                        <p>Restaurant</p>
+                        <p>{poi.poi.type}</p>
                     </div>
-                    <div>
+                    <div className="tagList">
                         <span>Liste des tags :</span>
-                        <div></div>
+                        <div>
+                            {poi.tags.map((tag, index) => (
+                                <Tag
+                                    key={`tag__${index}`}
+                                    colorRGB={{
+                                        r: tag.r,
+                                        g: tag.g,
+                                        b: tag.b
+                                    }}
+                                >
+                                    {tag.tag}
+                                </Tag>
+                            ))}
+                        </div>
                     </div>
                     <div>
                         <span>Fourchette de prix :</span>
-                        <p>Classique</p>
+                        <p>{poi.poi.price}</p>
                     </div>
                     <div>
                         <span>Description :</span>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce tellus diam, convallis ut nibh vel, volutpat convallis mi. Sed gravida, eros id volutpat vehicula, mauris tellus mattis libero, in pellentesque dui odio quis dolor. Ut non consectetur quam. Cras feugiat justo vel enim mattis ultrices. Ut elit ipsum, maximus id lorem eu</p>
+                        <p>{poi.poi.description}</p>
                     </div>
                     <div>
                         <div>
                             <span>Adresse :</span>
-                            <p>114 boulevard haussman</p>
+                            <p>{poi.poi.address}</p>
                         </div>
                         <div>
                             <span>Code postal :</span>
-                            <p>75009</p>
+                            <p>{poi.poi.postalCode}</p>
                         </div>
                         <div>
                             <span>Ville :</span>
-                            <p>Paris</p>
+                            <p>{poi.poi.city}</p>
                         </div>
                     </div>
                     <div>
                         <span>Green Score :</span>
-                        <p><span>9,24</span> /10</p>
+                        <p>{poi.poi.greenScore}%</p>
                     </div>
                     <div>
                         <span>Logo :</span>
-                        <div>
-                            <img src="" alt="logo"/>
+                        <div className="logo">
+                            <img src={poi.poi.logo} alt="logo"/>
                         </div>
                     </div>
                     <div>
