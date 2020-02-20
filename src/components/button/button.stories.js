@@ -1,7 +1,7 @@
 import React from 'react';
 import {Color} from '../../styles/variables';
 
-import CustomButton from './Button';
+import CustomButton from './button';
 
 export default {
     component: CustomButton,
