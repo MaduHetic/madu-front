@@ -30,7 +30,7 @@ const StyleButton = styled(Button)`
             padding: 16px 28px !important;
         `}
     `}
-   
+    display: inline-block;
     font-family: ${Font.family.main} !important;
     font-size: ${Font.size.s} !important;
     font-weight: ${Font.weight.bold} !important;

@@ -8,6 +8,7 @@ import MeetingRoomOutlinedIcon from '@material-ui/icons/MeetingRoomOutlined';
 import RoomOutlinedIcon from '@material-ui/icons/RoomOutlined';
 import MapOutlinedIcon from '@material-ui/icons/MapOutlined';
 import { User } from '../core/user';
+import CustomButton from './button/button';
 
 import Logo from '../images/maduLogo.png'
 
@@ -21,7 +22,7 @@ const Sidebar = styled.aside`
     background: ${Color.white};
     ul {
         margin-top: 50px;
-        a {
+        li > a {
             display: flex;
             justify-content: flex-start;
             align-items: center;
@@ -60,6 +61,17 @@ const Sidebar = styled.aside`
             color: #EE6363;
             margin-top: 30px;
         }
+    }
+`;
+
+const StyledButtonContainer = styled.div`
+    position: absolute;
+    bottom: 9rem;
+    left: 50%;
+    transform: translateX(-50%);
+    & > span {
+        font-size: 1.6rem !important;
+        white-space: nowrap;
     }
 `;
 
@@ -120,6 +132,16 @@ const SidebarMenu = () => {
                     <MeetingRoomOutlinedIcon style={{ fontSize: 22 }} />Déconnection
                   </NavLink>
                 </li>
+                <StyledButtonContainer>
+                    <CustomButton
+                      text="Crée une fiche"
+                      size="large"
+                      textcolor={Color.white}
+                      backgroundcolor={Color.main}
+                      bordercolor={Color.main}
+                      href={`/create`}
+                    />
+                </StyledButtonContainer>
             </ul>
         </Sidebar>
     )
