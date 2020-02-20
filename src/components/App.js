@@ -50,7 +50,7 @@ const App = () => {
             <DashboardLayout exact path="/map" component={MapTest}  />
             <Route exact path="/" component={Login} />
             <DashboardLayout exact path="/dashboard" component={Dashboard}  />
-            <DashboardLayout exact path="/clients" component={ClientsList}  />
+            <DashboardLayout path="/clients/:id" component={ClientsList}  />
             <DashboardLayout exact path="/point-d-interet" component={PoiList}  />
           </Switch>
         </PageContent>
