@@ -70,7 +70,7 @@ const ModalDescription = ({currentEntity, currentEntityHover, setCurrentEntity})
                         text="Voir fiche"
                         size="small"
                         type="anchor"
-                        href={`/point-d-interet/fiche/${currentEntity && currentEntity.id}`} />
+                        href={`/${currentEntity && currentEntity.isPoi ? "point-d-interet" : "clients"}/fiche/${currentEntity && currentEntity.id}`} />
                 </div>
             </div>
         </Root>
