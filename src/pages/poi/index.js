@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import CustomButton from '../../components/button/button';
 import Card from '../../components/card';
-import { Color, Font } from '../../styles/variables';
+import { Color } from '../../styles/variables';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import { Checkbox } from "@material-ui/core";
 import FormControlLabel from '@material-ui/core/FormControlLabel';
@@ -71,7 +71,7 @@ const PoiList = () => {
         <Wrapper>
             <TitleDefault>
                 <h3 className="title">Liste des commerces</h3>
-                <CustomButton text="Nouveau commerce" size="medium" textcolor={Color.main} backgroundcolor={Color.white} bordercolor={Color.main} />
+                <CustomButton text="Nouveau commerce" size="medium" textcolor={Color.main} backgroundcolor={Color.white} bordercolor={Color.main} type="button" />
             </TitleDefault>
             <ListHeader className="poi">
               {headerList.map(({name, label, className}) => (
@@ -89,6 +89,7 @@ const PoiList = () => {
                       bordercolor={Color.lightgrey2}
                       borderradius={0.2}
                       onClick={handleOpen}
+                      type="button"
                     />
                     <Modal
                       open={open}

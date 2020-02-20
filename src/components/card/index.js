@@ -153,6 +153,7 @@ const Card = ({ client, poi, children }) => {
                 textcolor={Color.textcolor}
                 backgroundcolor={Color.white}
                 bordercolor={Color.lightgrey2}
+                type="anchor"
                 href={`/clients/fiche/${client.id}`}
               />
             </div>
@@ -191,6 +192,7 @@ const Card = ({ client, poi, children }) => {
                 textcolor={Color.textcolor}
                 backgroundcolor={Color.white}
                 bordercolor={Color.lightgrey2}
+                type="anchor"
                 href={`/point-d-interet/fiche/${poi.id}`}
               />
             </div>
