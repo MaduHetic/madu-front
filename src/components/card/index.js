@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Color, Font } from '../../styles/variables';
-import CustomButton from '../../components/Button/Button';
+import CustomButton from '../../components/button/button';
 import PropTypes from 'prop-types';
 
 const StyleCard = styled.div`

@@ -60,6 +60,23 @@ const Normalize = createGlobalStyle`
         color: inherit;
         text-decoration: none;
     }
+
+    .mapboxgl-marker {
+        pointer-events: none;
+    }
+
+    .MarkerCustom {
+        background: yellow;
+        color: pink;
+        width: 500px;
+        height: 500px;
+        border-radius: 50%;
+        opacity: 0.3;
+        border: 2px solid yellow;
+        pointer-events: none;
+        z-index: 1;
+        position: relative;
+    }
 `
 
 export default Normalize

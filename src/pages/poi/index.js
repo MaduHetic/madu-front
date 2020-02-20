@@ -1,6 +1,6 @@
 import React from 'react';
-import CustomButton from '../../components/Button/Button';
-import Card from '../../components/Card';
+import CustomButton from '../../components/button/button';
+import Card from '../../components/card';
 import { Color } from '../../styles/variables';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import { Wrapper, TitleDefault, ListHeader, ListContainer } from '../../styles/global';

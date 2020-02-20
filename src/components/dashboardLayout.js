@@ -1,6 +1,6 @@
 import React, { useLayoutEffect, Fragment } from 'react';
 import { Route, withRouter } from 'react-router-dom';
-import SearchBar from "../components/SearchBar/index";
+import SearchBar from "../components/searchBar/index";
 import { User } from '../core/user';
 import { Company } from "../core/company";
 import { Poi } from "../core/poi";
@@ -19,7 +19,7 @@ const DashboardLayout = ({
     if (!loggedIn && !user) { history.push('/'); }
     getCompanies();
     getPoi();
-  }, [history, loggedIn]);
+  }, [getCompanies, getPoi, history, loggedIn]);
 
   return (
     <Route

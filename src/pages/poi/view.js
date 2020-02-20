@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { Wrapper, TitleDefault } from '../../styles/global';
-import CustomButton from '../../components/Button/Button';
-import Card from '../../components/Card';
+import CustomButton from '../../components/button/button';
+import Card from '../../components/card';
 import { Color } from '../../styles/variables';
 import { Poi } from  '../../core/poi';
 
