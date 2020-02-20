@@ -11,6 +11,7 @@ export const ButtonContainer = styled.div`
     padding: 3.5px 2px;
     display: flex;
     align-items: center;
+    z-index: 10;
 
     div {
         width: 1px;
