@@ -22,10 +22,25 @@ const PoiView = () => {
             <Wrapper>
                 <TitleDefault>
                     <h3 className="title">{poi.poi.name}</h3>
-                    <CustomButton text="Editer" size="small" textcolor={Color.white} backgroundcolor={Color.main} bordercolor={Color.main} />
-                    <CustomButton text="Supprimer" size="small" textcolor={Color.white} backgroundcolor={Color.red} bordercolor={Color.red} />
+                    <CustomButton
+                        text="Editer"
+                        size="small"
+                        textcolor={Color.white}
+                        backgroundcolor={Color.main}
+                        bordercolor={Color.main}
+                        href={`/point-d-interet/fiche-edit/${poi.poi.id}`}
+                    />
+                    <CustomButton
+                        text="Supprimer"
+                        size="small"
+                        textcolor={Color.white}
+                        backgroundcolor={Color.red}
+                        bordercolor={Color.red}
+                    />
                 </TitleDefault>
                 <Card>
+
+
                     <div className="titleContent">
                         <h4>Informations générales</h4>
                     </div>
@@ -90,6 +105,8 @@ const PoiView = () => {
                         <span>Horaires :</span>
                         <p></p>
                     </div>
+
+
                 </Card>
             </Wrapper>
         )

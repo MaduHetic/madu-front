@@ -4,13 +4,15 @@ import CustomButton from '../../components/button/button';
 import Card from '../../components/card';
 import { Color } from '../../styles/variables';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import FormGroup from '@material-ui/core/FormGroup';
 import { Checkbox } from "@material-ui/core";
 import FormControlLabel from '@material-ui/core/FormControlLabel';
-import { Wrapper, TitleDefault, ListHeader, ListContainer } from '../../styles/global';
+import { Wrapper, TitleDefault, ListHeader, ListContainer, StyledModal } from '../../styles/global';
 import { Company } from  '../../core/company';
+import Modal from '@material-ui/core/Modal';
 
-const ClientsList = ({ match }) => {
+const ClientsList = () => {
+    const [open, setOpen] = useState(false);
+
     const allCompanies = Company.allCompanies();
     const companyTypes = Company.companyTypes() || [];
     const initStateCheckboxes = Object.assign(companyTypes.map(k => ({ [k]: false })))
@@ -47,12 +49,21 @@ const ClientsList = ({ match }) => {
 
     const headerList = [
       {name: 'name', label: 'Nom', className: 'name'},
-      {name: 'nbWorker', label: 'Nombres d\'employés', className: 'nbWorkers'},
+      {name: 'nbWorker', label: 'utilisateurs', className: 'nbWorkers'},
       {name: 'createDate', label: 'Date d\'ajout', className: 'date'},
       {name: 'type', label: 'Type', className: 'type'},
     ]
 
+    const handleOpen = () => {
+      setOpen(true);
+    };
+
+    const handleClose = () => {
+      setOpen(false);
+    };
+
     if (!allCompanies) return null;
+
     return (
         <Wrapper>
             <TitleDefault>
@@ -67,23 +78,47 @@ const ClientsList = ({ match }) => {
                 </div>
               ))}
                 <div className="actions">
-                  <CustomButton text="Filtres" size="small" textcolor={Color.textcolor} backgroundcolor={Color.white} bordercolor={Color.lightgrey2} borderradius={0.2} />
-                    <FormGroup>
-                      {companyTypes.map((cate, i) => (
-                      <FormControlLabel
-                        control={
-                          <Checkbox
-                            checked={stateCheckboxes[cate]}
-                            onChange={handleChange(cate)}
-                            value={cate}
-                            color="primary"
-                          />
-                        }
-                        label={cate}
-                        key={`companyTypes__${i}`}
-                      />
-                    ))}
-                  </FormGroup>
+                  <CustomButton
+                    text="Filtres"
+                    size="small"
+                    textcolor={Color.textcolor}
+                    backgroundcolor={Color.white}
+                    bordercolor={Color.lightgrey2}
+                    borderradius={0.2}
+                    onClick={handleOpen}
+                  />
+                    <Modal
+                      open={open}
+                      onClose={handleClose}
+                    >
+                      <StyledModal>
+                        <div className="title">
+                          <p>Filtres</p>
+                          <svg className="closeIcon" onClick={handleClose} width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M1.18294 0L8.02275 6.83981L14.5592 0.303317L15.6664 1.41043L9.12986 7.94692L16 14.8171L14.8171 16L7.94692 9.12986L1.42559 15.6512L0.318484 14.5441L6.83981 8.02275L0 1.18294L1.18294 0Z" fill="#6A6A85"/>
+                        </svg>
+                        </div>
+                        <div className="modalContent">
+                          <p>Categorie</p>
+                          <div className="filterContent">
+                              {companyTypes.map((cate, i) => (
+                                <FormControlLabel
+                                  control={
+                                    <Checkbox
+                                      checked={stateCheckboxes[cate]}
+                                      onChange={handleChange(cate)}
+                                      value={cate}
+                                      color="primary"
+                                    />
+                                  }
+                                  label={cate}
+                                  key={`companyTypes__${i}`}
+                                />
+                              ))}
+                          </div>
+                        </div>
+                      </StyledModal>
+                    </Modal>
                 </div>
             </ListHeader>
             <ListContainer>
