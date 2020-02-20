@@ -3,6 +3,7 @@ import { Root, HeaderContainer, TagContainer, DetailsContainer } from "./style";
 import { Tag } from "../../styles/global";
 import GirlUser from "../../images/girl-user.jpeg";
 import Avatar from '@material-ui/core/Avatar';
+import CustomButton from "../button/button";
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles({
@@ -41,7 +42,6 @@ const ModalDescription = ({currentEntity, currentEntityHover, setCurrentEntity})
                         {entity.tags.map((tag, index) => (
                             <Tag
                                 key={`tag__${index}`}
-                                // color={[tag.r, tag.g, tag.b]}
                                 colorRGB={{
                                     r: tag.r,
                                     g: tag.g,
@@ -51,9 +51,6 @@ const ModalDescription = ({currentEntity, currentEntityHover, setCurrentEntity})
                                 {tag.tag.toUpperCase()}
                             </Tag>
                         ))}
-                        {/* <Tag color="#2D9CDB" background="rgba(45, 156, 219, 0.05)">BIO</Tag>
-                        <Tag color="#000000" background="#F9F9F9">CIRCUIT COURT</Tag>
-                        <Tag color="#F29C4C" background="rgba(242, 156, 76, 0.05)">SANS GLUTEN</Tag> */}
                     </TagContainer>
                 )}
                 <DetailsContainer>
@@ -68,6 +65,13 @@ const ModalDescription = ({currentEntity, currentEntityHover, setCurrentEntity})
                         <path d="M1.18294 0L8.02275 6.83981L14.5592 0.303317L15.6664 1.41043L9.12986 7.94692L16 14.8171L14.8171 16L7.94692 9.12986L1.42559 15.6512L0.318484 14.5441L6.83981 8.02275L0 1.18294L1.18294 0Z" fill="#6A6A85"/>
                     </svg>
                 )}
+                <div style={{position: "absolute", bottom: 0, right: 0, display: "flex"}}>
+                    <CustomButton
+                        text="Voir fiche"
+                        size="small"
+                        type="anchor"
+                        href={`/point-d-interet/fiche/${currentEntity && currentEntity.id}`} />
+                </div>
             </div>
         </Root>
     )

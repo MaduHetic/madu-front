@@ -9,6 +9,7 @@ const initialState = {
   company: {},
   errors: [],
   isLoading: false,
+  filteredByType: [],
 };
 
 export type CompanyAction =

@@ -66,13 +66,22 @@ const Normalize = createGlobalStyle`
     }
 
     .MarkerCustom {
-        background: yellow;
-        color: pink;
+        background: rgba(94,197,176, 0.05);
         width: 500px;
         height: 500px;
         border-radius: 50%;
-        opacity: 0.3;
-        border: 2px solid yellow;
+        border: 1px solid rgb(94,197,176);
+        pointer-events: none;
+        z-index: 1;
+        position: relative;
+    }
+
+    .MarkerCustom-currentEntity {
+        background: #5EC5B0;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        opacity: 1;
         pointer-events: none;
         z-index: 1;
         position: relative;
