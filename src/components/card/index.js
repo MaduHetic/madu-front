@@ -116,7 +116,7 @@ const Card = ({ client, poi, children }) => {
                 backgroundcolor={Color.white}
                 bordercolor={Color.lightgrey2}
                 type="anchor"
-                href={`/clients/fiche/:${client.id}`}
+                href={`/clients/fiche/${client.id}`}
               />
             </div>
           </StyleCard>
@@ -147,7 +147,7 @@ const Card = ({ client, poi, children }) => {
                 bordercolor={Color.lightgrey2}
                 type="anchor"
                 href="#"
-                href={`/point-d-interet/fiche/:${poi.id}`}
+                href={`/point-d-interet/fiche/${poi.id}`}
               />
             </div>
           </StyleCard>
