@@ -68,7 +68,7 @@ const ClientsList = () => {
         <Wrapper>
             <TitleDefault>
                 <h3 className="title">Liste des clients</h3>
-                <CustomButton text="Nouveau client" size="medium" textcolor={Color.main} backgroundcolor={Color.white} bordercolor={Color.main} />
+                <CustomButton text="Nouveau client" size="medium" textcolor={Color.main} backgroundcolor={Color.white} bordercolor={Color.main} type="button" />
             </TitleDefault>
             <ListHeader className="client">
               {headerList.map(({name, label, className}) => (
@@ -86,6 +86,7 @@ const ClientsList = () => {
                     bordercolor={Color.lightgrey2}
                     borderradius={0.2}
                     onClick={handleOpen}
+                    type="button"
                   />
                     <Modal
                       open={open}

@@ -44,7 +44,7 @@ function* updatePoi(action) {
 function* deletePoi(action) {
   try {
     yield put(Actions.deletePoi.request(true));
-    const request = yield call(Api.deletePoi, action.payload.id);
+    const request = yield call(Api.deletePoi, action.payload);
     if (request.status === 200) {
       yield put(Actions.deletePoi.success(request.data));
     }

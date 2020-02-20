@@ -20,7 +20,7 @@ const Sidebar = styled.aside`
     height: 100%;
     background: ${Color.white};
     ul {
-        margin-top: 30px;
+        margin-top: 50px;
         a {
             display: flex;
             justify-content: flex-start;

@@ -92,7 +92,7 @@ const StyleCardView = styled.div`
   }
   & > div:not(.titleContent) {
     margin-bottom: 40px;
-    max-width: 560px;
+    max-width: 630px;
     display: flex;
     justify-content: flex-start;
     align-items: flex-start;
