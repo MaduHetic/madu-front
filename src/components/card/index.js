@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import moment from 'moment';
 import { Color, Font } from '../../styles/variables';
-import CustomButton from '../../components/button/button';
+import CustomButton from '../button/button';
 import { Tag } from '../../styles/global';
 import PropTypes from 'prop-types';
 
