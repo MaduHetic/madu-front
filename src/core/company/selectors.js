@@ -3,6 +3,7 @@ import { createSelector } from "reselect";
 export const company = (state) => state.company;
 export const isLoading = (state) => company(state).isLoading;
 export const allCompanies = (state) => company(state).companies;
+export const getCompany = (state) => company(state).company;
 
 export const getAllCompaniesType = createSelector(
     [allCompanies],

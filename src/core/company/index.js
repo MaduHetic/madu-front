@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { rootSagas } from "./sagas";
 import { Events, Actions } from "./actions";
 import { companyReducer } from "./reducer";
-import { allCompanies, isLoading, getAllCompaniesType } from "./selectors";
+import { allCompanies, isLoading, getAllCompaniesType, getCompany } from "./selectors";
 
 function useRegisterCompany() {
   const dispatch = useDispatch();
@@ -56,6 +56,10 @@ function useGetAllCompaniesType() {
   return useSelector(getAllCompaniesType);
 }
 
+function useCompany() {
+  return useSelector(getCompany);
+}
+
 export const Company = {
   registerCompany: useRegisterCompany,
   getCompany: useGetCompany,
@@ -63,6 +67,7 @@ export const Company = {
   deleteCompany: useDeleteCompany,
   getAllCompanies: useGetAllCompanies,
   allCompanies: useAllCompanies,
+  company: useCompany,
   companyTypes: useGetAllCompaniesType,
   isLoading: useIsLoading,
   sagas: rootSagas,

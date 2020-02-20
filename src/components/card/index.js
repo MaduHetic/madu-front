@@ -79,6 +79,14 @@ const StyleCardView = styled.div`
     display: flex;
     justify-content: flex-start;
     align-items: flex-start;
+    &.tagList {
+        align-items: center;
+        div {
+          display: flex;
+          justify-content: flex-start;
+          align-items: center;
+        }
+    }
     span {
       margin-right: 10px;
       display: block;
@@ -87,6 +95,19 @@ const StyleCardView = styled.div`
       color: ${Color.lightgrey2};
       & + p {
         color: ${Color.black};
+      }
+    }
+    &:not(.tagList) > div {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      &:not(:last-child) {
+        margin-right: 40px;
+      }
+      &.logo {
+        width: 60px;
+        height: 60px;
+        background: ${Color.lightgrey};
       }
     }
   }
@@ -146,7 +167,6 @@ const Card = ({ client, poi, children }) => {
                 backgroundcolor={Color.white}
                 bordercolor={Color.lightgrey2}
                 type="anchor"
-                href="#"
                 href={`/point-d-interet/fiche/${poi.id}`}
               />
             </div>

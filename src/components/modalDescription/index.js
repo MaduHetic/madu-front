@@ -1,5 +1,6 @@
 import React from "react";
-import { Root, HeaderContainer, TagContainer, DetailsContainer, Tag } from "./style";
+import { Root, HeaderContainer, TagContainer, DetailsContainer } from "./style";
+import { Tag } from "../../styles/global";
 import GirlUser from "../../images/girl-user.jpeg";
 import Avatar from '@material-ui/core/Avatar';
 import { makeStyles } from '@material-ui/core/styles';
@@ -14,8 +15,6 @@ const useStyles = makeStyles({
 const ModalDescription = ({currentEntity, currentEntityHover, setCurrentEntity}) => {
     const classes = useStyles();
     const entity = currentEntityHover || currentEntity;
-
-    console.log(entity)
 
     return (
         <Root isDisplayed={entity}>
@@ -50,7 +49,6 @@ const ModalDescription = ({currentEntity, currentEntityHover, setCurrentEntity})
                                 }}
                             >
                                 {tag.tag.toUpperCase()}
-                                {console.log(tag)}
                             </Tag>
                         ))}
                         {/* <Tag color="#2D9CDB" background="rgba(45, 156, 219, 0.05)">BIO</Tag>
