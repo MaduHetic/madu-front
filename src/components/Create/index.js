@@ -34,9 +34,9 @@ export const FormHead = styled.div`
 
 export const Progress = styled.div`
     background: #F5F5FA;
-    padding: 0 42px;
+    padding: 128px 42px;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
     min-width: 30%;
 `;
@@ -107,21 +107,15 @@ export const Field = styled.div`
 `;
 
 export const InputWrapper = styled.div`
-    display: flex;
-    align-items: center;
-    height: 80px;
-    /* margin-left: 24px; */
+    flex-grow: 1;
     max-width: 420px;
 
     .MuiInput-root {
         padding: 8px 16px;
-        /* border: 1px solid lightgray; */
-        /* border-radius: 4px; */
-        flex-grow: 1;
+        font-size: 16px;
+        font-weight: 600;
+        color: #B8B8C9;
         width: 100%;
-        font-size: ${Font.size.m};
-        font-weight: ${Font.weight.bold};
-        color: ${Color.textcolor};
     }
 `;
 

@@ -15,6 +15,10 @@ import { User } from '../core/user';
 import ClientCreate from '../pages/Clients/clientsCreation';
 import PoiCreate from '../pages/Poi/poiCreation';
 
+import CreateEntity from '../pages/Create/index';
+
+
+
 const history = createBrowserHistory();
 
 const MainContent = styled.main`
@@ -57,6 +61,7 @@ const App = () => {
             <DashboardLayout exact path="/point-d-interet" component={PoiList}  />
             <DashboardLayout exact path="/poi-create/:id" component={PoiCreate}  />
             <DashboardLayout exact path="/client-create/:id" component={ClientCreate}  />
+            <DashboardLayout exact path="/create" component={ClientCreate}  />
           </Switch>
         </PageContent>
       </Router>
