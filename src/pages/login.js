@@ -6,7 +6,7 @@ import TextField from '@material-ui/core/TextField';
 import { Color, Font, Breakpoint } from '../styles/variables';
 import Logo from '../images/Logo.svg';
 import LogoMobile from '../images/Logo-white.svg';
-import CustomButton from '../components/Button/Button';
+import CustomButton from '../components/button/button';
 
 import { User } from '../core/user';
 

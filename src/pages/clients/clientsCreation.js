@@ -13,7 +13,7 @@ const inputs = [
   { name: 'domaineMail', label: 'domaineMail' },
 ]
 
-const CompanyList = () => {
+const ClientsCreation = () => {
   const registerCompany = Company.registerCompany();
   const [searchAddressValues, setSearchAddressValues] = useState();
 
@@ -72,4 +72,4 @@ const CompanyList = () => {
 };
 
 
-export default CompanyList;
+export default ClientsCreation;

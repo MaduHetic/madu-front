@@ -6,7 +6,7 @@ import { ButtonContainer, ButtonFilter, CheckboxesContainer } from "./style";
 import { Checkbox } from "@material-ui/core";
 import FormGroup from '@material-ui/core/FormGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
-import ModalDescription from '../../components/ModalDescription/index';
+import ModalDescription from '../../components/modalDescription/index';
 
 const Map = ReactMapboxGl({
   accessToken: "pk.eyJ1IjoiZ2FtYTk3ODAiLCJhIjoiY2p2NmR3NzA4MDA1NzQzbzdpd3IzNml3NiJ9.uqGMqqnpdiBlrnzWaxMKMg",

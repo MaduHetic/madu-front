@@ -2,12 +2,12 @@ import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { createBrowserHistory } from 'history';
 import DashboardLayout from '../components/dashboardLayout'
-import SidebarMenu from './SidebarMenu';
+import SidebarMenu from './sidebarMenu';
 import Login from '../pages/login';
-import Dashboard from '../pages/Dashboard';
-import CompanyList from '../pages/company';
+import Dashboard from '../pages/dashboard';
+import ClientsList from '../pages/clients';
 import PoiList from '../pages/poi';
-import MapTest from '../pages/Map';
+import MapTest from '../pages/map';
 import styled from 'styled-components';
 import { Color } from '../styles/variables';
 import { User } from '../core/user';
@@ -50,7 +50,7 @@ const App = () => {
             <DashboardLayout exact path="/map" component={MapTest}  />
             <Route exact path="/" component={Login} />
             <DashboardLayout exact path="/dashboard" component={Dashboard}  />
-            <DashboardLayout exact path="/clients" component={CompanyList}  />
+            <DashboardLayout exact path="/clients" component={ClientsList}  />
             <DashboardLayout exact path="/point-d-interet" component={PoiList}  />
           </Switch>
         </PageContent>

@@ -14,7 +14,9 @@ const StyleButton = styled(Button)`
     ${props => props.size === 'large' && css`
         padding: 16px 28px !important;
     `}
+    font-family: ${Font.family.main} !important;
     font-size: ${Font.size.s} !important;
+    font-weight: ${Font.weight.bold} !important;
     color: ${props => `${props.textcolor || Color.white } !important`};
     background: ${props => `${props.backgroundcolor || Color.main } !important`};
     border: ${props => `solid 1px ${props.bordercolor || Color.main } !important`};
