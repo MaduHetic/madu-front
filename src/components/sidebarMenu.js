@@ -4,8 +4,10 @@ import styled from 'styled-components';
 import { Color, Font } from '../styles/variables';
 import DashboardOutlinedIcon from '@material-ui/icons/DashboardOutlined';
 import BusinessOutlinedIcon from '@material-ui/icons/BusinessOutlined';
+import MeetingRoomOutlinedIcon from '@material-ui/icons/MeetingRoomOutlined';
 import RoomOutlinedIcon from '@material-ui/icons/RoomOutlined';
 import MapOutlinedIcon from '@material-ui/icons/MapOutlined';
+import { User } from '../core/user';
 
 const Sidebar = styled.aside`
     position: absolute;
@@ -53,6 +55,7 @@ const Sidebar = styled.aside`
 `;
 
 const SidebarMenu = () => {
+    const logout = User.signOut();
     return (
         <Sidebar>
             <ul>
@@ -75,6 +78,11 @@ const SidebarMenu = () => {
                     <NavLink to="/map">
                         <MapOutlinedIcon style={{ fontSize: 22 }}/>Map
                     </NavLink>
+                </li>
+                <li>
+                  <NavLink exact to='/' onClick={() => logout()}>
+                    <MeetingRoomOutlinedIcon style={{ fontSize: 22 }} />Déconnection
+                  </NavLink>
                 </li>
             </ul>
         </Sidebar>
