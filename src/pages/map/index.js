@@ -103,9 +103,14 @@ const MapTest = () => {
                     ))}
                 </Layer>
                 {currentEntity && currentZoom >= 14 && (
-                    <Marker coordinates={[currentEntity.long, currentEntity.lat]} anchor="center">
-                        <div className="MarkerCustom" />
-                    </Marker>
+                    <>
+                        <Marker coordinates={[currentEntity.long, currentEntity.lat]} anchor="center">
+                            <div className="MarkerCustom" />
+                        </Marker>
+                        <Marker coordinates={[currentEntity.long, currentEntity.lat]} anchor="center">
+                            <div className="MarkerCustom-currentEntity" />
+                        </Marker>
+                    </>
                 )}
             </Map>
             <ButtonContainer>
