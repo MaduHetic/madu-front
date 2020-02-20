@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const ButtonContainer = styled.div`
     position: absolute;
-    top: 60px;
+    top: 68px;
     left: 50%;
     transform: translateX(-50%);
     background: #FFFFFF;
@@ -41,7 +41,7 @@ export const ButtonFilter = styled.button`
 
 export const CheckboxesContainer = styled.div`
     position: absolute;
-    top: 60px;
+    top: 68px;
     right: 20px;
     display: ${props => props.isDisplayed ? "block" : "none"};
     background: white;
