@@ -38,6 +38,7 @@ export const poiReducer = (
         draft.isLoading = true;
         break;
       case getType(Actions.getPoi.success):
+        draft.poi = action.payload;
         draft.isLoading = true;
         break;
       case getType(Actions.getPoi.failure):

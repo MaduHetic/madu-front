@@ -12,6 +12,7 @@ export const Color = {
     white: '#FFFFFF',
     black: '#000000',
     green: '#6FBC77',
+    red: '#EE6363',
     lightgrey: '#F5F5FA',
     lightgrey2: '#B8B8C9'
 }

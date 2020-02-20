@@ -9,6 +9,7 @@ import { Poi } from  '../../core/poi';
 const PoiList = () => {
     const allPoi = Poi.allPoi();
     if (!allPoi) return null;
+    
     return (
         <Wrapper>
             <TitleDefault>

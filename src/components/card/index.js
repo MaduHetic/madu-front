@@ -59,6 +59,39 @@ const StyleCard = styled.div`
     }
 `;
 
+const StyleCardView = styled.div`
+  padding: 40px 36px;
+  background: ${Color.white};
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  .titleContent {
+    padding-bottom: 10px;
+    margin-bottom: 40px;
+    border-bottom: 1px dashed ${Color.lightgrey2};
+    h4 {
+      font-size: ${Font.size.l};
+      color: ${Color.black};
+    }
+  }
+  & > div:not(.titleContent) {
+    margin-bottom: 40px;
+    max-width: 560px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    span {
+      margin-right: 10px;
+      display: block;
+      flex-shrink: 0;
+      font-weight: ${Font.weight.bold};
+      color: ${Color.lightgrey2};
+      & + p {
+        color: ${Color.black};
+      }
+    }
+  }
+`;
+
 const Card = ({ client, poi, children }) => {
     if (client) {
         return (
@@ -77,11 +110,13 @@ const Card = ({ client, poi, children }) => {
             </div>
             <div className="actions">
               <CustomButton
-                text="Modifier"
+                text="Voir"
                 size="small"
                 textcolor={Color.textcolor}
                 backgroundcolor={Color.white}
                 bordercolor={Color.lightgrey2}
+                type="anchor"
+                href={`/clients/fiche/:${client.id}`}
               />
             </div>
           </StyleCard>
@@ -105,17 +140,20 @@ const Card = ({ client, poi, children }) => {
             </div>
             <div className="actions">
               <CustomButton
-                text="Modifier"
+                text="Voir"
                 size="small"
                 textcolor={Color.textcolor}
                 backgroundcolor={Color.white}
                 bordercolor={Color.lightgrey2}
+                type="anchor"
+                href="#"
+                href={`/point-d-interet/fiche/:${poi.id}`}
               />
             </div>
           </StyleCard>
         )
     } else {
-      return <StyleCard>{children}</StyleCard>
+      return <StyleCardView>{children}</StyleCardView>
     }
 }
 

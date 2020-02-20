@@ -9,11 +9,17 @@ export const TitleDefault = styled.div`
     padding-bottom: 20px;
     margin-bottom: 25px;
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
     align-items: center;
     border-bottom: 1px dashed ${Color.lightgrey2};
     .title {
         font-size: ${Font.size.xl};
+    }
+    button {
+        margin-left: auto;
+        & + button {
+            margin-left: 8px;
+        }
     }
 `;
 
