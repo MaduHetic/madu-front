@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import ReactMapboxGl, { Layer, Feature } from 'react-mapbox-gl';
 import { Company } from "../../core/company";
 import { Poi } from "../../core/poi";
@@ -6,7 +6,7 @@ import { ButtonContainer, ButtonFilter, CheckboxesContainer } from "./style";
 import { Checkbox } from "@material-ui/core";
 import FormGroup from '@material-ui/core/FormGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
-import ModalDescription from '../../components/ModalDescription/index';
+import ModalDescription from '../../components/modalDescription/index';
 
 const Map = ReactMapboxGl({
   accessToken: "pk.eyJ1IjoiZ2FtYTk3ODAiLCJhIjoiY2p2NmR3NzA4MDA1NzQzbzdpd3IzNml3NiJ9.uqGMqqnpdiBlrnzWaxMKMg"
@@ -19,7 +19,7 @@ const MapTest = () => {
     const poiTypes = Poi.poiTypes() || [];
 
     const map = React.createRef()
-    const initStateCheckboxes = Object.assign(...companyTypes.map(k => ({ [k]: false })))
+    const initStateCheckboxes = Object.assign(companyTypes.map(k => ({ [k]: false })))
 
     const [centerAndZoom, setCenterAndZoom] = useState({center: [2.36, 48.858], zoom: [11.8]})
     const [mapFilter, setMapFilter] = useState("")

@@ -2,19 +2,6 @@ import { call, put, takeLatest } from "redux-saga/effects";
 import { Api } from "./api";
 import { Actions, Events } from "./actions";
 
-function* registerCompany(action) {
-  try {
-    yield put(Actions.registerCompany.request(true));
-    const request = yield call(Api.registerCompany, action.payload);
-    if (request.status === 201) {
-      yield put(Actions.registerCompany.success(request.data));
-    }
-  } catch {
-    yield put(Actions.registerCompany.failure(false));
-  }
-}
-
-
 function* getCompany(action) {
   try {
     yield put(Actions.getCompany.request(true));
@@ -55,13 +42,25 @@ function* deleteCompany(action) {
 
 function* getAllCompanies() {
   try {
-    yield put(Actions.getAllCompanies.request(true));
+    yield put(Actions.getAllCompanies.request());
     const request = yield call(Api.getAllCompanies);
     if (request.status === 200) {
       yield put(Actions.getAllCompanies.success(request.data));
     }
   } catch {
     yield put(Actions.getAllCompanies.failure(false));
+  }
+}
+
+function* registerCompany(action) {
+  try {
+    yield put(Actions.registerCompany.request(true));
+    const request = yield call(Api.registerCompany, action.payload);
+    if (request.status === 201) {
+      yield put(Actions.registerCompany.success(action.payload));
+    }
+  } catch {
+    yield put(Actions.registerCompany.failure(false));
   }
 }
 
