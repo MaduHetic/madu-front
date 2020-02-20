@@ -36,7 +36,7 @@ const ClientView = ({ history }) => {
     const handleDelete = (id) => {
         deleteClient(id)
         setOpen(false);
-        history.push('/point-d-interet');
+        history.push('/clients');
     }
 
     if (!company)  {
