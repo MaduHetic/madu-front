@@ -28,10 +28,10 @@ function getCompany(id) {
   });
 }
 
-function updateCompany(data, id) {
+function updateCompany(data) {
   return client.request({
     method: "put",
-    url: apiRoutes.getProfile(id),
+    url: apiRoutes.getProfile(data.id),
     data: {
       name: data.name,
       type: data.type,
