@@ -81,13 +81,12 @@ const StyledRole = styled.p`
 
 const SidebarMenu = () => {
     const logout = User.signOut();
-    const user = User.user();
     return (
         <Sidebar>
             <StyledLogo>
                 <img src={Logo} alt="madu" />
             </StyledLogo>
-            <StyledRole>{user.user.user.role.role}</StyledRole>
+            <StyledRole>Admin</StyledRole>
             <ul>
                 <li>
                     <NavLink to="/dashboard" activeClassName="active">
