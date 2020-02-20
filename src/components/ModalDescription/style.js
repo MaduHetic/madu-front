@@ -10,6 +10,7 @@ export const Root = styled.div`
     padding: 32px;
     border-radius: 2rem;
     box-shadow: 0px 2px 14px rgba(0,0,0,0.15);
+    z-index: 10;
 
     .wrapperModalDescription {
         position: relative;
