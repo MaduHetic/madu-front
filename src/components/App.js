@@ -9,17 +9,14 @@ import ClientsList from '../pages/clients';
 import ClientView from '../pages/clients/view';
 import PoiList from '../pages/poi';
 import PoiView from '../pages/poi/view';
+import PoiUpdate from '../pages/poi/poiUpdate';
 import MapTest from '../pages/map';
 import styled from 'styled-components';
 import { Color } from '../styles/variables';
 import { User } from '../core/user';
-
 import ClientCreate from '../pages/clients/clientsCreation';
 import PoiCreate from '../pages/poi/poiCreation';
-
 import CreateEntity from '../pages/create/index';
-
-
 
 const history = createBrowserHistory();
 
@@ -64,14 +61,11 @@ const App = () => {
             <DashboardLayout exact path="/clients" component={ClientsList}  />
             <DashboardLayout exact path="/clients/fiche/:id" component={ClientView}  />
             <DashboardLayout exact path="/point-d-interet" component={PoiList}  />
-            
             <DashboardLayout exact path="/poi-create/:id" component={PoiCreate}  />
             <DashboardLayout exact path="/client-create/:id" component={ClientCreate}  />
-
             <DashboardLayout exact path="/create" component={CreateEntity}  />
-
             <DashboardLayout exact path="/point-d-interet/fiche/:id" component={PoiView}  />
-            <DashboardLayout exact path="/point-d-interet/fiche-edit/:id" component={PoiView}  />
+            <DashboardLayout exact path="/point-d-interet/fiche-edit/:id" component={PoiUpdate}  />
           </Switch>
         </PageContent>
       </Router>

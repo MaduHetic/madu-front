@@ -2,12 +2,11 @@ import React, { useEffect, useState, Fragment } from 'react';
 import { Formik } from 'formik';
 import SearchAddress from '../../components/searchAddress';
 import { Poi } from '../../core/poi';
-import { makeStyles } from '@material-ui/core/styles';
 import { LabelName, Container, Progress, FormWrapper, InputWrapper, Button, ButtonWrapper } from '../../components/create';
 import { Input } from '@material-ui/core';
 import { TitleDefault } from '../../styles/global';
 import CustomButton from '../../components/button/button';
-import { Color, Font } from '../../styles/variables';
+import { Color } from '../../styles/variables';
 
 const inputs = [
 	{ name: 'name', label: 'name' },

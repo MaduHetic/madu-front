@@ -104,6 +104,9 @@ const StyleCardView = styled.div`
           align-items: center;
         }
     }
+    &.groupBtn {
+      justify-content: flex-end;
+    }
     span {
       margin-right: 10px;
       display: block;

@@ -63,8 +63,6 @@ const PoiView = ({ history }) => {
                     />
                 </TitleDefault>
                 <Card>
-
-
                     <div className="titleContent">
                         <h4>Informations générales</h4>
                     </div>
@@ -129,8 +127,6 @@ const PoiView = ({ history }) => {
                         <span>Horaires :</span>
                         <p></p>
                     </div>
-
-
                 </Card>
                 <Modal
                       open={open}
