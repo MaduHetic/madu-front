@@ -6,10 +6,11 @@ export const Root = styled.div`
     right: 20px;
     display: ${props => props.isDisplayed ? "block" : "none"};
     background: white;
-    min-width: 400px;
+    min-width: 420px;
     padding: 32px;
     border-radius: 2rem;
     box-shadow: 0px 2px 14px rgba(0,0,0,0.15);
+    z-index: 10;
 
     .wrapperModalDescription {
         position: relative;

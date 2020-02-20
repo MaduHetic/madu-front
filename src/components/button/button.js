@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from "react-router-dom";
 import Button from '@material-ui/core/Button';
 import styled, {css} from 'styled-components';
 import {Color, Font} from '../../styles/variables';
@@ -23,18 +24,41 @@ const StyleButton = styled(Button)`
     border-radius: ${props => `${props.borderradius || 3}rem !important`};
 `;
 
-const CustomButton = ({text, size, textcolor, backgroundcolor, bordercolor, borderradius, type}) => (
-    <StyleButton
-        size={size}
-        textcolor={textcolor}
-        backgroundcolor={backgroundcolor}
-        bordercolor={bordercolor}
-        borderradius={borderradius}
-        type={type}
-    >
-        {text}
-    </StyleButton>
-)
+const CustomButton = ({text, size, textcolor, backgroundcolor, bordercolor, borderradius, type, href}) => {
+    if (type === 'anchor') {
+        return (
+            
+            <StyleButton
+                size={size}
+                textcolor={textcolor}
+                backgroundcolor={backgroundcolor}
+                bordercolor={bordercolor}
+                borderradius={borderradius}
+                as="span"
+            >
+                <Link
+                    to={href}
+                >
+                    {text}
+                </Link>
+            </StyleButton>
+        )
+    } else {
+        return (
+            <StyleButton
+                size={size}
+                textcolor={textcolor}
+                backgroundcolor={backgroundcolor}
+                bordercolor={bordercolor}
+                borderradius={borderradius}
+                type={type}
+            >
+                {text}
+            </StyleButton>
+        )
+    }
+}
+    
 
 export default CustomButton;
 
@@ -45,5 +69,6 @@ CustomButton.propTypes = {
     backgroundcolor: PropTypes.string,
     bordercolor: PropTypes.string,
     borderradius: PropTypes.number,
-    type: PropTypes.string
+    type: PropTypes.string,
+    href: PropTypes.string
 };

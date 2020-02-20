@@ -6,7 +6,9 @@ import SidebarMenu from './sidebarMenu';
 import Login from '../pages/login';
 import Dashboard from '../pages/dashboard';
 import ClientsList from '../pages/clients';
+import ClientView from '../pages/clients/view';
 import PoiList from '../pages/poi';
+import PoiView from '../pages/poi/view';
 import MapTest from '../pages/map';
 import styled from 'styled-components';
 import { Color } from '../styles/variables';
@@ -50,8 +52,10 @@ const App = () => {
             <DashboardLayout exact path="/map" component={MapTest}  />
             <Route exact path="/" component={Login} />
             <DashboardLayout exact path="/dashboard" component={Dashboard}  />
-            <DashboardLayout path="/clients/:id" component={ClientsList}  />
+            <DashboardLayout exact path="/clients" component={ClientsList}  />
+            <DashboardLayout exact path="/clients/fiche/:id" component={ClientView}  />
             <DashboardLayout exact path="/point-d-interet" component={PoiList}  />
+            <DashboardLayout exact path="/point-d-interet/fiche/:id" component={PoiView}  />
           </Switch>
         </PageContent>
       </Router>

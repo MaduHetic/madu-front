@@ -56,6 +56,7 @@ const PoiList = () => {
     ]
 
     if (!allPoi) return null;
+    
     return (
         <Wrapper>
             <TitleDefault>
