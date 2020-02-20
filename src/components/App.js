@@ -40,7 +40,9 @@ const App = () => {
   const loggedIn = User.loggedIn();
 
   useEffect(() => {
-    getCurrentUser()
+    if (localStorage.getItem("user")) {
+      getCurrentUser()
+    }
   }, [getCurrentUser]);
 
   return (
