@@ -8,7 +8,7 @@ export const client = axios.create({
     Accept: "application/json",
     "Content-Type": "application/json",
     "Cache-Control": "no-cache",
-    Authorization: `Bearer ${JSON.parse(window.localStorage.getItem('user'))}`,
+    Authorization: `Bearer ${JSON.parse(window.localStorage.getItem("user"))}`,
   },
 });
 

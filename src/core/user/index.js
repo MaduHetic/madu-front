@@ -12,8 +12,9 @@ import {
 function useSignOut() {
   const dispatch = useDispatch();
   return () => {
-    dispatch(Events.signOut())
-  };
+    localStorage.removeItem('user');
+    dispatch(Actions.signOut());
+  }
 }
 
 function useSignIn() {

@@ -40,14 +40,16 @@ const App = () => {
   const loggedIn = User.loggedIn();
 
   useEffect(() => {
-    getCurrentUser()
+    if (localStorage.getItem("user")) {
+      getCurrentUser()
+    }
   }, [getCurrentUser]);
 
   return (
     <MainContent>
       <Router>
         {loggedIn && (<SidebarMenu />)}
-        <PageContent loggedIn={loggedIn}>
+        <PageContent loggedIn={loggedIn} id="pageContent">
           <Switch>
             <DashboardLayout exact path="/map" component={MapTest}  />
             <Route exact path="/" component={Login} />
