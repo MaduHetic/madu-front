@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import moment from 'moment';
 import { Color, Font } from '../../styles/variables';
 import CustomButton from '../../components/button/button';
 import PropTypes from 'prop-types';
@@ -103,7 +104,7 @@ const Card = ({ client, poi, children }) => {
               <p>{client.nbWorker}</p>
             </div>
             <div className="date">
-              <p>{client.date}</p>
+              <p>{moment(client.dateCreate).format('L')}</p>
             </div>
             <div className="type">
               <p>{client.type}</p>
@@ -131,7 +132,7 @@ const Card = ({ client, poi, children }) => {
               <p>{poi.greenScore}</p>
             </div>
             <div className="date">
-              <p>{poi.date}</p>
+              <p>{moment(poi.dateCreate).format('L')}</p>
             </div>
             <div className="tags">
               {poi.tags.map(({tag}) => (
