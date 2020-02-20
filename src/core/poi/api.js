@@ -22,10 +22,10 @@ function registerPoi(data) {
   });
 }
 
-function getPoi() {
+function getPoi(id) {
   return client.request({
     method: "get",
-    url: apiRoutes.getPoi()
+    url: apiRoutes.getPoi(id)
   });
 }
 
