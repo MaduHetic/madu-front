@@ -11,14 +11,10 @@ import { Color, Font } from '../../styles/variables';
 
 const useStyles = makeStyles({
 	icon: {
-        marginBottom: '4px',
-        marginRight: '1rem',
+        marginBottom: '0px',
+        marginRight: '6px',
 		fill: `${Color.textcolor}`
-    },
-    size: {
-        width: "32px",
-        height: "32px",
-    },
+    }
 });
 
 export default function SearchBar() {
@@ -32,9 +28,6 @@ export default function SearchBar() {
 				}} 
 			/>
             <SearchInput/>
-            <Tooltip title="SE DÉCONNECTER" arrow>
-                <Avatar src={GirlUser} classes={{ root: classes.size}}></Avatar>
-            </Tooltip>
         </TopBar>
     )
 }

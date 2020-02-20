@@ -86,6 +86,18 @@ const Normalize = createGlobalStyle`
         z-index: 1;
         position: relative;
     }
+
+    input::-webkit-search-cancel-button {
+        display: none;
+    }
+
+    .MuiAutocomplete-root {
+        .MuiInputBase-root {
+            &.Mui-error {
+                border-bottom: 1px solid red;
+            }
+        }
+    }
 `
 
 export default Normalize
