@@ -13,6 +13,7 @@ import { Color } from '../styles/variables';
 import { User } from '../core/user';
 
 import ClientCreate from '../pages/Clients/clientsCreation';
+import PoiCreate from '../pages/Poi/poiCreation';
 
 const history = createBrowserHistory();
 
@@ -53,7 +54,7 @@ const App = () => {
             <Route exact path="/" component={Login} />
             <DashboardLayout exact path="/dashboard" component={Dashboard}  />
             <DashboardLayout exact path="/clients" component={ClientCreate}  />
-            <DashboardLayout exact path="/point-d-interet" component={PoiList}  />
+            <DashboardLayout exact path="/point-d-interet" component={PoiCreate}  />
           </Switch>
         </PageContent>
       </Router>

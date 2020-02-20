@@ -36,6 +36,7 @@ export const InputWrapper = styled.div`
         padding: 8px 16px;
         /* border: 1px solid lightgray; */
         /* border-radius: 4px; */
+        flex-grow: 1;
         width: 100%;
         font-size: ${Font.size.m};
         font-weight: ${Font.weight.bold};
