@@ -24,10 +24,11 @@ const inputs = [
 	{ name: 'endDeal', label: 'endDeal' },
 ]
 
-const CompanyList = () => {
+const CompanyList = ({ match }) => {
 	const registerCompany = Company.registerCompany();
 	const [searchAddressValues, setSearchAddressValues] = useState();
 	const edit = true;
+	console.log(match.params)
 	
 	
 	const handleAddress = (values) => {
