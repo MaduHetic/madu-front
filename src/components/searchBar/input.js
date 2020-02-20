@@ -13,9 +13,13 @@ const useStyles = makeStyles({
 		'&::placeholder': {
 			color: `${Color.textcolor}`,
 			fontFamily: Font.family.main,
-			fontSize: `${Font.size.m}`
+      fontSize: `16px`
 		}
-	}
+  },
+  inputField: {
+    fontSize: '16px',
+    fontFamily: Font.family.main,
+  }
 });
 
 export default function SearchInput() {
@@ -31,15 +35,17 @@ export default function SearchInput() {
 					root: classes.inputWrapper
 				}}
         options={top100Films.map(option => option.title)}
-        renderInput={params => (
+        renderInput={params => {
+          {console.log(params)}
+          return (
           <TextField
             {...params}
             margin="none"
             placeholder="Rechercher un client"
-						fullWidth
-            InputProps={{ ...params.InputProps, type: 'search', disableUnderline: true, classes: {inputTypeSearch: classes.placeholder } }}
+            fullWidth
+            InputProps={{ ...params.InputProps, type: 'search', disableUnderline: true, classes: {inputTypeSearch: classes.placeholder, root: classes.inputField } }}
           />
-        )}
+        )}}
       />
   );
 }

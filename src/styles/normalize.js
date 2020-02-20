@@ -86,6 +86,10 @@ const Normalize = createGlobalStyle`
         z-index: 1;
         position: relative;
     }
+
+    input::-webkit-search-cancel-button {
+        display: none;
+    }
 `
 
 export default Normalize

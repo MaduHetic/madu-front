@@ -62,7 +62,7 @@ const MapTest = () => {
             <Map
                 ref={map}
                 style="mapbox://styles/mapbox/streets-v9"
-                containerStyle={{ width: '100%', height: 'calc(100vh - 48px)'}}
+                containerStyle={{ width: '100%', height: 'calc(100vh - 56px)'}}
                 zoom={centerAndZoom.zoom}
                 center={centerAndZoom.center}
                 onZoom={e => setCurrentZoom(e.transform._zoom)}
