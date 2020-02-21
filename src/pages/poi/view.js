@@ -45,6 +45,14 @@ const PoiView = ({ history }) => {
                 <TitleDefault>
                     <h3 className="title">{poi.poi.name}</h3>
                     <CustomButton
+                        text="Retour"
+                        size="small"
+                        textcolor={Color.white}
+                        backgroundcolor={Color.lightgrey2}
+                        bordercolor={Color.lightgrey2}
+                        href={`/point-d-interet`}
+                    />
+                    <CustomButton
                         text="Editer"
                         size="small"
                         textcolor={Color.white}

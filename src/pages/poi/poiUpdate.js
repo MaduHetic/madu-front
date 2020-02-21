@@ -65,6 +65,14 @@ const PoiView = ({ history }) => {
         <Wrapper>
             <TitleDefault>
                 <h3 className="title">{poi.name}</h3>
+                <CustomButton
+                    text="Retour"
+                    size="small"
+                    textcolor={Color.white}
+                    backgroundcolor={Color.lightgrey2}
+                    bordercolor={Color.lightgrey2}
+                    href={`/point-d-interet/fiche/${poi.id}`}
+                />
             </TitleDefault>
             <Card>
                 <Formik
