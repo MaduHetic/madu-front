@@ -118,12 +118,6 @@ const PoiView = ({ history }) => {
                         <p>{poi.poi.greenScore}%</p>
                     </div>
                     <div>
-                        <span>Logo :</span>
-                        <div className="logo">
-                            <img src={poi.poi.logo} alt="logo"/>
-                        </div>
-                    </div>
-                    <div>
                         <span>Horaires :</span>
                         <p></p>
                     </div>

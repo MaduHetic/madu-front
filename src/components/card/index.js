@@ -90,7 +90,8 @@ const StyleCardView = styled.div`
       color: ${Color.black};
     }
   }
-  & > div:not(.titleContent) {
+  & > div:not(.titleContent),
+  & form > div:not(.titleContent) {
     margin-bottom: 40px;
     max-width: 630px;
     display: flex;
@@ -117,17 +118,28 @@ const StyleCardView = styled.div`
         color: ${Color.black};
       }
     }
+    .algolia-places {
+      margin-top: -10px;
+      width: 500px;
+      .ap-suggestion {
+        display: flex;
+        justify-content: flex-start;
+        align-items: flex-start;
+      }
+    }
+    .MuiInput-root {
+      margin-top: -5px;
+      font-size: ${Font.size.m};
+      &.MuiInput-multiline {
+        width: 500px;
+      }
+    }
     &:not(.tagList) > div {
       display: flex;
       justify-content: flex-start;
       align-items: center;
       &:not(:last-child) {
         margin-right: 40px;
-      }
-      &.logo {
-        width: 60px;
-        height: 60px;
-        background: ${Color.lightgrey};
       }
     }
   }
