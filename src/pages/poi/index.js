@@ -68,7 +68,7 @@ const PoiList = () => {
 
     useEffect(() => {
       getAllPoi()
-    });
+    }, []);
 
     if (!allPoi) return null;
     

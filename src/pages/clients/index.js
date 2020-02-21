@@ -65,7 +65,7 @@ const ClientsList = () => {
 
     useEffect(() => {
       getAllCompanies()
-    });
+    }, []);
 
     if (!allCompanies) return null;
 
