@@ -23,6 +23,12 @@ export const FormWrapper = styled.div`
         flex-wrap: nowrap !important;
         max-width: 400px;
         overflow-x: auto;
+          -ms-overflow-style: none; // for IE-10
+        scrollbar-width: none; // for firefox
+        &::-webkit-scrollbar { // sarafi and chrome
+            width: 0px;
+            background: transparent;
+        }
     }
     .createTag {
         margin-top: 20px;
