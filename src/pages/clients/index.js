@@ -68,7 +68,6 @@ const ClientsList = () => {
         <Wrapper>
             <TitleDefault>
                 <h3 className="title">Liste des clients</h3>
-                <CustomButton text="Nouveau client" size="medium" textcolor={Color.main} backgroundcolor={Color.white} bordercolor={Color.main} type="button" />
             </TitleDefault>
             <ListHeader className="client">
               {headerList.map(({name, label, className}) => (

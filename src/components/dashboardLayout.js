@@ -27,7 +27,6 @@ const DashboardLayout = ({
 
   useEffect(() => {
     const pageContent = document.getElementById('pageContent');
-    console.log(pageContent);
     pageContent.scrollTo(0, 0);
   }, [pathname])
 

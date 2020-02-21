@@ -1,4 +1,4 @@
-import React, { useState, Fragment } from 'react';
+import React, { useState, Fragment, useEffect } from 'react';
 import moment from 'moment';
 import SearchAddress from '../../components/searchAddress';
 import { Formik } from 'formik';
@@ -6,9 +6,13 @@ import { Company } from '../../core/company';
 import { WrapperTitle, MainTitle } from '../../components/title/style';
 import { Container, FormWrapper, Progress, InputWrapper, Button, ButtonWrapper, Steps, FormHead, Label, Option, Field, OptionLabel } from '../../components/create';
 import { ReactComponent as StepOne } from '../../components/create/svg/step_one.svg';
+import { ReactComponent as StepTwo } from '../../components/create/svg/step_two.svg';
+import { ReactComponent as StepThree } from '../../components/create/svg/step_three.svg';
 import { Input } from '@material-ui/core';
 import Radio from '@material-ui/core/Radio';
 import { Poi } from '../../core/poi';
+import { Tags } from '../../core/tags/';
+import Checkbox from '@material-ui/core/Checkbox';
 
 const inputs = [
 	{ name: 'name', label: 'Nom' },
@@ -49,6 +53,20 @@ const EntityCreate = () => {
 	const [isClient, setIsClient] = useState(true);
 	const [step, setStep] = useState(0);
 
+	const [checked, setChecked] = useState([]);
+	  
+	const handleChangeCheck = event => {
+		let x = checked;
+		setChecked([...x, event.target.value]);
+  	};
+
+	const allTags = Tags.tags();
+	const getTags = Tags.getTags();
+
+	useEffect(() => {
+		getTags()
+	}, [])
+
 	const handleChangeSelectClient = event => {
 		setIsClient(event.target.value === "client" ? true : false);
 		setSelectedValue(event.target.value);
@@ -74,8 +92,15 @@ const EntityCreate = () => {
 
 			<FormWrapper>
 				<Progress>
-					<StepOne />
-					{/* TODO SECOND STEPS */}
+					{ step === 0 &&
+						<StepOne />
+					}
+					{ step === 1 &&
+						<StepTwo />
+					}
+					{ step === 2 &&
+						<StepThree />
+					}
 
 					<Steps>
 						<div className={step === 0 ? "blue" : null}>
@@ -338,9 +363,26 @@ const EntityCreate = () => {
 										</Option>
 									</Field>
 
-									{/*
-										TODO GREENSCORE & TAGS
-									*/}
+									<Label className="mgTop">
+										Tags
+									</Label>
+
+									<Field>
+										<div>{ allTags.map(tag => (
+										<div key={tag.id}>
+											<input
+												name="tags"
+												type="checkbox"
+												onChange={handleChangeCheck}
+												value={tag.id}
+											/>
+											{/* <span>
+											{tag.tag}
+											</span> */}
+										</div>
+										))}</div>
+									</Field>
+									
 								</Fragment>
 							}
 							{
@@ -412,14 +454,29 @@ const EntityCreate = () => {
 								</Fragment>
 							}
 
-							<ButtonWrapper>
-								{
+							<ButtonWrapper className={ step === 1 || step === 2 ? "between" : "end"}>
+								{/* {
 									(step === 0 || step === 1 ) &&
 									<Button onClick={() => setStep(step + 1)} type="button">Continuer</Button>
 								}
 								{
 									(step === 2 ) &&
 									<Button type="submit">Continuer</Button>
+								} */}
+								{ (step === 0 ) &&
+									<Button onClick={() => setStep(step + 1)} type="button">Continuer</Button>
+								}
+								{ step === 1 &&
+									<Fragment>
+										<Button onClick={() => setStep(step - 1)} type="button">Revenir</Button>
+										<Button onClick={() => setStep(step + 1)} type="button">Continuer</Button>
+									</Fragment>
+								}
+								{ step === 2 &&
+									<Fragment>
+										<Button onClick={() => setStep(step - 1)} type="button">Revenir</Button>
+										<Button type="submit">Enregistrer</Button>
+									</Fragment>
 								}
 							</ButtonWrapper>
 						</form>
