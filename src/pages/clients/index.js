@@ -15,6 +15,7 @@ const ClientsList = () => {
 
     const allCompanies = Company.allCompanies();
     const companyTypes = Company.companyTypes() || [];
+    const getAllCompanies = Company.getAllCompanies();
     const initStateCheckboxes = Object.assign(companyTypes.map(k => ({ [k]: false })))
     const [stateCheckboxes, setStateCheckboxes] = useState(initStateCheckboxes.reduce(function(result, item) {
     var key = Object.keys(item)[0]; //first property: a, b, c
@@ -61,6 +62,10 @@ const ClientsList = () => {
     const handleClose = () => {
       setOpen(false);
     };
+
+    useEffect(() => {
+      getAllCompanies()
+    });
 
     if (!allCompanies) return null;
 

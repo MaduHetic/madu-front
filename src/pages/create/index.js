@@ -166,8 +166,13 @@ const EntityCreate = ({ history }) => {
 						tags: []
 					}}
 					onSubmit={values => { 
-						isClient ? registerCompany(Object.assign(values, {type: selectedType}, searchAddressValues))
-						: registerPoi(Object.assign(values, {type: selectedType}, {tags: useTag}, {typeGreenScore: stateGreenScore}, {price: selectedPrice},  searchAddressValues))
+						if (isClient) {
+							registerCompany(Object.assign(values, {type: selectedType}, searchAddressValues));
+							history.push('/clients');
+						} else {
+							registerPoi(Object.assign(values, {type: selectedType}, {tags: useTag}, {price: selectedPrice},  searchAddressValues))
+							history.push('/point-d-interet');
+						}
 					}}
 				>
 					{({

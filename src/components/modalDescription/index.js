@@ -21,7 +21,7 @@ const ModalDescription = ({currentEntity, currentEntityHover, setCurrentEntity})
         <Root isDisplayed={entity}>
             <div className="wrapperModalDescription">
                 <HeaderContainer>
-                    <Avatar src={GirlUser} classes={{ root: classes.size}}></Avatar>
+                    <Avatar src={"https://picsum.photos/200/300"} classes={{ root: classes.size}}></Avatar>
                     <div>
                         <h4>{entity.name}</h4>
                         {typeof entity.greenScore === "number" && (

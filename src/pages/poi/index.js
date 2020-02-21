@@ -13,6 +13,7 @@ const PoiList = () => {
     const [open, setOpen] = useState(false);
 
     const allPoi = Poi.allPoi();
+    const getAllPoi = Poi.getAllPoi();
     const poiTypes = Poi.poiTypes() || [];
 
     const initStateCheckboxes = Object.assign(poiTypes.map(k => ({ [k]: false })))
@@ -64,6 +65,10 @@ const PoiList = () => {
     const handleClose = () => {
       setOpen(false);
     };
+
+    useEffect(() => {
+      getAllPoi()
+    });
 
     if (!allPoi) return null;
     
