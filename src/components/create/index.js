@@ -41,6 +41,28 @@ export const FormWrapper = styled.div`
             border-radius: 4px;
         }
     }
+    .greenscoreWrapper {
+        display: flex;
+        justify-content: flex-start;
+        align-items: flex-start;
+        flex-direction: column;
+        div {
+            display: flex;
+            align-items: center;
+            &:not(:last-child) {
+                margin-bottom: 8px;
+            }
+        }
+        label {
+            margin-right: 10px;
+            display: block;
+            min-width: 50px;
+            color: ${Color.black};
+        }
+        input {
+            font-size: ${Font.size.m};
+        }
+    }
 `;
 
 export const FormHead = styled.div`

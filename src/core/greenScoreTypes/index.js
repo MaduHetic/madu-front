@@ -50,7 +50,7 @@ export const GreenScoreTypes = {
   getGreenScoreTypes: useGetGreenScoreTypes,
   deleteGreenScoreType: useDeleteGreenScoreType,
   getGreenScoreType: useGetGreenScoreType,
-  tags: useAllGreenScoreTypes,
+  AllGreenScoreTypes: useAllGreenScoreTypes,
   isLoading: useIsLoading,
   sagas: rootSagas,
   reducer: greenScoreTypeReducer

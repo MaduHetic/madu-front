@@ -26,6 +26,7 @@ export const greenScoreTypeReducer = (
         draft.isLoading = true;
         break;
       case getType(Actions.createGreenScoreType.success):
+        draft.greenScoreTypes = [...draft.greenScoreTypes, action.payload];
         draft.isLoading = false;
         break;
       case getType(Actions.createGreenScoreType.failure):
@@ -35,7 +36,7 @@ export const greenScoreTypeReducer = (
         draft.isLoading = true;
         break;
       case getType(Actions.getGreenScoreTypes.success):
-        draft.tags = action.payload;
+        draft.greenScoreTypes = action.payload;
         draft.isLoading = false;
         break;
       case getType(Actions.getGreenScoreTypes.failure):
@@ -54,7 +55,7 @@ export const greenScoreTypeReducer = (
         draft.isLoading = true;
         break;
       case getType(Actions.getGreenScoreType.success):
-        draft.tag = action.payload;
+        draft.greenScoreType = action.payload;
         draft.isLoading = true;
         break;
       case getType(Actions.getGreenScoreType.failure):
