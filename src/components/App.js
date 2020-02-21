@@ -7,6 +7,7 @@ import Login from '../pages/login';
 import Dashboard from '../pages/dashboard';
 import ClientsList from '../pages/clients';
 import ClientView from '../pages/clients/view';
+import CompanyUpdate from '../pages/clients/clientsUpdate';
 import PoiList from '../pages/poi';
 import PoiView from '../pages/poi/view';
 import PoiUpdate from '../pages/poi/poiUpdate';
@@ -63,6 +64,7 @@ const App = () => {
             <DashboardLayout exact path="/point-d-interet" component={PoiList}  />
             <DashboardLayout exact path="/poi-create/:id" component={PoiCreate}  />
             <DashboardLayout exact path="/client-create/:id" component={ClientCreate}  />
+            <DashboardLayout exact path="/client/fiche-edit/:id" component={CompanyUpdate}  />
             <DashboardLayout exact path="/create" component={CreateEntity}  />
             <DashboardLayout exact path="/point-d-interet/fiche/:id" component={PoiView}  />
             <DashboardLayout exact path="/point-d-interet/fiche-edit/:id" component={PoiUpdate}  />
