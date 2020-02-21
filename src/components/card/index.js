@@ -93,7 +93,6 @@ const StyleCardView = styled.div`
   & > div:not(.titleContent),
   & form > div:not(.titleContent) {
     margin-bottom: 40px;
-    max-width: 630px;
     display: flex;
     justify-content: flex-start;
     align-items: flex-start;
@@ -153,7 +152,7 @@ const Card = ({ client, poi, children }) => {
               <p>{client.name}</p>
             </div>
             <div className="nbWorkers">
-              <p>{client.nbWorker} personne{client.nbWorker.length > 1 ? 's' : '' }</p>
+              <p>{client.nbWorker} personne{client.nbWorker > 1 ? 's' : '' }</p>
             </div>
             <div className="date">
               <p>{moment(client.dateCreate).format('L')}</p>
