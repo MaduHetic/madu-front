@@ -6,7 +6,7 @@ import SearchAddress from '../../components/searchAddress';
 import { Formik } from 'formik';
 import { Company } from '../../core/company';
 import { WrapperTitle, MainTitle } from '../../components/title/style';
-import { Container, FormWrapper, Progress, InputWrapper, Button, ButtonWrapper, Steps, FormHead, Label, Option, Field, OptionLabel } from '../../components/create';
+import { FormWrapper, Progress, InputWrapper, Button, ButtonWrapper, Steps, FormHead, Label, Option, Field, OptionLabel, TagContainer } from '../../components/create';
 import { ReactComponent as StepOne } from '../../components/create/svg/step_one.svg';
 import { ReactComponent as StepTwo } from '../../components/create/svg/step_two.svg';
 import { ReactComponent as StepThree } from '../../components/create/svg/step_three.svg';
@@ -15,6 +15,7 @@ import Radio from '@material-ui/core/Radio';
 import { Poi } from '../../core/poi';
 import { Tags } from '../../core/tags/';
 import Checkbox from '@material-ui/core/Checkbox';
+import {Wrapper} from '../../styles/global';
 
 const inputs = [
 	{ name: 'name', label: 'Nom' },
@@ -55,7 +56,7 @@ const EntityCreate = ({ history }) => {
 	const [selectedValue, setSelectedValue] = useState('client');
 	const [selectedType, setSelectedType] = useState('');
 	const [selectedPrice, setSelectedPrice] = useState('');
-	const [isClient, setIsClient] = useState(false);
+	const [isClient, setIsClient] = useState(true);
 	const [step, setStep] = useState(0);
 	const [tagInput, setTagInput] = useState('');
 
@@ -93,7 +94,7 @@ const EntityCreate = ({ history }) => {
 	}
 
 	return (
-		<Container>
+		<Wrapper>
 			<WrapperTitle>
 				<MainTitle>Ajouter un client</MainTitle>
 			</WrapperTitle>
@@ -373,29 +374,32 @@ const EntityCreate = ({ history }) => {
 										Tags
 									</Label>
 
-									<Field>
-										<div>{allTags.map(tag => (
-										<div key={tag.id}>
-											<input
-												name="ChackboxTagstags"
-												type="checkbox"
-												onChange={handleChangeCheck(tag.id)}
-												value={tag.id}
-												id={tag.id}
-											/>
-											<label htmlFor={tag.id}>{tag.tag}</label>
-										</div>
-										))}</div>
+									<Field className="tagWrapper">
+										{allTags.map(tag => (
+											<TagContainer key={tag.id}  colorRGB={{r: tag.r,g: tag.g,b: tag.b}}>
+												<input
+													name="ChackboxTagstags"
+													type="checkbox"
+													onChange={handleChangeCheck(tag.id)}
+													value={tag.id}
+													id={tag.id}
+												/>
+												<label htmlFor={tag.id}>
+													{tag.tag}
+												</label>
+											</TagContainer>
+										))}
 									</Field>
-									<Field>
-										<input
+									<Field className="createTag">
+										<label>
+											Créer un nouveau tag :
+										</label>
+										<Input
 											name="createTag"
-											type="text"
 											onChange={(e) => setTagInput(e.target.value)}
 										/>
+										<button type='button' onClick={() => createTag({tag: tagInput})}>Ajouter</button>
 									</Field>
-									<button type='button' onClick={() => createTag({tag: tagInput})}>add tag</button>
-									
 								</Fragment>
 							}
 							{
@@ -498,7 +502,7 @@ const EntityCreate = ({ history }) => {
 
 			</FormWrapper>
 
-		</Container>
+		</Wrapper>
 	);
 };
 
