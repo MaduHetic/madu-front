@@ -46,7 +46,7 @@
  ### Map
   Fait par [Maël](https://github.com/maelallano)
 
- ### Chartes
+ ### Charts Dashboard
   Fait par [Maël](https://github.com/maelallano)
   
  ### Story book
@@ -54,3 +54,17 @@
 
  ### Search bar
   Fait par [Yasin](https://github.com/yasKaraca)
+  
+ #### Pourquoi React et Redux
+  
+ Nous avons choisi React car c'est la librairie avec la communauté de développeurs la plus importante.
+ React est très populaire, beaucoup de personnes travaillent dessus et assurent son avenir.
+ De ce fait on peut trouver de nombreuses librairies complémentaires à React telle que Formik.
+ Le DOM est reactif et permet un affichage dynamique sans rechargement de page. Il y a également la logique des 
+ composants en React qui permet au code d'être mieux décomposé et maintenable.
+ Et depuis l'arrivée des hooks il est désormais plus simple de manier des Functionnal Component, notamment grâce à la syntaxe
+ qui est désormais plus légère.
+
+ Redux est un avantage considérable car cette librairie permet de stocker les données dans un store et d'y avoir accès
+ partout dans le site. De plus en développement efficacement il est possible de limiter le nombre d'appels à l'API en
+ vérifiant si la donnée est déjà présente dans le store
