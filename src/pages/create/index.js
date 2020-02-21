@@ -425,29 +425,36 @@ const EntityCreate = ({ history }) => {
 										/>
 										<button type='button' onClick={() => createTag({tag: tagInput})}>Ajouter</button>
 									</Field>
-									<Field>
-										<div>{allGreenScoreTypes.map(green => (
-										<div key={green.id}>
-											<p>{green.typeGreenScore}</p>
-											<label htmlFor={green.typeGreenScore}>percent</label>
-											<input
-												name="greenTypePercent"
-												type="number"
-												onChange={handleChangeGreenScore(green.id)}
-												id={green.typeGreenScore}
-											/>
-										</div>
-										))}</div>
+
+									<Label className="mgTop">
+										Green Score
+									</Label>
+
+									<Field className="greenscoreWrapper">
+										{allGreenScoreTypes.map(green => (
+											<div key={green.id}>
+												<label>{green.typeGreenScore} :</label>
+												<Input
+													name="greenTypePercent"
+													type="number"
+													onChange={handleChangeGreenScore(green.id)}
+													id={green.typeGreenScore}
+												/>
+												<span htmlFor={green.typeGreenScore}>%</span>
+											</div>
+										))}
 									</Field>
 									
-									<Field>
-										<input
+									<Field className="createTag">
+										<label>
+											Créer un nouveau tag :
+										</label>
+										<Input
 											name="createTag"
-											type="text"
 											onChange={(e) => setTypeGreen(e.target.value)}
 										/>
+										<button type='button' onClick={() => createGreenScoreType({typeGreenScore: typeGreen})}>Ajouter</button>
 									</Field>
-									<button type='button' onClick={() => createGreenScoreType({typeGreenScore: typeGreen})}>add tag</button>
 								</Fragment>
 							}
 							{
