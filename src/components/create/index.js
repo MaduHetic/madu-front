@@ -19,6 +19,28 @@ export const FormWrapper = styled.div`
         flex-grow: 1;
         margin-left: 64px;
     }
+    .tagWrapper {
+        flex-wrap: nowrap !important;
+        max-width: 400px;
+        overflow-x: auto;
+    }
+    .createTag {
+        margin-top: 20px;
+        label {
+            margin-right: 10px;
+            color: ${Color.black};
+        }
+        input {
+            font-size: ${Font.size.m};
+        }
+        button {
+            margin-left: 10px;
+            padding: 6px 8px;
+            font-size: ${Font.size.s};
+            background: ${Color.lightgrey};
+            border-radius: 4px;
+        }
+    }
 `;
 
 export const FormHead = styled.div`
@@ -66,10 +88,10 @@ export const Label = styled.div`
     font-family: ${Font.family.main};
     font-weight: 800;
     color: #6A6A85;
-    margin-bottom: 34px;
+    margin-bottom: 20px;
 
     &.mgTop {
-        margin-top: 64px;
+        margin-top: 40px;
     }
 `;
 
@@ -154,5 +176,27 @@ export const ButtonWrapper = styled.div`
 
     &.between {
         justify-content: space-between;
+    }
+`;
+
+export const TagContainer = styled.div`
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-shrink: 0;
+    &:not(:last-child) {
+        margin-right: 10px;
+    }
+    & > label {
+        ${props => console.log(props.colorRGB)}
+        margin-left: 8px;
+        padding: 8px 6px;
+        display: block;
+        flex-shrink: 0;
+        font-size: ${Font.size.s};
+        color: ${props => props.colorRGB ? `rgba(${props.colorRGB.r}, ${props.colorRGB.g}, ${props.colorRGB.b}, 1)` : "black"};
+        background: ${props => props.colorRGB ? `rgba(${props.colorRGB.r}, ${props.colorRGB.g}, ${props.colorRGB.b}, 0.05)` : "rgba(0, 0, 0, 0.05)"};
+        border: 0.5px solid ${props => props.colorRGB ? `rgba(${props.colorRGB.r}, ${props.colorRGB.g}, ${props.colorRGB.b}, 1)` : "black"};
+        border-radius: 2px;
     }
 `;
