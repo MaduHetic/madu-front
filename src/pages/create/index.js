@@ -55,7 +55,7 @@ const EntityCreate = ({ history }) => {
 	const [selectedValue, setSelectedValue] = useState('client');
 	const [selectedType, setSelectedType] = useState('');
 	const [selectedPrice, setSelectedPrice] = useState('');
-	const [isClient, setIsClient] = useState(false);
+	const [isClient, setIsClient] = useState(true);
 	const [step, setStep] = useState(0);
 	const [tagInput, setTagInput] = useState('');
 
@@ -140,8 +140,13 @@ const EntityCreate = ({ history }) => {
 						tags: []
 					}}
 					onSubmit={values => { 
-						isClient ? registerCompany(Object.assign(values, {type: selectedType}, searchAddressValues))
-						: registerPoi(Object.assign(values, {type: selectedType}, {tags: useTag}, {price: selectedPrice},  searchAddressValues))
+						if (isClient) {
+							registerCompany(Object.assign(values, {type: selectedType}, searchAddressValues));
+							history.push('/clients');
+						} else {
+							registerPoi(Object.assign(values, {type: selectedType}, {tags: useTag}, {price: selectedPrice},  searchAddressValues))
+							history.push('/point-d-interet');
+						}
 					}}
 				>
 					{({

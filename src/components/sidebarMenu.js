@@ -134,7 +134,7 @@ const SidebarMenu = () => {
                 </li>
                 <StyledButtonContainer>
                     <CustomButton
-                      text="Crée une fiche"
+                      text="Créer une fiche"
                       size="large"
                       textcolor={Color.white}
                       backgroundcolor={Color.main}
