@@ -1,4 +1,6 @@
 import React, { useState, Fragment, useEffect } from 'react';
+import { keysIn } from 'lodash';
+import { withRouter } from 'react-router-dom';
 import moment from 'moment';
 import SearchAddress from '../../components/searchAddress';
 import { Formik } from 'formik';
@@ -43,25 +45,31 @@ const poiTypes = [
 	"Activity",
 ]
 
-const EntityCreate = () => {
+const EntityCreate = ({ history }) => {
 	const registerCompany = Company.registerCompany();
 	const registerPoi = Poi.registerPoi();
+	const allTags = Tags.tags();
+	const getTags = Tags.getTags();
+	const createTag = Tags.createTag();
 	const [searchAddressValues, setSearchAddressValues] = useState();
 	const [selectedValue, setSelectedValue] = useState('client');
 	const [selectedType, setSelectedType] = useState('');
 	const [selectedPrice, setSelectedPrice] = useState('');
-	const [isClient, setIsClient] = useState(true);
+	const [isClient, setIsClient] = useState(false);
 	const [step, setStep] = useState(0);
+	const [tagInput, setTagInput] = useState('');
 
-	const [checked, setChecked] = useState([]);
+	const [useTag, setTags] = useState();
+
+	const [stateCheckboxes, setStateCheckboxes] = useState(Object.assign(allTags.map(k => ({ [k.id]: false }))));
 	  
-	const handleChangeCheck = event => {
-		let x = checked;
-		setChecked([...x, event.target.value]);
-  	};
+	const handleChangeCheck = id => event => {
+		setStateCheckboxes({ ...stateCheckboxes, [id]: event.target.checked });
+	};
 
-	const allTags = Tags.tags();
-	const getTags = Tags.getTags();
+	useEffect(() => {
+		setTags(Object.keys(stateCheckboxes).filter(key => stateCheckboxes[key]))
+	}, [stateCheckboxes])
 
 	useEffect(() => {
 		getTags()
@@ -132,10 +140,8 @@ const EntityCreate = () => {
 						tags: []
 					}}
 					onSubmit={values => { 
-						isClient ?
-							registerCompany(Object.assign(values, {type: selectedType},  searchAddressValues)) 
-						:
-							registerPoi(Object.assign(values, {type: selectedType}, {price: selectedPrice},  searchAddressValues))
+						isClient ? registerCompany(Object.assign(values, {type: selectedType}, searchAddressValues))
+						: registerPoi(Object.assign(values, {type: selectedType}, {tags: useTag}, {price: selectedPrice},  searchAddressValues))
 					}}
 				>
 					{({
@@ -368,20 +374,27 @@ const EntityCreate = () => {
 									</Label>
 
 									<Field>
-										<div>{ allTags.map(tag => (
+										<div>{allTags.map(tag => (
 										<div key={tag.id}>
 											<input
-												name="tags"
+												name="ChackboxTagstags"
 												type="checkbox"
-												onChange={handleChangeCheck}
+												onChange={handleChangeCheck(tag.id)}
 												value={tag.id}
+												id={tag.id}
 											/>
-											{/* <span>
-											{tag.tag}
-											</span> */}
+											<label htmlFor={tag.id}>{tag.tag}</label>
 										</div>
 										))}</div>
 									</Field>
+									<Field>
+										<input
+											name="createTag"
+											type="text"
+											onChange={(e) => setTagInput(e.target.value)}
+										/>
+									</Field>
+									<button type='button' onClick={() => createTag({tag: tagInput})}>add tag</button>
 									
 								</Fragment>
 							}
@@ -468,13 +481,13 @@ const EntityCreate = () => {
 								}
 								{ step === 1 &&
 									<Fragment>
-										<Button onClick={() => setStep(step - 1)} type="button">Revenir</Button>
+										<Button onClick={() => setStep(step - 1)} type="button">Retour</Button>
 										<Button onClick={() => setStep(step + 1)} type="button">Continuer</Button>
 									</Fragment>
 								}
 								{ step === 2 &&
 									<Fragment>
-										<Button onClick={() => setStep(step - 1)} type="button">Revenir</Button>
+										<Button onClick={() => setStep(step - 1)} type="button">Retour</Button>
 										<Button type="submit">Enregistrer</Button>
 									</Fragment>
 								}
@@ -490,4 +503,4 @@ const EntityCreate = () => {
 };
 
 
-export default EntityCreate;
+export default withRouter(EntityCreate);

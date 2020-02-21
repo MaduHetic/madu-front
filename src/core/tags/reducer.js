@@ -26,6 +26,7 @@ export const tagsReducer = (
         draft.isLoading = true;
         break;
       case getType(Actions.createTag.success):
+        draft.tags = [...draft.tags, action.payload]
         draft.isLoading = false;
         break;
       case getType(Actions.createTag.failure):
