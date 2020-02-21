@@ -2,6 +2,7 @@ import { client } from "../../helpers/api";
 import apiRoutes from "../../helpers/apiRoutes";
 
 function registerPoi(data) {
+  console.log(data);
   return client.request({
     method: "post",
     url: apiRoutes.registerPoi(),
@@ -10,12 +11,11 @@ function registerPoi(data) {
       address: data.address,
       city: data.city,
       description: data.description,
-      greenScore: data.greenScore,
       lat: data.lat.toString(),
       long: data.lng.toString(),
       postalCode: data.postCode,
       tags: data.tags,
-      typeGreenScore: data.greenScore,
+      typeGreenScore: data.typeGreenScore,
       type: data.type,
       price: data.price,
     }
@@ -38,12 +38,11 @@ function updatePoi(data) {
       address: data.address,
       city: data.city,
       description: data.description,
-      greenScore: data.greenScore,
       lat: data.lat.toString(),
       long: data.lng.toString(),
       postalCode: data.postCode,
       tags: data.tags,
-      typeGreenScore: data.greenScore, // [{ id: 'string', percent: 'numberString' }]
+      typeGreenScore: data.typeGreenScore, // [{ id: 'string', percent: 'numberString' }]
       type: data.type,
       price: data.price,
     }

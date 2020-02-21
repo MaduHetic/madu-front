@@ -15,6 +15,7 @@ import Radio from '@material-ui/core/Radio';
 import { Poi } from '../../core/poi';
 import { Tags } from '../../core/tags/';
 import Checkbox from '@material-ui/core/Checkbox';
+import { GreenScoreTypes } from '../../core/greenScoreTypes'
 
 const inputs = [
 	{ name: 'name', label: 'Nom' },
@@ -55,24 +56,48 @@ const EntityCreate = ({ history }) => {
 	const [selectedValue, setSelectedValue] = useState('client');
 	const [selectedType, setSelectedType] = useState('');
 	const [selectedPrice, setSelectedPrice] = useState('');
-	const [isClient, setIsClient] = useState(false);
+	const [isClient, setIsClient] = useState(true);
 	const [step, setStep] = useState(0);
 	const [tagInput, setTagInput] = useState('');
-
 	const [useTag, setTags] = useState();
-
 	const [stateCheckboxes, setStateCheckboxes] = useState(Object.assign(allTags.map(k => ({ [k.id]: false }))));
+	const [stateGreenScore, setGreenScore] = useState([]);
+	const [typeGreen, setTypeGreen] = useState();
+
+	const createGreenScoreType = GreenScoreTypes.createGreenScoreType()
+	const allGreenScoreTypes = GreenScoreTypes.AllGreenScoreTypes()
+	const getGreenScoreTypes = GreenScoreTypes.getGreenScoreTypes()
 	  
 	const handleChangeCheck = id => event => {
 		setStateCheckboxes({ ...stateCheckboxes, [id]: event.target.checked });
 	};
+
+	const handleChangeGreenScore = id => event => {
+		let newGreenScore = [...stateGreenScore];
+		const isInArr = stateGreenScore.filter(greenScore => greenScore.idType === id);
+		if (!isInArr[0]) {
+			newGreenScore.push({
+				idType: id,
+				percent: parseInt(event.target.value)
+			});
+			setGreenScore(newGreenScore);
+		} else {
+			newGreenScore.forEach(score => {
+				if (score.idType === id) {
+					score.percent = parseInt(event.target.value)
+				}
+			})
+			setGreenScore(newGreenScore);
+		}
+	}
 
 	useEffect(() => {
 		setTags(Object.keys(stateCheckboxes).filter(key => stateCheckboxes[key]))
 	}, [stateCheckboxes])
 
 	useEffect(() => {
-		getTags()
+		getTags();
+		getGreenScoreTypes();
 	}, [])
 
 	const handleChangeSelectClient = event => {
@@ -141,7 +166,7 @@ const EntityCreate = ({ history }) => {
 					}}
 					onSubmit={values => { 
 						isClient ? registerCompany(Object.assign(values, {type: selectedType}, searchAddressValues))
-						: registerPoi(Object.assign(values, {type: selectedType}, {tags: useTag}, {price: selectedPrice},  searchAddressValues))
+						: registerPoi(Object.assign(values, {type: selectedType}, {tags: useTag}, {typeGreenScore: stateGreenScore}, {price: selectedPrice},  searchAddressValues))
 					}}
 				>
 					{({
@@ -395,7 +420,29 @@ const EntityCreate = ({ history }) => {
 										/>
 									</Field>
 									<button type='button' onClick={() => createTag({tag: tagInput})}>add tag</button>
+									<Field>
+										<div>{allGreenScoreTypes.map(green => (
+										<div key={green.id}>
+											<p>{green.typeGreenScore}</p>
+											<label htmlFor={green.typeGreenScore}>percent</label>
+											<input
+												name="greenTypePercent"
+												type="number"
+												onChange={handleChangeGreenScore(green.id)}
+												id={green.typeGreenScore}
+											/>
+										</div>
+										))}</div>
+									</Field>
 									
+									<Field>
+										<input
+											name="createTag"
+											type="text"
+											onChange={(e) => setTypeGreen(e.target.value)}
+										/>
+									</Field>
+									<button type='button' onClick={() => createGreenScoreType({typeGreenScore: typeGreen})}>add tag</button>
 								</Fragment>
 							}
 							{
