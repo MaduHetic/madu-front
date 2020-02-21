@@ -139,13 +139,20 @@ export const Button = styled.button`
     padding: 16px 0;
     color: white;
     text-transform: uppercase;
-    margin-bottom: 32px;
-    margin-top: 16px;
-    margin-right: 64px;
 `;
 
 export const ButtonWrapper = styled.div`
     width: 100%;
     display: flex;
-    justify-content: flex-end;
+    margin-bottom: 32px;
+    margin-top: 32px;
+    padding-right: 64px;
+
+    &.end {
+        justify-content: flex-end;
+    }
+
+    &.between {
+        justify-content: space-between;
+    }
 `;
