@@ -9,10 +9,12 @@ import {
   loggedIn,
 } from "./selectors";
 
+import { removeCredsFromStorage } from "../../middlewares/saveCredentials";
+
 function useSignOut() {
   const dispatch = useDispatch();
   return () => {
-    localStorage.removeItem('user');
+    removeCredsFromStorage();
     dispatch(Actions.signOut());
   }
 }

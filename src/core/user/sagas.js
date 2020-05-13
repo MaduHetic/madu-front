@@ -2,15 +2,14 @@ import { call, put, takeLatest } from "redux-saga/effects";
 import { Api } from "./api";
 import { Actions, Events } from "./actions";
 
+import { saveCredentialsInStorage } from "../../middlewares/saveCredentials";
+
 function* signIn(action) {
   try {
     yield put(Actions.signIn.request(true));
     const request = yield call(Api.signIn, action.payload);
     if (request.status === 201) {
-      localStorage.setItem(
-        "user",
-        JSON.stringify(request.data.access_token)
-      );
+      yield call(saveCredentialsInStorage, request.data.access_token);
       yield put(Actions.signIn.success(request.data.access_token));
     }
   } catch {
