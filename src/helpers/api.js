@@ -3,7 +3,7 @@ import { getCredsFromStorage } from "../middlewares/saveCredentials";
 import apiRoute from "./apiRoutes";
 
 export const client = axios.create({
-  baseURL: process.env.REACT_APP_API,
+  baseURL: process.env.REACT_APP_API || 'http://localhost:3000',
   responseType: "json",
   xsrfCookieName: false,
   headers: {
