@@ -5,9 +5,12 @@ import { Formik, Form, Field, FieldArray } from 'formik';
 import { WrapperTitle, MainTitle } from '../../components/title/style';
 import { FormWrapper, Progress, InputWrapper, Button, ButtonWrapper, Steps, FormHead, Label, Option, OptionLabel, TagContainer } from '../../components/create';
 import { QTitle, QLabel, QRow, QLTitle, RedBtn, AddBtn, Separator, ARight } from '../../components/quiz';
+import moment from 'moment';
+import { useHistory } from 'react-router-dom';
 
 const QuizzCreation = () => {
   const registerQuizz = Quizz.addQuizz();
+  const history = useHistory();
 
   return (
     <Wrapper>
@@ -21,13 +24,14 @@ const QuizzCreation = () => {
             theme: {
               theme: "",
               imgBackground: "",
-              publicationDate: "2000-07-26T00:00:01.967Z"
+              publicationDate: moment().format('YYYY-MM-DD').toString(),
+              duration: 5
             },
             infoQuizz: [{
               question: {
                 question: "",
                 crystalGain: 0,
-                publicationDate: "2020-01-22",
+                publicationDate: moment().format('YYYY-MM-DD').toString(),
               },
               answers: [
                 {
@@ -52,11 +56,13 @@ const QuizzCreation = () => {
           onSubmit={ values => {
             let data = values;
             data.infoQuizz.forEach( e => {
+              e.question.publicationDate = values.theme.publicationDate;
               e.answers.forEach( e => {
                 e.goodAnswer = JSON.parse(e.goodAnswer);
               })
             }) 
             registerQuizz(data);
+            history.push("/quizz");
           }}
           render={({ values }) => (
 
@@ -72,11 +78,20 @@ const QuizzCreation = () => {
             </QRow>
             
             <QRow>
-            <QLabel>
-              Image de fond (URL)
-            </QLabel>
+              <QLabel>
+                Image de fond (URL)
+              </QLabel>
 
-            <Field name="theme.imgBackground" />
+              <Field name="theme.imgBackground" />
+
+            </QRow>
+
+            <QRow>
+              <QLabel>
+                Date de publication
+              </QLabel>
+
+              <Field name="theme.publicationDate" type="date" />
 
             </QRow>
 

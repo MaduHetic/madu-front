@@ -1,3 +1,4 @@
+import React from 'react';
 import styled from "styled-components";
 import {Color, Font} from '../styles/variables';
 
@@ -80,4 +81,36 @@ export const ARight = styled.div`
     margin-bottom: 24px;
 `
 
+export const QWrap = styled.div`
+    display: flex;
+    flex-wrap: wrap;
+`;
+
+export const QCard = styled.div`
+    display: flex;
+    flex-direction: column;
+    width: 22%;
+    margin: 16px 1.5%;
+    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+    background: white;
+    padding-bottom: 18px;
+
+    p {
+        margin-left: 16px;
+    }
+
+
+`
+
+export const QBackground = styled.div`
+    display: flex;
+    width: 100;
+    height: 120px;
+    background-size: cover;
+    background-position: center;
+    border-top-right-radius: 4px;
+    border-top-left-radius: 4px;
+    margin-bottom: 12px;
+`
 

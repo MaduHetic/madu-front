@@ -220,7 +220,7 @@ const Card = ({ client, poi, children, quizz }) => {
             <p>{quizz.duration} minute{quizz.duration > 1 ? 's' : '' }</p>
           </div>
           <div className="date">
-            <p>{moment(quizz.dateCreate).format('L')}</p>
+            <p>{moment(quizz.publicationDate).format("L")}</p>
           </div>
           <div className="reward">
             <p>{quizz.reward}</p>

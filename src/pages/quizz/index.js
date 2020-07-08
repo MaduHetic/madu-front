@@ -5,6 +5,8 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import { Wrapper, TitleDefault, ListContainer, ListHeader } from '../../styles/global';
 import { Quizz } from  '../../core/quizz';
 import CustomButton from '../../components/button/button';
+import { QCard, QBackground, QWrap } from '../../components/quiz';
+import moment from 'moment';
 
 const QuizzList = () => {
 	const getThemes = Quizz.getThemes();
@@ -15,7 +17,7 @@ const QuizzList = () => {
   const headerList = [
     {name: 'name', label: 'Nom', className: 'name'},
     {name: 'time', label: 'Durée', className: 'time'},
-    {name: 'dateCreate', label: 'Date d\'ajout', className: 'date'},
+    {name: 'dateCreate', label: 'Date de publication', className: 'date'},
     {name: 'reward', label: 'Récompense', className: 'reward'},
   ]
 
@@ -35,21 +37,19 @@ const QuizzList = () => {
             />
           </span>
         </TitleDefault>
-        <ListHeader>
-          {headerList.map(({name, label, className}) => (
-            <div key={name} onClick={() => setSortValue(name)} className={`${className} ${sortValue === name ? 'active': ''} filter`}>
-              <p>{label}</p>
-              <ExpandMoreIcon/>
-            </div>
-          ))}
-        </ListHeader>
-        <ListContainer>
+
+        <QWrap>
           {
             themes.map( quizz => (
-            <Card key={quizz.id} quizz={quizz}/>
+              <QCard>
+                <QBackground style={{ backgroundImage:`url(${quizz.imgBackground})`}}/>
+                <p><b>Nom : </b>{quizz.theme}</p>
+                <p><b>Publié le : </b>{moment(quizz.publicationDate).format("L")}</p>
+                <p><b>Durée : </b>{quizz.duration}</p>
+              </QCard>
             ))
           }
-        </ListContainer>
+        </QWrap>
       </Wrapper>
     )
 }
