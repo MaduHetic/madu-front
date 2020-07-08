@@ -22,4 +22,7 @@ export default ({
   deleteGreenScoreType: (id) => `/type-green-score/${id}`, // DELETE
   getGreenScoreTypes: () => `/type-green-score`, // GET
   getStats: () => `/stats`,
+  quizz: (id) => `/theme-quizz/question/${id}`,
+  themes: () => `/theme-quizz`,
+  addQuizz: () => `/quizz`
 });

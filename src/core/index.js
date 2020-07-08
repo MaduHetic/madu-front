@@ -6,6 +6,7 @@ import { Poi } from './poi';
 import { Tags } from './tags';
 import { GreenScoreTypes } from './greenScoreTypes';
 import { Stats } from './statsDashboard';
+import { Quizz } from './quizz';
 
 const createRootReducer = history =>
   combineReducers({
@@ -15,6 +16,7 @@ const createRootReducer = history =>
     tags: Tags.reducer,
     greenScoreTypes: GreenScoreTypes.reducer,
     stats: Stats.reducer,
+    quizz: Quizz.reducer,
   });
 
 export default createRootReducer;

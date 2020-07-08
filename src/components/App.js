@@ -18,6 +18,8 @@ import { User } from '../core/user';
 import ClientCreate from '../pages/clients/clientsCreation';
 import PoiCreate from '../pages/poi/poiCreation';
 import CreateEntity from '../pages/create/index';
+import QuizzList from '../pages/quizz/index';
+import QuizzCreation from '../pages/quizz/quizzCreation';
 
 const history = createBrowserHistory();
 
@@ -68,6 +70,8 @@ const App = () => {
             <DashboardLayout exact path="/create" component={CreateEntity}  />
             <DashboardLayout exact path="/point-d-interet/fiche/:id" component={PoiView}  />
             <DashboardLayout exact path="/point-d-interet/fiche-edit/:id" component={PoiUpdate}  />
+            <DashboardLayout exact path="/quizz" component={QuizzList}  />
+            <DashboardLayout exact path="/quizz/new" component={QuizzCreation}  />
           </Switch>
         </PageContent>
       </Router>

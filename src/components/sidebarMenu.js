@@ -7,6 +7,7 @@ import BusinessOutlinedIcon from '@material-ui/icons/BusinessOutlined';
 import MeetingRoomOutlinedIcon from '@material-ui/icons/MeetingRoomOutlined';
 import RoomOutlinedIcon from '@material-ui/icons/RoomOutlined';
 import MapOutlinedIcon from '@material-ui/icons/MapOutlined';
+import AssignmentIcon from '@material-ui/icons/Assignment';
 import { User } from '../core/user';
 import CustomButton from './button/button';
 
@@ -127,6 +128,16 @@ const SidebarMenu = () => {
                         <MapOutlinedIcon style={{ fontSize: 22 }}/>Map
                     </NavLink>
                 </li>
+                <li>
+                    <NavLink to="/quizz">
+                        <AssignmentIcon style={{ fontSize: 22 }}/>Quizz
+                    </NavLink>
+                </li>
+                {/* <li>
+                    <NavLink to="/content">
+                        <AssignmentIcon style={{ fontSize: 22 }}/>Contenus
+                    </NavLink>
+                </li> */}
                 <li>
                   <NavLink exact to='/' onClick={() => logout()} className="disconnect">
                     <MeetingRoomOutlinedIcon style={{ fontSize: 22 }} />Déconnection
