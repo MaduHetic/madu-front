@@ -8,6 +8,15 @@ function getKnowIt() {
   });
 }
 
+function addKnowIt(data) {
+  return client.request({
+    method: "post",
+    url: apiRoutes.knowIt(),
+    data: data
+  });
+}
+
 export const Api = {
   getKnowIt,
+  addKnowIt,
 };
