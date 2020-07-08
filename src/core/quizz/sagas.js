@@ -14,6 +14,18 @@ function* getQuizz(action) {
   }
 }
 
+function* addQuizz(action) {
+  try {
+    yield put(Actions.addQuizz.request(true));
+    const request = yield call(Api.addQuizz, action.payload);
+    if (request.status === 200) {
+      yield put(Actions.addQuizz.success(request.data));
+    }
+  } catch {
+    yield put(Actions.addQuizz.failure(false));
+  }
+}
+
 function* getThemes() {
   try {
     yield put(Actions.getThemes.request(true));
@@ -29,4 +41,5 @@ function* getThemes() {
 export function* rootSagas() {
   yield takeLatest(Events.getQuizz, getQuizz);
   yield takeLatest(Events.getThemes, getThemes);
+  yield takeLatest(Events.addQuizz, addQuizz);
 }

@@ -11,6 +11,7 @@ const initialState: QuizzState = {
 
 export type QuizzAction =
   | ActionType<typeof Actions.getQuizz>
+  | ActionType<typeof Actions.addQuizz>
   | ActionType<typeof Actions.getThemes>;
 
 export const quizzReducer = (state = initialState, action: QuizzAction) => {
@@ -40,6 +41,18 @@ export const quizzReducer = (state = initialState, action: QuizzAction) => {
       case getType(Actions.getThemes.failure):
         draft.isLoading = action.payload;
         break;
+      case getType(Actions.addQuizz.request): {
+        draft.isLoading = true;
+        break;
+      }
+      case getType(Actions.addQuizz.success): {
+        draft.isLoading = false;
+        break;
+      }
+      case getType(Actions.addQuizz.failure): {
+        draft.isLoading = true;
+        break;
+      }
       default:
         return state;
     }

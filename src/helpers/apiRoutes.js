@@ -24,4 +24,5 @@ export default ({
   getStats: () => `/stats`,
   quizz: (id) => `/theme-quizz/question/${id}`,
   themes: () => `/theme-quizz`,
+  addQuizz: () => `/quizz`
 });

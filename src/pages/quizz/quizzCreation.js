@@ -7,7 +7,7 @@ import { FormWrapper, Progress, InputWrapper, Button, ButtonWrapper, Steps, Form
 import { QTitle, QLabel, QRow, QLTitle, RedBtn, AddBtn, Separator, ARight } from '../../components/quiz';
 
 const QuizzCreation = () => {
-  //const registerQuizz = Quizz.addQuizz();
+  const registerQuizz = Quizz.addQuizz();
 
   return (
     <Wrapper>
@@ -51,7 +51,8 @@ const QuizzCreation = () => {
           }}
           onSubmit={ values => {
             // registerQuizz(values);
-            console.log("MEGAPUTE", values)
+            console.log("MEGAPUTE", values);
+            registerQuizz(values);
           }}
           render={({ values }) => (
 

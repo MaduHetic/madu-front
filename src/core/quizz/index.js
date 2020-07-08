@@ -30,9 +30,18 @@ function useIsLoading() {
   return useSelector(isLoading);
 }
 
+function useAddQuizz() {
+  const dispatch = useDispatch();
+  return (data) => {
+    dispatch(Events.addQuizz(data));
+  }
+  
+}
+
 export const Quizz = {
   getQuizz: useGetQuizz,
   getThemes: useGetThemes,
+  addQuizz: useAddQuizz,
   questions: useQuestions,
   themes: useThemes,
   isLoading: useIsLoading,

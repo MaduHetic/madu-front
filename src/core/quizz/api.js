@@ -8,10 +8,11 @@ function getQuizz(id) {
   });
 }
 
-function addQuizz(id) {
+function addQuizz(data) {
   return client.request({
     method: "post",
-    url: apiRoutes.quizz(id),
+    url: apiRoutes.addQuizz(),
+    data: data
   });
 }
 
