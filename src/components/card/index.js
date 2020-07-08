@@ -144,7 +144,7 @@ const StyleCardView = styled.div`
   }
 `;
 
-const Card = ({ client, poi, children }) => {
+const Card = ({ client, poi, children, quizz }) => {
     if (client) {
         return (
           <StyleCard className="client">
@@ -210,6 +210,23 @@ const Card = ({ client, poi, children }) => {
             </div>
           </StyleCard>
         )
+    } else if (quizz) {
+      return (
+        <StyleCard className="client">
+          <div className="name">
+            <p>{quizz.theme}</p>
+          </div>
+          <div className="time">
+            <p>{quizz.duration} minute{quizz.duration > 1 ? 's' : '' }</p>
+          </div>
+          <div className="date">
+            <p>{moment(quizz.dateCreate).format('L')}</p>
+          </div>
+          <div className="reward">
+            <p>{quizz.reward}</p>
+          </div>
+        </StyleCard>
+      )
     } else {
       return <StyleCardView>{children}</StyleCardView>
     }
@@ -220,5 +237,6 @@ export default Card;
 Card.propTypes = {
     client: PropTypes.object,
     poi: PropTypes.object,
-    children: PropTypes.node
+    children: PropTypes.node,
+    quizz: PropTypes.object
 };
