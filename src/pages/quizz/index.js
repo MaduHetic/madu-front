@@ -4,6 +4,7 @@ import Card from '../../components/card';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import { Wrapper, TitleDefault, ListContainer, ListHeader } from '../../styles/global';
 import { Quizz } from  '../../core/quizz';
+import CustomButton from '../../components/button/button';
 
 const QuizzList = () => {
 	const getThemes = Quizz.getThemes();
@@ -27,7 +28,11 @@ const QuizzList = () => {
         <TitleDefault>
           <h3 className="title">Liste des quizzs</h3>
           <span>
-            <NavLink to="/quizz/new">Ajouter nouveau</NavLink>
+            <CustomButton
+              text="Ajouter nouveau"
+              size="medium"
+              href="/quizz/new"
+            />
           </span>
         </TitleDefault>
         <ListHeader>

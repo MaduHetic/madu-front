@@ -11,7 +11,7 @@ function getQuizz(id) {
 function addQuizz(data) {
   return client.request({
     method: "post",
-    url: apiRoutes.addQuizz(),
+    url: apiRoutes.themes(),
     data: data
   });
 }

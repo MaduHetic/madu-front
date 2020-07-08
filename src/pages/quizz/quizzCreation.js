@@ -26,7 +26,7 @@ const QuizzCreation = () => {
             infoQuizz: [{
               question: {
                 question: "",
-                crystalGain: "",
+                crystalGain: 0,
                 publicationDate: "2020-01-22",
               },
               answers: [
@@ -50,9 +50,13 @@ const QuizzCreation = () => {
             }]
           }}
           onSubmit={ values => {
-            // registerQuizz(values);
-            console.log("MEGAPUTE", values);
-            registerQuizz(values);
+            let data = values;
+            data.infoQuizz.forEach( e => {
+              e.answers.forEach( e => {
+                e.goodAnswer = JSON.parse(e.goodAnswer);
+              })
+            }) 
+            registerQuizz(data);
           }}
           render={({ values }) => (
 
@@ -97,7 +101,7 @@ const QuizzCreation = () => {
 
                       <QRow>
                         <QLabel>Gain</QLabel>
-                        <Field name={`infoQuizz[${index}].question.crystalGain`} />
+                        <Field name={`infoQuizz[${index}].question.crystalGain`} type="number" />
                       </QRow>
 
                       { item.answers.map((e, subIndex) => (
@@ -114,10 +118,6 @@ const QuizzCreation = () => {
                           <label>Mauvaise réponse</label>
                         </QRow>
                       ))}
-                  
-                    {/* <RedBtn type="button" onClick={() => arrayHelpers.remove(index)}>
-                      Supprimer cette question
-                    </RedBtn> */}
                     </Separator>
                   ))}
                   <AddBtn
@@ -125,7 +125,7 @@ const QuizzCreation = () => {
                     onClick={() => arrayHelpers.push({
                       question: {
                         question: "",
-                        crystalGain: "",
+                        crystalGain: 0,
                         publicationDate: "2020-01-22",
                       },
                       answers: [
