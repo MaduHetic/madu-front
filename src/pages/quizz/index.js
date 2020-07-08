@@ -10,7 +10,7 @@ const QuizzList = () => {
   const themes = Quizz.themes();
 
   useEffect(() => {
-    getThemes()
+    getThemes(),
   }, []);
 
   return (
