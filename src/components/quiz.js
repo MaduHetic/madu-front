@@ -100,6 +100,13 @@ export const QCard = styled.div`
         margin-left: 16px;
     }
 
+    p.title {
+        text-align: center;
+        font-weight: bold;
+        margin: 16px 0;
+        font-size: 20px;
+    }
+
 
 `
 

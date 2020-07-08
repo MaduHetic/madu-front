@@ -3,7 +3,7 @@ import { Wrapper, TitleDefault } from '../../styles/global';
 import { Quizz } from  '../../core/quizz';
 import { Formik, Form, Field, FieldArray } from 'formik';
 import { WrapperTitle, MainTitle } from '../../components/title/style';
-import { FormWrapper, Progress, InputWrapper, Button, ButtonWrapper, Steps, FormHead, Label, Option, OptionLabel, TagContainer } from '../../components/create';
+import { FormWrapper, Button, } from '../../components/create';
 import { QTitle, QLabel, QRow, QLTitle, RedBtn, AddBtn, Separator, ARight } from '../../components/quiz';
 import moment from 'moment';
 import { useHistory } from 'react-router-dom';

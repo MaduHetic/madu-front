@@ -20,6 +20,8 @@ import PoiCreate from '../pages/poi/poiCreation';
 import CreateEntity from '../pages/create/index';
 import QuizzList from '../pages/quizz/index';
 import QuizzCreation from '../pages/quizz/quizzCreation';
+import KnowItList from '../pages/knowIt/index';
+import KnowItCreation from '../pages/knowIt/knowItCreation';
 
 const history = createBrowserHistory();
 
@@ -72,6 +74,8 @@ const App = () => {
             <DashboardLayout exact path="/point-d-interet/fiche-edit/:id" component={PoiUpdate}  />
             <DashboardLayout exact path="/quizz" component={QuizzList}  />
             <DashboardLayout exact path="/quizz/new" component={QuizzCreation}  />
+            <DashboardLayout exact path="/saviez" component={KnowItList}  />
+            <DashboardLayout exact path="/saviez/new" component={KnowItCreation}  />
           </Switch>
         </PageContent>
       </Router>

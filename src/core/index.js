@@ -7,6 +7,7 @@ import { Tags } from './tags';
 import { GreenScoreTypes } from './greenScoreTypes';
 import { Stats } from './statsDashboard';
 import { Quizz } from './quizz';
+import { KnowIt } from './knowIt';
 
 const createRootReducer = history =>
   combineReducers({
@@ -17,6 +18,7 @@ const createRootReducer = history =>
     greenScoreTypes: GreenScoreTypes.reducer,
     stats: Stats.reducer,
     quizz: Quizz.reducer,
+    knowIt: KnowIt.reducer,
   });
 
 export default createRootReducer;

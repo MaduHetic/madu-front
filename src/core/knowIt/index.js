@@ -9,6 +9,11 @@ function useGetKnowIt() {
   return () => dispatch(Events.getKnowIt());
 }
 
+function useAddKnowIt() {
+  const dispatch = useDispatch();
+  return (data) => dispatch(Events.addKnowIt(data));
+}
+
 function useData() {
   return useSelector(data);
 }
@@ -19,6 +24,7 @@ function useIsLoading() {
 
 export const KnowIt = {
   getKnowIt: useGetKnowIt,
+  addKnowIt: useAddKnowIt,
   data: useData,
   isLoading: useIsLoading,
   sagas: rootSagas,

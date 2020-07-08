@@ -14,6 +14,19 @@ function* getKnowIt() {
   }
 }
 
+function* addKnowIt(action) {
+  try {
+    yield put(Actions.addKnowIt.request(true));
+    const request = yield call(Api.addKnowIt, action.payload);
+    if (request.status === 200) {
+      yield put(Actions.addKnowIt.success(request.data));
+    }
+  } catch {
+    yield put(Actions.addKnowIt.failure(false));
+  }
+}
+
 export function* rootSagas() {
   yield takeLatest(Events.getKnowIt, getKnowIt);
+  yield takeLatest(Events.addKnowIt, addKnowIt);
 }

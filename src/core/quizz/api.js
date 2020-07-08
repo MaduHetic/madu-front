@@ -26,5 +26,5 @@ function getThemes() {
 export const Api = {
   getQuizz,
   getThemes,
-  addQuizz
+  addQuizz,
 };
