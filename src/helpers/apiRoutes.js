@@ -26,4 +26,5 @@ export default ({
   themes: () => `/theme-quizz`,
   addQuizz: () => `/quizz`,
   knowIt: () => `/know-it`,
+  challenge: () => `/challenge`,
 });

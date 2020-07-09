@@ -10,13 +10,14 @@ const QuizzList = () => {
   const themes = Quizz.themes();
 
   useEffect(() => {
-    getThemes()
+    getThemes();
   }, []);
+
 
   return (
     	<Wrapper>
         <TitleDefault>
-          <h3 className="title">Liste des quizzs</h3>
+          <h3 className="title">Liste des quiz</h3>
           <span>
             <CustomButton
               text="Ajouter nouveau"

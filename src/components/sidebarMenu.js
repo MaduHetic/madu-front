@@ -9,6 +9,7 @@ import RoomOutlinedIcon from '@material-ui/icons/RoomOutlined';
 import MapOutlinedIcon from '@material-ui/icons/MapOutlined';
 import AssignmentIcon from '@material-ui/icons/Assignment';
 import EmojiObjectsIcon from '@material-ui/icons/EmojiObjects';
+import EcoIcon from '@material-ui/icons/Eco';
 import { User } from '../core/user';
 import CustomButton from './button/button';
 
@@ -68,7 +69,7 @@ const Sidebar = styled.aside`
 
 const StyledButtonContainer = styled.div`
     position: absolute;
-    bottom: 9rem;
+    bottom: 5rem;
     left: 50%;
     transform: translateX(-50%);
     & > span {
@@ -137,6 +138,11 @@ const SidebarMenu = () => {
                 <li>
                     <NavLink to="/saviez">
                         <EmojiObjectsIcon style={{ fontSize: 22 }}/>Saviez-vous
+                    </NavLink>
+                </li>
+                <li>
+                    <NavLink to="/challenge">
+                        <EcoIcon style={{ fontSize: 22 }}/>Challenge
                     </NavLink>
                 </li>
                 <li>

@@ -97,7 +97,7 @@ export const QCard = styled.div`
     padding-bottom: 18px;
 
     p {
-        margin-left: 16px;
+        margin: 4px 0 4px 16px;
     }
 
     p.title {

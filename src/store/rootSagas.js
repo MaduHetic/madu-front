@@ -7,6 +7,7 @@ import { GreenScoreTypes } from '../core/greenScoreTypes';
 import { Stats } from '../core/statsDashboard';
 import { Quizz } from '../core/quizz';
 import { KnowIt } from '../core/knowIt';
+import { Challenge } from '../core/challenge'
 
 export default function* rootSaga() {
   yield all([
@@ -18,5 +19,6 @@ export default function* rootSaga() {
     Stats.sagas(),
     Quizz.sagas(),
     KnowIt.sagas(),
+    Challenge.sagas(),
   ]);
 }
