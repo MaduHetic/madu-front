@@ -22,6 +22,8 @@ import QuizzList from '../pages/quizz/index';
 import QuizzCreation from '../pages/quizz/quizzCreation';
 import KnowItList from '../pages/knowIt/index';
 import KnowItCreation from '../pages/knowIt/knowItCreation';
+import ChallengeList from '../pages/challenge/index';
+import ChallengeCreation from '../pages/challenge/challengeCreation';
 
 const history = createBrowserHistory();
 
@@ -76,6 +78,8 @@ const App = () => {
             <DashboardLayout exact path="/quizz/new" component={QuizzCreation}  />
             <DashboardLayout exact path="/saviez" component={KnowItList}  />
             <DashboardLayout exact path="/saviez/new" component={KnowItCreation}  />
+            <DashboardLayout exact path="/challenge" component={ChallengeList}  />
+            <DashboardLayout exact path="/challenge/new" component={ChallengeCreation}  />
           </Switch>
         </PageContent>
       </Router>

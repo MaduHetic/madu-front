@@ -2,33 +2,34 @@ import React, { useState, useEffect } from 'react';
 import { Wrapper } from '../../styles/global';
 import { WrapperTitle, MainTitle } from '../../components/title/style';
 import moment from 'moment';
-import { KnowIt } from '../../core/knowIt';
+import { Challenge } from '../../core/challenge';
 import { Formik, Form, Field } from 'formik';
 import { useHistory } from 'react-router-dom';
 import { QTitle, QLabel, QRow } from '../../components/quiz';
 import { FormWrapper, Button, } from '../../components/create';
 
-const KnowItCreation = () => {
-  const addKnowIt = KnowIt.addKnowIt();
+const ChallengeCreation = () => {
+  const addChallenge = Challenge.addChallenge();
   const history = useHistory();
 
   return (
     <Wrapper>
       <WrapperTitle>
-        <MainTitle>Ajouter un saviez-vous</MainTitle>
+        <MainTitle>Ajouter un challenge</MainTitle>
       </WrapperTitle>
 
       <FormWrapper>
         <Formik
           initialValues={{
-            title: "",
+            gain: 0,
             description: "",
             publicationDate: moment().format('YYYY-MM-DD').toString()
           }}
           onSubmit={ values => {
-            addKnowIt(values);
+            console.log("CHALLENGE", values);
+            addChallenge(values);
             setTimeout(() => {
-              history.push("/saviez");
+              history.push("/challenge");
             }, 300);
           }}      
           render={({ values }) => (
@@ -36,13 +37,13 @@ const KnowItCreation = () => {
               <QTitle>Remplir les champs suivants</QTitle>
 
               <QRow>
-                <QLabel>Titre</QLabel>
-                <Field name="title" type="text" />
+                <QLabel>Description</QLabel>
+                <Field name="description" type="text" />
               </QRow>
 
               <QRow>
-                <QLabel>Description</QLabel>
-                <Field name="description" type="text"/>
+                <QLabel>Récompense</QLabel>
+                <Field name="gain" type="number"/>
               </QRow>
 
               <QRow>
@@ -59,4 +60,4 @@ const KnowItCreation = () => {
   )
 }
 
-export default KnowItCreation;
+export default ChallengeCreation;

@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { Wrapper, TitleDefault } from '../../styles/global';
 import CustomButton from '../../components/button/button';
-import moment from 'moment';
 import { KnowIt } from '../../core/knowIt';
 import { QCard, QWrap } from '../../components/quiz';
 
