@@ -29,10 +29,17 @@ export const knowItReducer = (state = initialState, action: ChallengeAction) => 
         break;
       case getType(Actions.addChallenge.success):
         draft.isLoading = false;
-        // draft.data = action.payload;
-        // draft.errors = [];
         break;
       case getType(Actions.addChallenge.failure):
+        draft.isLoading = true;
+        break;
+      case getType(Actions.deleteChallenge.request):
+        draft.isLoading = true;
+        break;
+      case getType(Actions.deleteChallenge.success):
+        draft.isLoading = true;
+        break;
+      case getType(Actions.deleteChallenge.failure):
         draft.isLoading = true;
         break;
       default:

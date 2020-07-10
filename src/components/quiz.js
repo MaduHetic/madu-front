@@ -56,7 +56,7 @@ export const RedBtn = styled.button`
     margin-left: 64px;
 
     &.delete {
-        margin: 0 auto 0 auto;
+        margin: 16px auto 0 auto;
     }
 `
 

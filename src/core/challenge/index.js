@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { rootSagas } from "./sagas";
-import { Events } from "./actions";
+import { Events, Actions } from "./actions";
 import { knowItReducer } from "./reducer";
 import { isLoading, data } from "./selectors";
 
@@ -14,6 +14,14 @@ function useAddChallenge() {
   return (data) => dispatch(Events.addChallenge(data));
 }
 
+function useDeleteChallenge() {
+  const dispatch = useDispatch();
+  return (id) => {
+    dispatch(Events.deleteChallenge(id));
+    dispatch(Actions.deleteChallenge.request());
+  }
+}
+
 function useData() {
   return useSelector(data);
 }
@@ -25,6 +33,7 @@ function useIsLoading() {
 export const Challenge = {
   getChallenge: useGetChallenge,
   addChallenge: useAddChallenge,
+  deleteChallenge: useDeleteChallenge,
   data: useData,
   isLoading: useIsLoading,
   sagas: rootSagas,

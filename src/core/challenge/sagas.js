@@ -26,7 +26,21 @@ function* addChallenge(action) {
   }
 }
 
+function* deleteChallenge(action) {
+  try {
+    yield put(Actions.deleteChallenge.request(true));
+    const request = yield call(Api.deleteChallenge, action.payload);
+    if (request.status === 200) {
+      yield put(Actions.deleteChallenge.success(request.data));
+      yield call(getChallenge);
+    }
+  } catch {
+    yield put(Actions.addChallenge.failure(false));
+  }
+}
+
 export function* rootSagas() {
   yield takeLatest(Events.getChallenge, getChallenge);
   yield takeLatest(Events.addChallenge, addChallenge);
+  yield takeLatest(Events.deleteChallenge, deleteChallenge);
 }
