@@ -125,10 +125,6 @@ const PoiView = ({ history }) => {
                         <span>Green Score :</span>
                         <p>{poi.poi.greenScore}%</p>
                     </div>
-                    <div>
-                        <span>Horaires :</span>
-                        <p></p>
-                    </div>
                 </Card>
                 <Modal
                       open={open}

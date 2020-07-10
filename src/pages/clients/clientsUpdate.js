@@ -114,10 +114,6 @@ const CompanyUpdate = ({ history }) => {
                   <img src={company.logo} alt="logo"/>
                 </div>
               </div>
-              <div>
-                <span>Horaires :</span>
-                <p></p>
-              </div>
               <div className="groupBtn">
                 <CustomButton
                   text="Enregistrer"

@@ -40,9 +40,9 @@ const clientTypes = [
 
 const poiTypes = [
 	"Food",
-	"Drink",
-	"Cosmetic",
-	"Fashion",
+	// "Drink",
+	// "Cosmetic",
+	// "Fashion",
 	"Shopping",
 	"Activity",
 ]

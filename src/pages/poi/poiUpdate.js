@@ -155,10 +155,6 @@ const PoiView = ({ history }) => {
                                     defaultValue={poi.greenScore}
                             />
                         </div>
-                        <div>
-                            <span>Horaires :</span>
-                            <p></p>
-                        </div>
                         <div className="groupBtn">
                             <CustomButton
                                 text="Enregistrer"
