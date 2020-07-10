@@ -35,6 +35,15 @@ export const knowItReducer = (state = initialState, action: KnowItAction) => {
       case getType(Actions.addKnowIt.failure):
         draft.isLoading = true;
         break;
+      case getType(Actions.deleteKnowIt.request):
+        draft.isLoading = true;
+        break;
+      case getType(Actions.deleteKnowIt.success):
+        draft.isLoading = true;
+        break;
+      case getType(Actions.deleteKnowIt.failure):
+        draft.isLoading = true;
+        break;  
       default:
         return state;
     }

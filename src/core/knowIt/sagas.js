@@ -26,7 +26,21 @@ function* addKnowIt(action) {
   }
 }
 
+function* deleteKnowIt(action) {
+  try {
+    yield put(Actions.deleteKnowIt.request(true));
+    const request = yield call(Api.deleteKnowIt, action.payload);
+    if (request.status === 200) {
+      yield put(Actions.deleteKnowIt.success(request.data));
+      yield call(getKnowIt);
+    }
+  } catch {
+    yield put(Actions.deleteKnowIt.failure(false));
+  }
+}
+
 export function* rootSagas() {
   yield takeLatest(Events.getKnowIt, getKnowIt);
   yield takeLatest(Events.addKnowIt, addKnowIt);
+  yield takeLatest(Events.deleteKnowIt, deleteKnowIt);
 }

@@ -16,7 +16,15 @@ function addKnowIt(data) {
   });
 }
 
+function deleteKnowIt(id) {
+  return client.request({
+    method: "delete",
+    url: apiRoutes.deleteKnowIt(id),
+  });
+}
+
 export const Api = {
   getKnowIt,
   addKnowIt,
+  deleteKnowIt,
 };

@@ -54,6 +54,10 @@ export const RedBtn = styled.button`
     border: solid 1px #EE6363;
     border-radius: 3rem;
     margin-left: 64px;
+
+    &.delete {
+        margin: 0 auto 0 auto;
+    }
 `
 
 export const AddBtn = styled.button`
