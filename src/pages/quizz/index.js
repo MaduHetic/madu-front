@@ -2,16 +2,21 @@ import React, { useState, useEffect } from 'react';
 import { Wrapper, TitleDefault } from '../../styles/global';
 import { Quizz } from  '../../core/quizz';
 import CustomButton from '../../components/button/button';
-import { QCard, QBackground, QWrap } from '../../components/quiz';
+import { QCard, QBackground, QWrap, RedBtn } from '../../components/quiz';
 import moment from 'moment';
 
 const QuizzList = () => {
 	const getThemes = Quizz.getThemes();
   const themes = Quizz.themes();
+  const deleteQuizz = Quizz.deleteQuizz();
 
   useEffect(() => {
     getThemes();
   }, []);
+
+  const handleDelete = (id) => {
+    deleteQuizz(id);
+  }
 
 
   return (
@@ -35,6 +40,9 @@ const QuizzList = () => {
                 <p><b>Nom : </b>{quizz.theme}</p>
                 <p><b>Publié le : </b>{moment(quizz.publicationDate).format("L")}</p>
                 <p><b>Durée : </b>{quizz.duration}</p>
+                <RedBtn type="button" onClick={() => handleDelete(quizz.id)} className="delete">
+                  Supprimer
+                </RedBtn>
               </QCard>
             ))
           }

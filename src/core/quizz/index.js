@@ -3,6 +3,7 @@ import { rootSagas } from "./sagas";
 import { Events } from "./actions";
 import { quizzReducer } from "./reducer";
 import { isLoading, questions, themes } from "./selectors";
+import { Actions } from "./actions";
 
 function useGetQuizz() {
   const dispatch = useDispatch();
@@ -35,13 +36,21 @@ function useAddQuizz() {
   return (data) => {
     dispatch(Events.addQuizz(data));
   }
-  
+}
+
+function useDeleteQuizz() {
+  const dispatch = useDispatch();
+  return (id) => {
+    dispatch(Events.deleteQuizz(id));
+    dispatch(Actions.deleteQuizz.request());
+  }
 }
 
 export const Quizz = {
   getQuizz: useGetQuizz,
   getThemes: useGetThemes,
   addQuizz: useAddQuizz,
+  deleteQuizz: useDeleteQuizz,
   questions: useQuestions,
   themes: useThemes,
   isLoading: useIsLoading,

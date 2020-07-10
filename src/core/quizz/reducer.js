@@ -51,6 +51,18 @@ export const quizzReducer = (state = initialState, action: QuizzAction) => {
       }
       case getType(Actions.addQuizz.failure): {
         draft.isLoading = true;
+        break;  
+      }
+      case getType(Actions.deleteQuizz.request): {
+        draft.isLoading = true;
+        break;
+      }
+      case getType(Actions.deleteQuizz.success): {
+        draft.isLoading = true;
+        break;
+      }
+      case getType(Actions.deleteQuizz.failure): {
+        draft.isLoading = true;
         break;
       }
       default:
