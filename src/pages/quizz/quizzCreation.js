@@ -62,7 +62,9 @@ const QuizzCreation = () => {
               })
             }) 
             registerQuizz(data);
-            history.push("/quizz");
+            setTimeout(() => {
+              history.push("/quizz");
+            }, 300);
           }}
           render={({ values }) => (
 

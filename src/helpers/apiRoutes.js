@@ -25,6 +25,7 @@ export default ({
   quizz: (id) => `/theme-quizz/question/${id}`,
   themes: () => `/theme-quizz`,
   addQuizz: () => `/quizz`,
+  deleteQuizz: (id) => `/theme-quizz/${id}`,
   knowIt: () => `/know-it`,
   challenge: () => `/challenge`,
   deleteKnowIt: (id) => `/know-it/${id}`,

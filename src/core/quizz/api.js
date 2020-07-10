@@ -16,6 +16,13 @@ function addQuizz(data) {
   });
 }
 
+function deleteQuizz(id) {
+  return client.request({
+    method: "delete",
+    url: apiRoutes.deleteQuizz(id),
+  });
+}
+
 function getThemes() {
   return client.request({
     method: "get",
@@ -27,4 +34,5 @@ export const Api = {
   getQuizz,
   getThemes,
   addQuizz,
+  deleteQuizz,
 };
