@@ -1,16 +1,21 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Wrapper, TitleDefault } from '../../styles/global';
 import CustomButton from '../../components/button/button';
 import { KnowIt } from '../../core/knowIt';
-import { QCard, QWrap } from '../../components/quiz';
+import { QCard, QWrap, RedBtn } from '../../components/quiz';
 
 const KnowItList = () => {
   const getKnowIt = KnowIt.getKnowIt();
-  const knowItItem = KnowIt.data();
+  const deleteKnowIt = KnowIt.deleteKnowIt();
+  const knowItItem =  KnowIt.data();
 
   useEffect(() => {
-    getKnowIt()
+    getKnowIt();
   }, []);
+
+  const handleDelete = (id) => {
+    deleteKnowIt(id);
+  }
 
   return (
     <Wrapper>
@@ -28,9 +33,12 @@ const KnowItList = () => {
       <QWrap>
       {
         knowItItem.map ( knowIt => (
-          <QCard>
+          <QCard key={knowIt.id} >
             <p className="title">{knowIt.title}</p>
             <p>{knowIt.description}</p>
+            <RedBtn type="button" onClick={() => handleDelete(knowIt.id)} className="delete">
+              Supprimer
+            </RedBtn>
           </QCard>
         ))
       }
