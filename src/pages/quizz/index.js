@@ -39,7 +39,7 @@ const QuizzList = () => {
                 <QBackground style={{ backgroundImage:`url(${quizz.imgBackground})`}}/>
                 <p><b>Nom : </b>{quizz.theme}</p>
                 <p><b>Publié le : </b>{moment(quizz.publicationDate).format("L")}</p>
-                <p><b>Durée : </b>{quizz.duration}</p>
+                <p><b>Durée : </b>{quizz.duration} minute{quizz.duration > 1 ? 's' : '' }</p>
                 <RedBtn type="button" onClick={() => handleDelete(quizz.id)} className="delete">
                   Supprimer
                 </RedBtn>

@@ -37,7 +37,7 @@ const ChallengeList = () => {
           <QCard>
             <p className="title">{challenge.description}</p>
             <p><b>Publié le : </b>{moment(challenge.publicationDate).format("L")}</p>
-            <p><b>Récompense : </b>{challenge.crystalGain}</p>
+            <p><b>Récompense : </b>{challenge.crystalGain} point{challenge.crystalGain > 1 ? 's' : '' }</p>
             <RedBtn type="button" onClick={() => handleDelete(challenge.id)} className="delete">
               Supprimer
             </RedBtn>
