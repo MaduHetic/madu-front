@@ -16,7 +16,15 @@ function addChallenge(data) {
   });
 }
 
+function deleteChallenge(id) {
+  return client.request({
+    method: "delete",
+    url: apiRoutes.deleteChallenge(id),
+  });
+}
+
 export const Api = {
   getChallenge,
   addChallenge,
+  deleteChallenge,
 };

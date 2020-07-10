@@ -27,5 +27,6 @@ export default ({
   addQuizz: () => `/quizz`,
   knowIt: () => `/know-it`,
   challenge: () => `/challenge`,
-  deleteKnowIt: (id) => `/know-it/${id}`
+  deleteKnowIt: (id) => `/know-it/${id}`,
+  deleteChallenge: (id) => `/challenge/${id}`
 });

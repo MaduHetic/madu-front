@@ -3,15 +3,20 @@ import { Wrapper, TitleDefault } from '../../styles/global';
 import CustomButton from '../../components/button/button';
 import moment from 'moment';
 import { Challenge } from '../../core/challenge';
-import { QCard, QWrap } from '../../components/quiz';
+import { QCard, QWrap, RedBtn } from '../../components/quiz';
 
 const ChallengeList = () => {
   const getChallenge = Challenge.getChallenge();
   const challenge = Challenge.data();
+  const deleteChallenge = Challenge.deleteChallenge();
 
   useEffect(() => {
     getChallenge();
   }, []);
+
+  const handleDelete = (id) => {
+    deleteChallenge(id);
+  }
 
   return (
     <Wrapper>
@@ -33,6 +38,9 @@ const ChallengeList = () => {
             <p className="title">{challenge.description}</p>
             <p><b>Publié le : </b>{moment(challenge.publicationDate).format("L")}</p>
             <p><b>Récompense : </b>{challenge.crystalGain}</p>
+            <RedBtn type="button" onClick={() => handleDelete(challenge.id)} className="delete">
+              Supprimer
+            </RedBtn>
           </QCard>
         ))
       }
